@@ -11,14 +11,17 @@
         android:theme="@style/Theme.TebakKataGame">
         <activity android:name=".Activity.LevelTahap_Activity"></activity>
         <activity android:name=".Activity.Tahap_Activity" />
-        <activity android:name=".Activity.SplashScreen_Activity" />
-        <activity android:name=".Activity.MainActivity">
+
+        <activity android:name=".Activity.SplashScreen_Activity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.MainActivity"/>
+
     </application>
 
 </manifest>
