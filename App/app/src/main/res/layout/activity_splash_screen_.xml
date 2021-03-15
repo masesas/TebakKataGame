@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-=======
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
->>>>>>> 3dfb6e9c5c15db82950a5d46f2f08bf85fcad53d
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activity.SplashScreen_Activity">
-
-=======
     android:id="@+id/ly_splash"
     android:background="@drawable/background_main"
     tools:context=".Activity.SplashScreen_Activity">
@@ -43,5 +35,4 @@
             android:layout_gravity="center|bottom"/>
 
     </FrameLayout>
->>>>>>> 3dfb6e9c5c15db82950a5d46f2f08bf85fcad53d
 </androidx.constraintlayout.widget.ConstraintLayout>
