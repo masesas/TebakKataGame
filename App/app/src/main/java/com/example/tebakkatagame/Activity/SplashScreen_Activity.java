@@ -26,7 +26,7 @@ public class SplashScreen_Activity extends BaseApp {
         }
 
         find(R.id.ly_splash).postDelayed(() -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
             startActivity(intent);
             finish();
         }, 2950);

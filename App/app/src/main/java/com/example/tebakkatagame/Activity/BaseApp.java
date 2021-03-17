@@ -1,10 +1,16 @@
 package com.example.tebakkatagame.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +49,26 @@ public class BaseApp extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setImageFromString(ImageView icon, String imageName) {
+        Resources res = getResources();
+        int resID = res.getIdentifier(imageName, "drawable", getPackageName());
+        Drawable drawable = res.getDrawable(resID);
+        icon.setImageDrawable(drawable);
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setImageFromString(ImageView icon, String imageName, int width, int height) {
+        Resources res = getResources();
+        int resID = res.getIdentifier(imageName, "drawable", getPackageName());
+        Drawable drawable = res.getDrawable(resID);
+        icon.setImageDrawable(drawable);
+        LinearLayout.LayoutParams frameLayout = new LinearLayout.LayoutParams(width, height);
+        icon.setLayoutParams(frameLayout);
+        icon.getLayoutParams().height = 260;
+        icon.getLayoutParams().width = 260;
+        icon.requestLayout();
+    }
 
     @Override
     protected void onDestroy() {

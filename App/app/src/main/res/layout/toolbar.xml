@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:elevation="20dp"
+    app:elevation="20dp">
+
+    <ImageButton
+        android:id="@+id/img_btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center|start"
+        android:src="@drawable/ic_back_resize"
+        android:background="@drawable/box_transparent"
+        android:backgroundTint="@color/blue_200"
+        android:backgroundTintMode="add"
+        android:tint="@android:color/white"
+        tools:ignore="ContentDescription" />
+
+</FrameLayout>
