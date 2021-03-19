@@ -9,25 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TebakKataGame">
-
+        <activity android:name=".Activity.GamePlay.Evaluasi_Activity"></activity>
+        <activity android:name=".Activity.GamePlay.MainGameSukuKata_Activity" />
+        <activity android:name=".Activity.GamePlay.MainGameTebakHuruf_Acitivity" />
+        <activity android:name=".Activity.GamePlay.MainGameKataBergambar_Activity" />
+        <activity android:name=".Activity.LevelTahap_Activity" />
+        <activity android:name=".Activity.Tahap_Activity" />
         <activity
-            android:name=".Activity.GamePlay.MainGameTahap3_Activity"/>
-        <activity
-            android:name=".Activity.GamePlay.MainGameTahap2_Acitivity" />
-        <activity
-            android:name=".Activity.GamePlay.MainGameTahap1_Activity" />
-        <activity
-            android:name=".Activity.LevelTahap_Activity" />
-        <activity
-            android:name=".Activity.Tahap_Activity" />
-        <activity android:name=".Activity.SplashScreen_Activity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+            android:name=".Activity.SplashScreen_Activity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.MainActivity" />
     </application>
+
 </manifest>

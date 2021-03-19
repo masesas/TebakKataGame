@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.tebakkatagame.R;
 
-public class MainGameTahap2_Acitivity extends AppCompatActivity {
+public class Evaluasi_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_game_tahap2);
+        setContentView(R.layout.activity_evaluasi);
     }
 }

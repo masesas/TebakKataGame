@@ -2,6 +2,7 @@ package com.example.tebakkatagame.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -68,6 +69,12 @@ public class BaseApp extends AppCompatActivity {
         icon.getLayoutParams().height = 260;
         icon.getLayoutParams().width = 260;
         icon.requestLayout();
+    }
+
+    public void setIntent(Class to, String key, String value){
+        Intent intent = new Intent(getActivity(), to);
+        intent.putExtra(key, value);
+        startActivity(intent);
     }
 
     @Override
