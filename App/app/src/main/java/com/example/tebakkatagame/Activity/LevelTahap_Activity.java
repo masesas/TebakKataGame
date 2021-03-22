@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
 import com.example.tebakkatagame.R;
 
 import java.util.ArrayList;
@@ -57,8 +58,9 @@ public class LevelTahap_Activity extends BaseApp {
 
         gridViewMenu.setAdapter(menuAdapter);
         gridViewMenu.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent();
+            Intent intent = new Intent(getActivity(), MainGameKataBergambar_Activity.class);
             intent.putExtra("LEVEL", position);
+            startActivity(intent);
         });
     }
 
