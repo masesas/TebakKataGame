@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="random_letter">
+        <item>@drawable/letter_random_0</item>
+        <item>@drawable/letter_random_1</item>
+        <item>@drawable/letter_random_2</item>
+        <item>@drawable/letter_random_3</item>
+        <item>@drawable/letter_random_4</item>
+        <item>@drawable/letter_random_5</item>
+        <item>@drawable/letter_random_6</item>
+        <item>@drawable/letter_random_7</item>
+        <item>@drawable/letter_random_8</item>
+        <item>@drawable/letter_random_9</item>
+        <item>@drawable/letter_random_10</item>
+        <item>@drawable/letter_random_11</item>
+        <item>@drawable/letter_random_12</item>
+        <item>@drawable/letter_random_13</item>
+        <item>@drawable/letter_random_14</item>
+        <item>@drawable/letter_random_15</item>
+        <item>@drawable/letter_random_16</item>
+        <item>@drawable/letter_random_17</item>
+        <item>@drawable/letter_random_18</item>
+        <item>@drawable/letter_random_19</item>
+        <item>@drawable/letter_random_20</item>
+        <item>@drawable/letter_random_21</item>
+        <item>@drawable/letter_random_22</item>
+        <item>@drawable/letter_random_23</item>
+    </integer-array>
+</resources>

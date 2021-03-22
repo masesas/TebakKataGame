@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +22,7 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             android:src="@drawable/ic_tittle_tebak_huruf"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
@@ -32,26 +32,163 @@
 
 
     <LinearLayout
+        android:id="@+id/ly_container_gambar"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="350dp"
         android:layout_below="@+id/ly_container_tittle"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/ic_buku"
+            android:layout_marginBottom="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/img_guess_1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/letter_empty"
+                tools:ignore="ContentDescription"
+                android:tag="key1"/>
+
+            <ImageView
+                android:id="@+id/img_guess_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/letter_empty"
+                android:layout_toEndOf="@+id/img_guess_1"
+                tools:ignore="ContentDescription"
+                android:tag="key2"/>
+
+            <ImageView
+                android:id="@+id/img_guess_3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/img_guess_2"
+                android:src="@drawable/letter_k"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/img_guess_4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/img_guess_3"
+                android:src="@drawable/letter_u"
+                tools:ignore="ContentDescription" />
+
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ly_container_gambar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="171dp"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageView
-            android:id="@+id/img_tebak"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/img_choice1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/img_word_3"
+            android:src="@drawable/letter_u"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_choice2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/img_word_3"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/letter_u"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_choice3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/img_word_3"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/letter_u"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_choice4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/img_word_3"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/letter_u"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_choice5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/img_word_3"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/letter_u"
             tools:ignore="ContentDescription" />
 
 
     </LinearLayout>
+
 
 
 </RelativeLayout>
