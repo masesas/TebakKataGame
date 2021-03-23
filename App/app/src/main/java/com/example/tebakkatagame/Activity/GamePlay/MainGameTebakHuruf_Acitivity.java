@@ -13,14 +13,18 @@ import android.widget.ImageView;
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-public class MainGameTebakHuruf_Acitivity extends BaseApp implements View.OnClickListener{
+public class MainGameTebakHuruf_Acitivity extends BaseApp {
 
     private int[] Images = {R.drawable.letter_a, R.drawable.letter_b, R.drawable.letter_u,R.drawable.letter_c,R.drawable.letter_d,
     R.drawable.letter_e};
     private int[] ImagesKey = {R.drawable.letter_u, R.drawable.letter_b};
     private ImageView img1,img2,img3,img4,img5,imgGuest1,imgGuest2;
+    private ImageView[] ImagesArray = {img1,img2,img3,img4,img5};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,43 +32,70 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp implements View.OnClic
         setContentView(R.layout.activity_main_game_tebak_huruf);
 
         initcomponent();
+        setRandomImage();
     }
 
     private void initcomponent(){
-        img1 = (ImageView) findViewById(R.id.img_choice1);
-        img2 = (ImageView) findViewById(R.id.img_choice2);
-        img3 = (ImageView) findViewById(R.id.img_choice3);
-        img4 = (ImageView) findViewById(R.id.img_choice4);
-        img5 = (ImageView) findViewById(R.id.img_choice5);
+        ImagesArray[0] = (ImageView) findViewById(R.id.img_choice1);
+        ImagesArray[1] = (ImageView) findViewById(R.id.img_choice2);
+        ImagesArray[2] = (ImageView) findViewById(R.id.img_choice3);
+        ImagesArray[3] = (ImageView) findViewById(R.id.img_choice4);
+        ImagesArray[4] = (ImageView) findViewById(R.id.img_choice5);
 
         imgGuest1 = (ImageView) findViewById(R.id.img_guess_1);
         imgGuest2 = (ImageView) findViewById(R.id.img_guess_2);
 
-
-        @SuppressLint("Recycle")
-        TypedArray arrayLetter = getResources().obtainTypedArray(R.array.random_letter);
-
-        for (int i = 0; i < 5; i++) {
-            final Random rand = new Random();
-            final int rndInt = rand.nextInt(arrayLetter.length());
-            final String str = "letter_random_" + rndInt;
-            if(i == 0 ){
-                img1.setImageDrawable(getResources().getDrawable(getResourceID(str, "drawable",getApplicationContext())));
-                img1.setTag(rndInt);
-            }else if (i == 1){
-                img2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                img2.setTag("1");
-            }else if (i == 2 ){
-                img3.setImageDrawable(getResources().getDrawable(getResourceID(str, "drawable",getApplicationContext())));
-                img3.setTag(rndInt);
-            }else if (i == 3){
-                img4.setImageDrawable(getResources().getDrawable(getResourceID(str, "drawable",getApplicationContext())));
-                img4.setTag(rndInt);
-            }else if(i == 4){
-                img5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                img5.setTag("20");
+        ImagesArray[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ImagesArray[0].getTag() == "1"){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (ImagesArray[0].getTag() == "20"){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }
             }
-        }
+        });
+        ImagesArray[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ImagesArray[1].getTag() == "1"){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (ImagesArray[1].getTag() == "20"){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }
+            }
+        });
+        ImagesArray[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ImagesArray[2].getTag() == "1"){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (ImagesArray[2].getTag() == "20"){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }
+            }
+        });
+        ImagesArray[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ImagesArray[3].getTag() == "1"){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (ImagesArray[3].getTag() == "20"){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }
+            }
+        });
+        ImagesArray[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ImagesArray[4].getTag() == "1"){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (ImagesArray[4].getTag() == "20"){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }
+            }
+        });
+
 
 //        img1.setImageResource(Images[new Random().nextInt(Images.length)]);
 //        img2.setImageResource(ImagesKey[0]);
@@ -72,15 +103,44 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp implements View.OnClic
 //        img4.setImageResource(ImagesKey[1]);
 //        img5.setImageResource(Images[new Random().nextInt(Images.length)]);
 
-        img1.setOnClickListener(this);
-        img2.setOnClickListener(this);
-        img3.setOnClickListener(this);
-        img4.setOnClickListener(this);
-        img5.setOnClickListener(this);
 
+
+    }
+    
+    private void setRandomImage(){
+        @SuppressLint("Recycle")
+        TypedArray arrayLetter = getResources().obtainTypedArray(R.array.random_letter);
+        final Random rand = new Random();
+        final int key1[] = {1,20,3,15,22};
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < ImagesArray.length; i++)
+        {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+
+        for (int i = 0; i <list.size(); i++) {
+            final int rndInt = rand.nextInt(arrayLetter.length());
+            final int rndImage = list.get(i);
+            final String str = "letter_random_" + rndInt;
+            final String strKey = "letter_random_" + key1[i];
+            ImagesArray[rndImage].setImageDrawable(getResources().getDrawable(getResourceID(strKey, "drawable",getApplicationContext())));
+            ImagesArray[rndImage].setTag(key1[i]);
+            ImagesArray[rndImage].setOnClickListener(v -> {
+//                showInfo(String.valueOf(ImagesArray[rndImage].getTag()));
+                if(Integer.parseInt(String.valueOf(ImagesArray[rndImage].getTag())) == key1[0]){
+                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+                }else if (Integer.parseInt(String.valueOf(ImagesArray[rndImage].getTag())) == key1[1]){
+                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+                }else {
+                    showInfo("Kata Tidak Cocok!!");
+                }
+            });
+        }
     }
 
     protected final static int getResourceID (final String resName, final String resType, final Context ctx) {
+
         final int ResourceID = ctx.getResources().getIdentifier(resName, resType,ctx.getApplicationInfo().packageName);
         if (ResourceID == 0){
             throw new IllegalArgumentException("No resource string found with name " + resName);
@@ -90,44 +150,44 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp implements View.OnClic
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.img_choice1:
-                if(img1.getTag().toString() == "1"){
-                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                }else if (img1.getTag().toString() == "20"){
-                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                }
-                break;
-            case R.id.img_choice2:
-                if(img2.getTag().toString() == "1"){
-                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                }else if (img2.getTag().toString() == "20"){
-                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                }
-                break;
-            case R.id.img_choice3:
-                if(img3.getTag().toString() == "1"){
-                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                }else if (img3.getTag().toString() == "20"){
-                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                }
-                break;
-            case R.id.img_choice4:
-                if(img4.getTag().toString() == "1"){
-                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                }else if (img4.getTag().toString() == "20"){
-                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                }
-                break;
-            case R.id.img_choice5:
-                if(img5.getTag().toString() == "1"){
-                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
-                }else if (img5.getTag().toString() == "20"){
-                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
-                }
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case ImagesArray[0]:
+//                if(ImagesArray[0].getTag() == "1"){
+//                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+//                }else if (ImagesArray[0].getTag() == "20"){
+//                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+//                }
+//                break;
+//            case R.id.img_choice2:
+//                if(ImagesArray[1].getTag() == "1"){
+//                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+//                }else if (ImagesArray[1].getTag() == "20"){
+//                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+//                }
+//                break;
+//            case R.id.img_choice3:
+//                if(ImagesArray[2].getTag() == "1"){
+//                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+//                }else if (ImagesArray[2].getTag() == "20"){
+//                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+//                }
+//                break;
+//            case R.id.img_choice4:
+//                if(ImagesArray[3].getTag() == "1"){
+//                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+//                }else if (ImagesArray[3].getTag() == "20"){
+//                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+//                }
+//                break;
+//            case R.id.img_choice5:
+//                if(ImagesArray[4].getTag() == "1"){
+//                    imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1", "drawable",getApplicationContext())));
+//                }else if (ImagesArray[4].getTag() == "20"){
+//                    imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20", "drawable",getApplicationContext())));
+//                }
+//                break;
+//        }
+//    }
 }
