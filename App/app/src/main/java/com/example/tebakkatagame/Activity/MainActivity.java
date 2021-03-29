@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
 import com.example.tebakkatagame.R;
 
@@ -30,7 +31,7 @@ public class MainActivity extends BaseApp {
         setContentView(R.layout.activity_main);
         checkAndRequestPermissions();
         find(R.id.btn_mulai).setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), MainGameTebakHuruf_Acitivity.class));
+            startActivity(new Intent(getActivity(), MainGameKataBergambar_Activity.class));
             finish();
         });
     }

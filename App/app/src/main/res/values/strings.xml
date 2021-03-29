@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TebakKataGame</string>
+    <string name="three_star_description">Kamu Menyelesaikannya Dengan Baik!</string>
+    <string name="two_star_description">Tingkatkan di Levek Berikutnya ya!</string>
+    <string name="one_star_description">Kamu Harus Terus Berlatih</string>
 </resources>

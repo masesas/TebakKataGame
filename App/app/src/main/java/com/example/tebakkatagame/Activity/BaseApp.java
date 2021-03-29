@@ -16,6 +16,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.example.tebakkatagame.R;
+
+import static com.example.tebakkatagame.Utils.Constanst.ONESEC;
+
 
 public class BaseApp extends AppCompatActivity {
 
@@ -88,6 +94,34 @@ public class BaseApp extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
     }
+
+    public YoYo.YoYoString shakesAnimate(View view){
+        return YoYo.with(Techniques.Tada).duration(ONESEC).playOn(view);
+    }
+
+    public YoYo.YoYoString bounceAnimate(View view){
+        return YoYo.with(Techniques.BounceIn).duration(ONESEC).playOn(view);
+    }
+
+    public YoYo.YoYoString rollAnimate(View view){
+        return YoYo.with(Techniques.RollOut).duration(ONESEC).playOn(view);
+    }
+
+
+    public void setIntentLevel(Class context, String key, String value){
+        Intent intent = new Intent(getActivity(), context);
+        intent.putExtra(key, value);
+        startActivity(intent);
+    }
+
+    public void setIntentLevel(Class context, String key1, String key2, String value1, String value2){
+        Intent intent = new Intent(getActivity(), context);
+        intent.putExtra(key1, value1);
+        intent.putExtra(key2, value2);
+        startActivity(intent);
+        finish();
+    }
+
 
 }
 

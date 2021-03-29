@@ -33,7 +33,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="400dp"
         android:layout_below="@+id/ly_container_tittle"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -41,7 +41,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="100dp"
         android:orientation="vertical"
         android:gravity="center">
 
@@ -53,14 +53,21 @@
             android:src="@drawable/ic_banana"
             android:layout_marginBottom="20dp"/>
 
+        <net.gotev.speech.ui.SpeechProgressView
+            android:id="@+id/speak_progress_view"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:soundEffectsEnabled="false" />
+
         <TextView
-            android:id="@+id/tv_result"
+            android:id="@+id/tv_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SPEAK HERE"
+            android:text="Results"
             android:textSize="16sp"
-            android:textStyle="bold"/>
-
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:visibility="gone"/>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,8 +85,10 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="-14dp"
                 android:layout_marginBottom="15dp"
-                android:src="@drawable/letter_p"
-                tools:ignore="ContentDescription" />
+                android:tintMode="multiply"
+                android:tint="@color/red_500"
+                android:src="@drawable/empty"
+                tools:ignore="ContentDescription,UseAppTint" />
 
             <ImageView
                 android:id="@+id/img_word_2"
@@ -91,8 +100,10 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="-14dp"
                 android:layout_marginBottom="15dp"
-                android:src="@drawable/letter_i"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/empty"
+                tools:ignore="ContentDescription,UseAppTint"
+                android:tintMode="multiply"
+                android:tint="@color/red_500"/>
 
             <ImageView
                 android:id="@+id/img_word_3"
