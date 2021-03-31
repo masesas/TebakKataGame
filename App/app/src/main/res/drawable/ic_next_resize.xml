@@ -4,8 +4,8 @@
 
     <item
         android:drawable="@drawable/ic_next"
-        android:width="50dp"
-        android:height="50dp"
+        android:width="40dp"
+        android:height="40dp"
         tools:ignore="UnusedAttribute" >
 
     </item>

@@ -2,9 +2,11 @@ package com.example.tebakkatagame.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,9 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.tebakkatagame.Activity.GamePlay.WinDialogFragment;
 import com.example.tebakkatagame.R;
 
 import static com.example.tebakkatagame.Utils.Constanst.ONESEC;
@@ -120,6 +124,17 @@ public class BaseApp extends AppCompatActivity {
         intent.putExtra(key2, value2);
         startActivity(intent);
         finish();
+    }
+
+    public void showWinDialog(int level) {
+        FragmentManager fm = getSupportFragmentManager();
+        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level);
+        winDialogFragment.show(fm, "NEXT_LEVEL");
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
 

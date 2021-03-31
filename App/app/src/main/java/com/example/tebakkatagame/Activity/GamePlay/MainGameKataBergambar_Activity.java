@@ -1,9 +1,7 @@
 package com.example.tebakkatagame.Activity.GamePlay;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -29,26 +27,25 @@ import android.widget.Toast;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.R;
-import com.example.tebakkatagame.Utils.Constanst;
 
 import net.gotev.speech.GoogleVoiceTypingDisabledException;
-import net.gotev.speech.Logger;
 import net.gotev.speech.Speech;
 import net.gotev.speech.SpeechDelegate;
 import net.gotev.speech.SpeechRecognitionNotAvailable;
 import net.gotev.speech.SpeechUtil;
 import net.gotev.speech.ui.SpeechProgressView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import static com.example.tebakkatagame.Utils.Constanst.PERMISSIONS_REQUEST;
+import static com.example.tebakkatagame.Utils.Constanst.WIN;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
 
 public class MainGameKataBergambar_Activity extends BaseApp implements SpeechDelegate {
 
+    SpeechRecognizer mSpeechRecognizer;
     private SpeechProgressView speakProgress;
     private int countSpeak = 0;
     Locale localeIndonesia = new Locale("id", "ID");
@@ -81,12 +78,36 @@ public class MainGameKataBergambar_Activity extends BaseApp implements SpeechDel
         checkPermission();
         Speech.init(this, getPackageName(), mTttsInitListener);
         setComponent();
+        //setSpeechRecognizer();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setComponent() {
         speakProgress = findViewById(R.id.speak_progress_view);
         setColorProgress();
-        speakProgress.setOnClickListener(new View.OnClickListener() {
+        speakProgress.setOnClickListener(v -> startListening());
+
+        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
+        /*find(R.id.img_tebak).setOnTouchListener((View v, MotionEvent event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_UP:
+                    mSpeechRecognizer.stopListening();
+                    find(R.id.tv_result, TextView.class).setHint("You will see input here");
+                    break;
+
+                case MotionEvent.ACTION_DOWN:
+                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+                    find(R.id.tv_result, TextView.class).setText("");
+                    find(R.id.tv_result, TextView.class).setHint("Listening...");
+                    break;
+            }
+            return false;
+        });*/
+        find(R.id.img_tebak).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startListening();
@@ -206,31 +227,93 @@ public class MainGameKataBergambar_Activity extends BaseApp implements SpeechDel
 
     @Override
     public void onSpeechPartialResults(List<String> results) {
-        Log.e("speak__", "onSpeechPartialResults: " + results );
+        Log.e("speak__", "onSpeechPartialResults: " + results);
     }
 
     @Override
     public void onSpeechResult(String result) {
-        find(R.id.tv_results, TextView.class).setText(result);//testing
-        countSpeak++;
-        if (countSpeak == WORD_1) {
-            if (result.toLowerCase().contains("p")) {
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
-                find(R.id.img_word_1, ImageView.class).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
-                bounceAnimate(find(R.id.img_word_1, ImageView.class));
-            } else {
-                countSpeak = 0;
-                shakesAnimate(find(R.id.img_word_1));
+
+    }
+
+    private void setSpeechRecognizer() {
+        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+
             }
-        }else if(countSpeak == WORD_2){
-            if (result.toLowerCase().contains("i")) {
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
-                find(R.id.img_word_2, ImageView.class).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
-                bounceAnimate(find(R.id.img_word_2, ImageView.class));
-            } else {
-                countSpeak = 1;
-                shakesAnimate(find(R.id.img_word_2));
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int error) {
+                Toast.makeText(getActivity(), "Error " + error, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                setResultSpech(matches);
+                find(R.id.tv_result, TextView.class).setText(matches.get(0));
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
+    }
+
+    private void setResultSpech(List<String> resultSpech) {
+        countSpeak++;
+        for(String result : resultSpech){
+            if (countSpeak == WORD_1) {
+                if (result.contains("p")) {
+                    find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
+                    find(R.id.img_word_1, ImageView.class).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
+                    bounceAnimate(find(R.id.img_word_1, ImageView.class));
+                } else {
+                    countSpeak = 0;
+                    shakesAnimate(find(R.id.img_word_1));
+                }
+                break;
+            } else if (countSpeak == WORD_2) {
+                if (result.toLowerCase().contains("i")) {
+                    find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                    find(R.id.img_word_2, ImageView.class).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
+                    bounceAnimate(find(R.id.img_word_2, ImageView.class));
+                } else {
+                    countSpeak = 1;
+                    shakesAnimate(find(R.id.img_word_2));
+                }
+                break;
+            } else if (countSpeak == WIN) {
+                showWinDialog(2);
+                break;
             }
         }
     }
+
 }

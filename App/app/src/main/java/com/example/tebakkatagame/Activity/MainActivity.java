@@ -30,10 +30,30 @@ public class MainActivity extends BaseApp {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkAndRequestPermissions();
+        if(!isNetworkAvailable()){
+            showConnectionDialog();
+        }
+
         find(R.id.btn_mulai).setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), MainGameKataBergambar_Activity.class));
-            finish();
+            if(!isNetworkAvailable()){
+                showConnectionDialog();
+            }else{
+                startActivity(new Intent(getActivity(), MainGameKataBergambar_Activity.class));
+                finish();
+            }
         });
+    }
+
+    private void showConnectionDialog(){
+        new AlertDialog.Builder(getActivity())
+                .setMessage("Di perlukan Koneksi Internet Untuk Memulai Permainan :(")
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
 
