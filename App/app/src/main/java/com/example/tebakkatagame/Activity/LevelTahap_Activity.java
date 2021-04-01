@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
+import com.example.tebakkatagame.Activity.GamePlay.MainGameSukuKata_Activity;
+import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
 import com.example.tebakkatagame.R;
 
 import java.util.ArrayList;
@@ -58,9 +60,24 @@ public class LevelTahap_Activity extends BaseApp {
 
         gridViewMenu.setAdapter(menuAdapter);
         gridViewMenu.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getActivity(), MainGameKataBergambar_Activity.class);
-            intent.putExtra("LEVEL", position);
-            startActivity(intent);
+            if (getIntent().hasExtra("TEBAK HURUF")) {
+                setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", String.valueOf(position + 1));
+//                Intent intent = new Intent(getActivity(), MainGameTebakHuruf_Acitivity.class);
+//                intent.putExtra("LEVEL", position);
+//                startActivity(intent);
+            } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
+                Intent intent = new Intent(getActivity(), MainGameKataBergambar_Activity.class);
+                intent.putExtra("LEVEL", position);
+                startActivity(intent);
+            } else if (getIntent().hasExtra("SUKU KATA")) {
+                Intent intent = new Intent(getActivity(), MainGameSukuKata_Activity.class);
+                intent.putExtra("LEVEL", position);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("LEVEL", position);
+                startActivity(intent);
+            }
         });
     }
 

@@ -38,7 +38,7 @@ public class MainActivity extends BaseApp {
             if(!isNetworkAvailable()){
                 showConnectionDialog();
             }else{
-                startActivity(new Intent(getActivity(), MainGameKataBergambar_Activity.class));
+                startActivity(new Intent(getActivity(), Tahap_Activity.class));
                 finish();
             }
         });

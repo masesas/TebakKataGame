@@ -37,7 +37,7 @@
         android:layout_height="350dp"
         android:layout_below="@+id/ly_container_tittle"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         android:gravity="center">
 
@@ -66,8 +66,7 @@
                 android:layout_marginTop="-14dp"
                 android:layout_marginBottom="15dp"
                 android:src="@drawable/letter_empty"
-                tools:ignore="ContentDescription"
-                android:tag="key1"/>
+                tools:ignore="ContentDescription"/>
 
             <ImageView
                 android:id="@+id/img_guess_2"
@@ -80,8 +79,7 @@
                 android:layout_marginBottom="15dp"
                 android:src="@drawable/letter_empty"
                 android:layout_toEndOf="@+id/img_guess_1"
-                tools:ignore="ContentDescription"
-                android:tag="key2"/>
+                tools:ignore="ContentDescription"/>
 
             <ImageView
                 android:id="@+id/img_guess_3"
@@ -93,8 +91,8 @@
                 android:layout_marginTop="-14dp"
                 android:layout_marginBottom="15dp"
                 android:layout_toEndOf="@+id/img_guess_2"
-                android:src="@drawable/letter_k"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/letter_empty"
+                tools:ignore="ContentDescription"/>
 
             <ImageView
                 android:id="@+id/img_guess_4"
@@ -109,18 +107,46 @@
                 android:src="@drawable/letter_u"
                 tools:ignore="ContentDescription" />
 
-
+            <ImageView
+                android:id="@+id/img_guess_5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/img_guess_4"
+                android:src="@drawable/letter_u"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ly_wordcomplite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ly_container_gambar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LENGKAPI KATA DIATAS"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ly_container_gambar"
+        android:layout_below="@+id/ly_wordcomplite"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
