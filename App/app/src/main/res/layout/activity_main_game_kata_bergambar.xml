@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +7,11 @@
     tools:context=".Activity.MainActivity">
 
     <include layout="@layout/toolbar" />
+
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/ly_container_tittle"
@@ -41,9 +45,56 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@color/green_500" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Benar"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/grey_800" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="end"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@color/red_500" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salah"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/grey_800" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/img_tebak"
@@ -51,14 +102,15 @@
             android:layout_height="200dp"
             tools:ignore="ContentDescription"
             android:src="@drawable/ic_banana"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="-10dp"/>
 
         <net.gotev.speech.ui.SpeechProgressView
             android:id="@+id/speak_progress_view"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:soundEffectsEnabled="false"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_result"
@@ -67,112 +119,9 @@
             android:text="Results"
             android:textSize="16sp"
             android:background="@android:color/white"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/img_word_1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="-14dp"
-                android:layout_marginBottom="15dp"
-                android:tintMode="multiply"
-                android:tint="@color/red_500"
-                android:src="@drawable/empty"
-                tools:ignore="ContentDescription,UseAppTint" />
-
-            <ImageView
-                android:id="@+id/img_word_2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignStart="@+id/img_word_1"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="-14dp"
-                android:layout_marginBottom="15dp"
-                android:src="@drawable/empty"
-                tools:ignore="ContentDescription,UseAppTint"
-                android:tintMode="multiply"
-                android:tint="@color/red_500"/>
-
-            <ImageView
-                android:id="@+id/img_word_3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-10dp"
-                android:layout_marginTop="-14dp"
-                android:layout_marginBottom="15dp"
-                android:layout_toEndOf="@+id/img_word_2"
-                android:src="@drawable/ic_strip"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_word_4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-10dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_word_3"
-                android:src="@drawable/letter_s"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_word_5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-10dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_word_4"
-                android:src="@drawable/letter_a"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_word_6"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-10dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_word_5"
-                android:src="@drawable/letter_n"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_word_7"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-10dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/img_word_6"
-                android:src="@drawable/letter_g"
-                tools:ignore="ContentDescription" />
-
-
-        </RelativeLayout>
+        <include layout="@layout/item_word_box" />
 
     </LinearLayout>
 

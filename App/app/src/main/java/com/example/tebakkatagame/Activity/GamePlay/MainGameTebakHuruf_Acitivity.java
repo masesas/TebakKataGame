@@ -220,7 +220,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             default:
-                setIntentLevel(LevelTahap_Activity.class, "TEBAK HURUF", "");
+                setIntent(LevelTahap_Activity.class, "TEBAK HURUF", "");
                 break;
         }
     }

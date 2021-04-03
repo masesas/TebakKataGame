@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/ly_eja_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_word_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/letter_p"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageView
+            android:id="@+id/img_word_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="-10dp"
+            android:src="@drawable/letter_i"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_limit_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_strip"
+        android:translationZ="5dp"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/ly_eja_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_word_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/letter_s"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageView
+            android:id="@+id/img_word_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="-10dp"
+            android:src="@drawable/letter_a"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_limit_2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_strip"
+        android:translationZ="20dp"
+        tools:ignore="ContentDescription"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ly_eja_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_word_5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/letter_n"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+        <ImageView
+            android:id="@+id/img_word_6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="-10dp"
+            android:src="@drawable/letter_g"
+            android:tint="@color/red_500"
+            android:tintMode="multiply"
+            tools:ignore="ContentDescription,UseAppTint" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_limit_3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_strip"
+        android:translationZ="5dp"
+        tools:ignore="ContentDescription"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_word_7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/letter_i"
+        android:tint="@color/red_500"
+        android:tintMode="multiply"
+        tools:ignore="ContentDescription,UseAppTint"
+        android:visibility="gone"/>
+
+
+</LinearLayout>

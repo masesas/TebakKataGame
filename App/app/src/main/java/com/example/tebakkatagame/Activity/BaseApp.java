@@ -126,9 +126,9 @@ public class BaseApp extends AppCompatActivity {
         finish();
     }
 
-    public void showWinDialog(int level) {
+    public void showWinDialog(int level, String tahap) {
         FragmentManager fm = getSupportFragmentManager();
-        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level);
+        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap);
         winDialogFragment.show(fm, "NEXT_LEVEL");
     }
 

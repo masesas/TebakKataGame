@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.R;
 
-public class MainGameSukuKata_Activity extends AppCompatActivity {
+public class MainGameSukuKata_Activity extends BaseApp {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
