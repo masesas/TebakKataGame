@@ -111,7 +111,6 @@ public class BaseApp extends AppCompatActivity {
         return YoYo.with(Techniques.RollOut).duration(ONESEC).playOn(view);
     }
 
-
     public void setIntentLevel(Class context, String key, String value){
         Intent intent = new Intent(getActivity(), context);
         intent.putExtra(key, value);

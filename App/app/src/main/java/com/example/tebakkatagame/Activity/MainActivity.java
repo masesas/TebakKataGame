@@ -44,6 +44,11 @@ public class MainActivity extends BaseApp {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        onPause();
+    }
+
     private void showConnectionDialog(){
         new AlertDialog.Builder(getActivity())
                 .setMessage("Di perlukan Koneksi Internet Untuk Memulai Permainan :(")
