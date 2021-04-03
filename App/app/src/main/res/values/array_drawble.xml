@@ -25,5 +25,6 @@
         <item>@drawable/letter_random_21</item>
         <item>@drawable/letter_random_22</item>
         <item>@drawable/letter_random_23</item>
+        <item>@drawable/letter_random_24</item>
     </integer-array>
 </resources>
