@@ -80,13 +80,16 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     //by ejakata
     private void setResultSpech(String... eja) {
+        int counterWrong = 0;
         countSpeak++;
         if (countSpeak == WORD_1) {
             if (setCorrectAnswer(WORD_1, eja[0])) {
                 setCorectMode(find(R.id.img_word_1));
                 setCorectMode(find(R.id.img_word_2));
                 bounceAnimate(find(R.id.ly_eja_1));
+                counterWrong = 0;
             } else {
+                counterWrong++;
                 countSpeak = 0;
                 setWrongMode(find(R.id.img_word_1));
                 setWrongMode(find(R.id.img_word_2));
@@ -98,7 +101,9 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 setCorectMode(find(R.id.img_word_4));
                 bounceAnimate(find(R.id.ly_eja_2));
                 selebrateWin();
+                counterWrong = 0;
             } else {
+                counterWrong++;
                 countSpeak = 1;
                 setWrongMode(find(R.id.img_word_3));
                 setWrongMode(find(R.id.img_word_4));
@@ -110,7 +115,9 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 setCorectMode(find(R.id.img_word_6));
                 bounceAnimate(find(R.id.ly_eja_3));
                 selebrateWin();
+                counterWrong = 0;
             } else {
+                counterWrong++;
                 countSpeak = 2;
                 setWrongMode(find(R.id.img_word_5));
                 setWrongMode(find(R.id.img_word_6));
@@ -120,6 +127,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     }
 
     private void selebrateWin(){
+        find(R.id.view_blur).setVisibility(View.VISIBLE);
         konfettiView.post(() -> konfettiView.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(0.0, 359.0)
@@ -132,7 +140,9 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 .streamFor(300, 5000L));
 
         Handler handler = new Handler();
-        handler.postDelayed(() -> showWinDialog(level + 1, "TEBAK GAMBAR"), 3000);
+        handler.postDelayed(() -> {
+            showWinDialog(level + 1, "TEBAK GAMBAR");
+        }, 2000);
     }
 
     private boolean setCorrectAnswer(int eja, String speech) {
@@ -411,6 +421,8 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     @Override
     public void onRmsChanged(float rmsdB) {
+//        Log.i(LOG_TAG, "onRmsChanged: " + rmsdB);
+//        progressBar.setProgress((int) rmsdB);
 
     }
 
@@ -426,7 +438,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     @Override
     public void onError(int error) {
-
+        showInfo(getErrorText(error));
     }
 
     @Override
@@ -445,5 +457,42 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     @Override
     public void onEvent(int eventType, Bundle params) {
 
+    }
+
+    public static String getErrorText(int errorCode) {
+        String message;
+        switch (errorCode) {
+            case SpeechRecognizer.ERROR_AUDIO:
+                message = "Audio recording error";
+                break;
+            case SpeechRecognizer.ERROR_CLIENT:
+                message = "Client side error";
+                break;
+            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                message = "Insufficient permissions";
+                break;
+            case SpeechRecognizer.ERROR_NETWORK:
+                message = "Network error";
+                break;
+            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                message = "Network timeout";
+                break;
+            case SpeechRecognizer.ERROR_NO_MATCH:
+                message = "No match";
+                break;
+            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                message = "RecognitionService busy";
+                break;
+            case SpeechRecognizer.ERROR_SERVER:
+                message = "error from server";
+                break;
+            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                message = "No speech input";
+                break;
+            default:
+                message = "Didn't understand, please try again.";
+                break;
+        }
+        return message;
     }
 }

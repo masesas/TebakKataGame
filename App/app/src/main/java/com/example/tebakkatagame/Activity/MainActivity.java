@@ -33,13 +33,14 @@ public class MainActivity extends BaseApp {
         if(!isNetworkAvailable()){
             showConnectionDialog();
         }
+        wafeAnimate(find(R.id.img_tittle));
+        rollAnimate(find(R.id.img_charcters));
 
         find(R.id.btn_mulai).setOnClickListener(v -> {
             if(!isNetworkAvailable()){
                 showConnectionDialog();
             }else{
-                startActivity(new Intent(getActivity(), Tahap_Activity.class));
-                finish();
+                setIntent(Tahap_Activity.class, "", "");
             }
         });
     }

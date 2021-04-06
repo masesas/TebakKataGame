@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -82,10 +86,18 @@ public class BaseApp extends AppCompatActivity {
         icon.requestLayout();
     }
 
-    public void setIntent(Class to, String key, String value){
+    public void setIntent(Class<?> to, String key, String value){
         Intent intent = new Intent(getActivity(), to);
         intent.putExtra(key, value);
         startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public void setIntent(Class<?> to, String key, int value){
+        Intent intent = new Intent(getActivity(), to);
+        intent.putExtra(key, value);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
@@ -108,8 +120,12 @@ public class BaseApp extends AppCompatActivity {
         return YoYo.with(Techniques.BounceIn).duration(ONESEC).playOn(view);
     }
 
+    public YoYo.YoYoString wafeAnimate(View view){
+        return YoYo.with(Techniques.Swing).duration(5000).repeat(10).playOn(view);
+    }
+
     public YoYo.YoYoString rollAnimate(View view){
-        return YoYo.with(Techniques.RollOut).duration(ONESEC).playOn(view);
+        return YoYo.with(Techniques.BounceInDown).duration(3000).repeat(2).playOn(view);
     }
 
     public void setIntentLevel(Class context, String key, String value){

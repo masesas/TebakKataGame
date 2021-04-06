@@ -48,6 +48,8 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
     //celebrate animation
     implementation 'nl.dionsegijn:konfetti:1.3.2'
+    //glitch animation
+    implementation "com.github.skydoves:androidribbon:1.0.0"
 
 
 }

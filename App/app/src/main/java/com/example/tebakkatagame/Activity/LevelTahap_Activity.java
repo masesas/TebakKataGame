@@ -62,21 +62,12 @@ public class LevelTahap_Activity extends BaseApp {
         gridViewMenu.setOnItemClickListener((parent, view, position, id) -> {
             if (getIntent().hasExtra("TEBAK HURUF")) {
                 setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", String.valueOf(position + 1));
-//                Intent intent = new Intent(getActivity(), MainGameTebakHuruf_Acitivity.class);
-//                intent.putExtra("LEVEL", position);
-//                startActivity(intent);
             } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
-                Intent intent = new Intent(getActivity(), MainGameKataBergambar_Activity.class);
-                intent.putExtra("LEVEL", position);
-                startActivity(intent);
+                setIntent(MainGameKataBergambar_Activity.class, "LEVEL", position);
             } else if (getIntent().hasExtra("SUKU KATA")) {
-                Intent intent = new Intent(getActivity(), MainGameSukuKata_Activity.class);
-                intent.putExtra("LEVEL", position);
-                startActivity(intent);
+                setIntent(MainGameSukuKata_Activity.class, "LEVEL", position);
             } else {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra("LEVEL", position);
-                startActivity(intent);
+                setIntent(MainActivity.class, "LEVEL", position);
             }
         });
     }

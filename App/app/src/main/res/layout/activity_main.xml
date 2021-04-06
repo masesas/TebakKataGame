@@ -17,6 +17,7 @@
         android:layout_marginTop="50dp">
 
         <ImageView
+            android:id="@+id/img_tittle"
             android:layout_width="wrap_content"
             android:layout_height="250dp"
             android:src="@drawable/logo"
@@ -26,7 +27,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ic_charcters"
+        android:id="@+id/img_charcters"
         android:layout_width="wrap_content"
         android:layout_height="170dp"
         android:layout_marginLeft="10dp"
@@ -38,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/ic_charcters"
+        android:layout_below="@+id/img_charcters"
         android:layout_marginTop="50dp"
         android:gravity="center">
 
