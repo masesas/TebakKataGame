@@ -1,15 +1,19 @@
 package com.example.tebakkatagame.Activity.GamePlay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.Activity.LevelTahap_Activity;
@@ -21,14 +25,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
+
 public class MainGameTebakHuruf_Acitivity extends BaseApp {
 
     private int[] Images = {R.drawable.letter_a, R.drawable.letter_b, R.drawable.letter_u,R.drawable.letter_c,R.drawable.letter_d,
     R.drawable.letter_e};
     private final Random rand = new Random();
-    private ImageView img1,img2,img3,img4,img5,imgGuest1,imgGuest2,imgGuest3,imgGuest4,imgGuest5;
+    private ImageView img1,img2,img3,img4,img5,imgGuest1,imgGuest2,imgGuest3,imgGuest4,imgGuest5,imgIcon;
     private ImageView[] ImagesArray = {img1,img2,img3,img4,img5};
     private boolean isGuest3 = false;
+    private KonfettiView konfettiView;
 
     public MainGameTebakHuruf_Acitivity() {
     }
@@ -54,6 +63,8 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         imgGuest4 = (ImageView) findViewById(R.id.img_guess_4);
         imgGuest5 = (ImageView) findViewById(R.id.img_guess_5);
 
+        imgIcon = (ImageView) findViewById(R.id.img_icon_tebak);
+
 
     }
     private void loadData(){
@@ -64,6 +75,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         String level = getIntent().getStringExtra("LEVEL");
         switch (level){
             case "1": //be-mo
+                imgIcon.setImageResource(R.drawable.ic_bemo);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_12" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -71,6 +83,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key1);
                 break;
             case "2": //gu-ru
+                imgIcon.setImageResource(R.drawable.ic_teacher);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_17" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20" , "drawable",getApplicationContext())));
@@ -78,6 +91,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key2);
                 break;
             case "3": //la-yu
+                imgIcon.setImageResource(R.drawable.ic_withered);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_24" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20" , "drawable",getApplicationContext())));
@@ -85,6 +99,8 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key3);
                 break;
             case "4": //ha-ti
+                imgIcon.setImageResource(R.drawable.ic_heart);
+                imgIcon.setImageResource(R.drawable.ic_withered);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_19" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_8" , "drawable",getApplicationContext())));
@@ -92,6 +108,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key4);
                 break;
             case "5": //sa-pi
+                imgIcon.setImageResource(R.drawable.ic_cow);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_15" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_8" , "drawable",getApplicationContext())));
@@ -100,6 +117,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
 
                 break;
             case "6": //bak-so
+                imgIcon.setImageResource(R.drawable.ic_meatballs);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_18" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -108,6 +126,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "7": //le-bah
+                imgIcon.setImageResource(R.drawable.ic_bee);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -116,6 +135,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key7);
                 break;
             case "8": //bu-lan
+                imgIcon.setImageResource(R.drawable.ic_halfmoon);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_11" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -124,6 +144,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key8);
                 break;
             case "9": //ke-cap
+                imgIcon.setImageResource(R.drawable.ic_kecap);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_2" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -132,6 +153,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key9);
                 break;
             case "10": //po-hon
+                imgIcon.setImageResource(R.drawable.ic_trees);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_7" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -140,6 +162,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key10);
                 break;
             case "11": //ga-jah
+                imgIcon.setImageResource(R.drawable.ic_elephant);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_9" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -148,6 +171,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key11);
                 break;
             case "12": //jam-bu
+                imgIcon.setImageResource(R.drawable.ic_guava);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20" , "drawable",getApplicationContext())));
@@ -156,6 +180,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "13": //lam-pu
+                imgIcon.setImageResource(R.drawable.ic_ligth);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_15" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20" , "drawable",getApplicationContext())));
@@ -164,6 +189,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "14": //ba-lon
+                imgIcon.setImageResource(R.drawable.ic_balloon);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_11" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -172,6 +198,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key14);
                 break;
             case "15": //sa-wah
+                imgIcon.setImageResource(R.drawable.ic_ricefield);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_22" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -180,6 +207,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key15);
                 break;
             case "16": //gi-tar
+                imgIcon.setImageResource(R.drawable.ic_guitar);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_19" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -188,6 +216,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setRandomImage(key16);
                 break;
             case "17": //bam-bu
+                imgIcon.setImageResource(R.drawable.ic_bamboo);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_1" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_20" , "drawable",getApplicationContext())));
@@ -196,6 +225,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "18": //pia-la
+                imgIcon.setImageResource(R.drawable.ic_trophy);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_11" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_0" , "drawable",getApplicationContext())));
@@ -204,6 +234,8 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "19": //pia-no
+                imgIcon.setImageResource(R.drawable.ic_piano);
+                imgIcon.setImageResource(R.drawable.ic_trophy);
                 imgGuest5.setVisibility(View.VISIBLE);
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_13" , "drawable",getApplicationContext())));
                 imgGuest5.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -212,6 +244,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 isGuest3 = true;
                 break;
             case "20": //ka-do
+                imgIcon.setImageResource(R.drawable.ic_gift);
                 imgGuest5.setVisibility(View.GONE);
                 imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_3" , "drawable",getApplicationContext())));
                 imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_14" , "drawable",getApplicationContext())));
@@ -241,15 +274,20 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
             ImagesArray[rndImage].setOnClickListener(v -> {
                 if(Integer.parseInt(String.valueOf(ImagesArray[rndImage].getTag())) == key[0]){
                     imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_" + key[0], "drawable",getApplicationContext())));
+                    shakesAnimate(imgGuest1);
                 }else if (Integer.parseInt(String.valueOf(ImagesArray[rndImage].getTag())) == key[1]){
                     imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_" + key[1], "drawable",getApplicationContext())));
+                    shakesAnimate(imgGuest2);
                 }else if (isGuest3){
                     if(Integer.parseInt(String.valueOf(ImagesArray[rndImage].getTag())) == key[2]){
                         imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_random_" + key[2], "drawable",getApplicationContext())));
+                        shakesAnimate(imgGuest3);
                     }else {
+                        bounceAnimate(find(R.id.ly_guest));
                         showInfo("Kata Tidak Cocok!!");
                     }
                 }else {
+                    bounceAnimate(find(R.id.ly_guest));
                     showInfo("Kata Tidak Cocok!!");
                 }
             });
@@ -265,4 +303,6 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
             return ResourceID;
         }
     }
+
+
 }
