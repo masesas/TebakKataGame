@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -79,7 +80,7 @@ public class BaseApp extends AppCompatActivity {
         int resID = res.getIdentifier(imageName, "drawable", getPackageName());
         Drawable drawable = res.getDrawable(resID);
         icon.setImageDrawable(drawable);
-        LinearLayout.LayoutParams frameLayout = new LinearLayout.LayoutParams(width, height);
+        FrameLayout.LayoutParams frameLayout = new FrameLayout.LayoutParams(width, height);
         icon.setLayoutParams(frameLayout);
         icon.getLayoutParams().height = 260;
         icon.getLayoutParams().width = 260;
@@ -142,9 +143,9 @@ public class BaseApp extends AppCompatActivity {
         finish();
     }
 
-    public void showWinDialog(int level, String tahap) {
+    public void showWinDialog(int level, String tahap, int countWrong) {
         FragmentManager fm = getSupportFragmentManager();
-        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap);
+        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap, countWrong);
         winDialogFragment.show(fm, "NEXT_LEVEL");
     }
 
@@ -163,7 +164,5 @@ public class BaseApp extends AppCompatActivity {
             }
         }
     }
-
-
 }
 

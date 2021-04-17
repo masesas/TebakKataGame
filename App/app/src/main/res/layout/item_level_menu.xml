@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,4 +17,14 @@
         android:src="@drawable/number_1"
         tools:ignore="ContentDescription" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/img_lock"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_padlock"
+        tools:ignore="ContentDescription"
+        android:layout_gravity="end"/>
+
+
+</FrameLayout>

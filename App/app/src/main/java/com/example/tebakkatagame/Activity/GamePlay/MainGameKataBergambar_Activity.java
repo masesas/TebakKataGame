@@ -40,6 +40,9 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     private int countSpeak = 0;
     private int level;
+    private int countWrong = 0;
+
+    private String word1, word2, word3, word4, word5, word6;
 
     @SuppressLint({"QueryPermissionsNeeded", "ClickableViewAccessibility"})
     @Override
@@ -80,53 +83,18 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     //by ejakata
     private void setResultSpech(String... eja) {
-        int counterWrong = 0;
         countSpeak++;
         if (countSpeak == WORD_1) {
-            if (setCorrectAnswer(WORD_1, eja[0])) {
-                setCorectMode(find(R.id.img_word_1));
-                setCorectMode(find(R.id.img_word_2));
-                bounceAnimate(find(R.id.ly_eja_1));
-                counterWrong = 0;
+            if (setCorrectAnswer(eja[0])) {
+                selebrateWin();
             } else {
-                counterWrong++;
+                countWrong++;
                 countSpeak = 0;
-                setWrongMode(find(R.id.img_word_1));
-                setWrongMode(find(R.id.img_word_2));
-                shakesAnimate(find(R.id.ly_eja_1));
-            }
-        } else if (countSpeak == WORD_2) {
-            if (setCorrectAnswer(WORD_2, eja[0])) {
-                setCorectMode(find(R.id.img_word_3));
-                setCorectMode(find(R.id.img_word_4));
-                bounceAnimate(find(R.id.ly_eja_2));
-                selebrateWin();
-                counterWrong = 0;
-            } else {
-                counterWrong++;
-                countSpeak = 1;
-                setWrongMode(find(R.id.img_word_3));
-                setWrongMode(find(R.id.img_word_4));
-                shakesAnimate(find(R.id.ly_eja_2));
-            }
-        } else if (countSpeak == WORD_3) {
-            if (setCorrectAnswer(WORD_3, eja[0])) {
-                setCorectMode(find(R.id.img_word_5));
-                setCorectMode(find(R.id.img_word_6));
-                bounceAnimate(find(R.id.ly_eja_3));
-                selebrateWin();
-                counterWrong = 0;
-            } else {
-                counterWrong++;
-                countSpeak = 2;
-                setWrongMode(find(R.id.img_word_5));
-                setWrongMode(find(R.id.img_word_6));
-                shakesAnimate(find(R.id.ly_eja_3));
             }
         }
     }
 
-    private void selebrateWin(){
+    private void selebrateWin() {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         konfettiView.post(() -> konfettiView.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
@@ -141,76 +109,499 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            showWinDialog(level + 1, "TEBAK GAMBAR");
+            showWinDialog(level + 1, "TEBAK GAMBAR", countWrong);
         }, 2000);
     }
 
-    private boolean setCorrectAnswer(int eja, String speech) {
+    private boolean setCorrectAnswer(String speech) {
+        speech = speech.toLowerCase();
         switch (level) {
             case 0: //bumi
-                if (eja == WORD_1 && speech.toLowerCase().contains("bu")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("mi");
+                if(speech.charAt(0) == 'b'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'm'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("bumi");
             case 1: //padi
-                if (eja == WORD_1 && speech.toLowerCase().contains("pa")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("di");
+                if(speech.charAt(0) == 'p'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'a'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'd'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("padi");
             case 2: //gigi
-                if (eja == WORD_1 && speech.toLowerCase().contains("gi")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("gi");
+                if(speech.charAt(0) == 'g'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'i'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'g'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("gigi");
             case 3: //dadu
-                if (eja == WORD_1 && speech.toLowerCase().contains("da")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("du");
+                if(speech.charAt(0) == 'd'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'a'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'd'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'u'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("dadu");
             case 4: //biji
-                if (eja == WORD_1 && speech.toLowerCase().contains("bi")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("ji");
+                if(speech.charAt(0) == 'b'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'i'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'j'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("biji");
             case 5: //gula
-                if (eja == WORD_1 && speech.toLowerCase().contains("gu")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("la");
+                if(speech.charAt(0) == 'g'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'l'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("gula");
             case 6: //pipi
-                if (eja == WORD_1 && speech.toLowerCase().contains("pi")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("pi");
+                if(speech.charAt(0) == 'p'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'i'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'p'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("pipi");
             case 7: //kopi
-                if (eja == WORD_1 && speech.toLowerCase().contains("ko")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("pi");
+                if(speech.charAt(0) == 'k'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'o'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'p'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("kopi");
             case 8: //duri
-                if (eja == WORD_1 && speech.toLowerCase().contains("du")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("ri");
+                if(speech.charAt(0) == 'd'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'r'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("duri");
             case 9: //kayu
-                if (eja == WORD_1 && speech.toLowerCase().contains("ka")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("yu");
+                if(speech.charAt(0) == 'k'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'a'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'y'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'u'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("kayu");
             case 10: //rusa
-                if (eja == WORD_1 && speech.toLowerCase().contains("ru")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("sa");
+                if(speech.charAt(0) == 'r'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 's'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("rusa");
             case 11: //tali
-                if (eja == WORD_1 && speech.toLowerCase().contains("ta")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("li");
+                if(speech.charAt(0) == 't'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'a'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'l'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("tali");
             case 12: //peta
-                if (eja == WORD_1 && speech.toLowerCase().contains("pe")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("ta");
+                if(speech.charAt(0) == 'p'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'e'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 't'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("peta");
             case 13: //desa
-                if (eja == WORD_1 && speech.toLowerCase().contains("de")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("sa");
+                if(speech.charAt(0) == 'd'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'e'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 's'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("desa");
             case 14: //roda
-                if (eja == WORD_1 && speech.toLowerCase().contains("ro")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("da");
+                if(speech.charAt(0) == 'r'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'o'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'd'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("roda");
             case 15: //buaya
-                if (eja == WORD_1 && speech.toLowerCase().contains("bu")) return true;
-                else if (eja == WORD_2 && speech.toLowerCase().contains("a")) return true;
-                else return eja == WORD_3 && speech.toLowerCase().contains("ya");
+                if(speech.charAt(0) == 'b'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'a'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'y'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                if(speech.charAt(4) == 'a'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                return speech.toLowerCase().contains("buaya");
             case 16: //rumah
-                if (eja == WORD_1 && speech.toLowerCase().contains("ru")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("mah");
+                if(speech.charAt(0) == 'r'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'u'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'm'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                if(speech.charAt(4) == 'h'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                return speech.toLowerCase().contains("rumah");
             case 17: //delima
-                if (eja == WORD_1 && speech.toLowerCase().contains("de")) return true;
-                else if (eja == WORD_2 && speech.toLowerCase().contains("li")) return true;
-                else return eja == WORD_3 && speech.toLowerCase().contains("ma");
+                if(speech.charAt(0) == 'd'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'e'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'l'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'i'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                if(speech.charAt(4) == 'm'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                if(speech.charAt(5) == 'a'){
+                    setCorectMode(find(R.id.img_word_6));
+                }else{
+                    setWrongMode(find(R.id.img_word_6));
+                }
+                return speech.toLowerCase().contains("delima");
             case 18: //keledai
-                if (eja == WORD_1 && speech.toLowerCase().contains("ke")) return true;
-                else if (eja == WORD_2 && speech.toLowerCase().contains("le")) return true;
-                else return eja == WORD_3 && speech.toLowerCase().contains("dai");
+                if(speech.charAt(0) == 'k'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'e'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'l'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'e'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                if(speech.charAt(4) == 'd'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                if(speech.charAt(5) == 'a'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                if(speech.charAt(6) == 'i'){
+                    setCorectMode(find(R.id.img_word_6));
+                }else{
+                    setWrongMode(find(R.id.img_word_6));
+                }
+                return speech.toLowerCase().contains("keledai");
             case 19: //kebaya
-                if (eja == WORD_1 && speech.toLowerCase().contains("ke")) return true;
-                else if (eja == WORD_2 && speech.toLowerCase().contains("ba")) return true;
-                else return eja == WORD_3 && speech.toLowerCase().contains("ya");
+                if(speech.charAt(0) == 'k'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'e'){
+                    setCorectMode(find(R.id.img_word_2));
+                }else{
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if(speech.charAt(2) == 'b'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(3) == 'a'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                if(speech.charAt(4) == 'y'){
+                    setCorectMode(find(R.id.img_word_5));
+                }else{
+                    setWrongMode(find(R.id.img_word_5));
+                }
+                if(speech.charAt(5) == 'a'){
+                    setCorectMode(find(R.id.img_word_6));
+                }else{
+                    setWrongMode(find(R.id.img_word_6));
+                }
+
+                return speech.toLowerCase().contains("kebaya");
             default:
                 return false;
         }
@@ -220,6 +611,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         level = getIntent().getIntExtra("LEVEL", 1);
         switch (level) {
             case 0: //bumi
+                word1 =  getResources().getResourceEntryName(R.drawable.letter_b);
+                word2 = getResources().getResourceEntryName(R.drawable.letter_u);
+                word3 = getResources().getResourceEntryName(R.drawable.letter_m);
+                word4 = getResources().getResourceEntryName(R.drawable.letter_i);
+
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_earth);
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
                 find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);

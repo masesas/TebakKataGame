@@ -18,6 +18,7 @@ import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activit
 import com.example.tebakkatagame.Activity.GamePlay.MainGameSukuKata_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
 import com.example.tebakkatagame.R;
+import com.example.tebakkatagame.Utils.SharePrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class LevelTahap_Activity extends BaseApp {
+
+    ArrayAdapter<String> menuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +47,46 @@ public class LevelTahap_Activity extends BaseApp {
             iconMenuList.add(icon);
         }
 
-        ArrayAdapter<String> menuAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_level_menu, iconMenuList) {
+        int savedLevel;
+        if (getIntent().hasExtra("TEBAK HURUF")) {
+            savedLevel = SharePrefUtils.getLevel(getActivity(), "HURUF", 1);
+        } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
+            savedLevel = SharePrefUtils.getLevel(getActivity(), "GAMBAR", 1);
+        } else if (getIntent().hasExtra("SUKU KATA")) {
+            savedLevel = SharePrefUtils.getLevel(getActivity(), "KATA", 1);
+        } else {
+            savedLevel = 0; //kalimat not yet implemented
+        }
+
+        menuAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_level_menu, iconMenuList) {
+            @Override
+            public boolean isEnabled(int position) {
+                return position < savedLevel;
+            }
+
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                @SuppressLint({"ViewHolder", "InflateParams"}) View v = getLayoutInflater().inflate(R.layout.item_level_menu, null);
-                if(position > 8){
+                @SuppressLint({"ViewHolder", "InflateParams"})
+                View v = getLayoutInflater().inflate(R.layout.item_level_menu, null);
+
+                if (position > 8) {
                     setImageFromString((ImageView) v.findViewById(R.id.img_icon_number), iconMenuList.get(position), 200, 200);
-                }else{
+                } else {
                     setImageFromString((ImageView) v.findViewById(R.id.img_icon_number), iconMenuList.get(position));
+                }
+
+                if (position < savedLevel) {
+                    v.findViewById(R.id.img_lock).setVisibility(View.GONE);
+                } else {
+                    v.findViewById(R.id.img_lock).setVisibility(View.VISIBLE);
                 }
                 return v;
             }
         };
 
         gridViewMenu.setAdapter(menuAdapter);
+        menuAdapter.notifyDataSetChanged();
         gridViewMenu.setOnItemClickListener((parent, view, position, id) -> {
             if (getIntent().hasExtra("TEBAK HURUF")) {
                 setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", String.valueOf(position + 1));
@@ -70,6 +98,12 @@ public class LevelTahap_Activity extends BaseApp {
                 setIntent(MainActivity.class, "LEVEL", position);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setComponent();
     }
 
     private void loadData() {
