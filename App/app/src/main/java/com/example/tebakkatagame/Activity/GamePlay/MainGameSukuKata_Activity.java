@@ -5,7 +5,9 @@ import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -21,6 +23,8 @@ import java.util.List;
 import java.util.Locale;
 
 import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 import static com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity.getErrorText;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
@@ -32,9 +36,11 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
+    private String word1,word3,word4;
 
     private int countSpeak = 0;
     private int level;
+    private int countWrong = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,40 +79,56 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     }
 
     private void setResultSpech(String... eja) {
-        int counterWrong = 0;
         countSpeak++;
         if (countSpeak == WORD_1) {
-            if (setCorrectAnswer(WORD_1, eja[0])) {
-                setCorectMode(find(R.id.img_word_1));
-                bounceAnimate(find(R.id.ly_eja_1));
-                counterWrong = 0;
+            if (setCorrectAnswer(eja[0])) {
+                selebrateWin();
             } else {
-                counterWrong++;
+                countWrong++;
                 countSpeak = 0;
-                setWrongMode(find(R.id.img_word_1));
-                shakesAnimate(find(R.id.ly_eja_1));
-            }
-        } else if (countSpeak == WORD_2) {
-            if (setCorrectAnswer(WORD_2, eja[0])) {
-                setCorectMode(find(R.id.img_word_3));
-                setCorectMode(find(R.id.img_word_4));
-                bounceAnimate(find(R.id.ly_eja_2));
-                counterWrong = 0;
-            } else {
-                counterWrong++;
-                countSpeak = 1;
-                setWrongMode(find(R.id.img_word_3));
-                setWrongMode(find(R.id.img_word_4));
-                shakesAnimate(find(R.id.ly_eja_2));
             }
         }
     }
 
-    private boolean setCorrectAnswer(int eja, String speech) {
+    private void selebrateWin() {
+        find(R.id.view_blur).setVisibility(View.VISIBLE);
+        konfettiView.post(() -> konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5f))
+                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                .streamFor(300, 5000L));
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            showWinDialog(level + 1, "SUKU KATA", countWrong);
+        }, 2000);
+    }
+
+    private boolean setCorrectAnswer(String speech) {
+        speech = speech.toLowerCase();
         switch (level) {
             case 0: //ibu
-                if (eja == WORD_1 && speech.toLowerCase().contains("i")) return true;
-                else return eja == WORD_2 && speech.toLowerCase().contains("bu");
+                if(speech.charAt(0) == 'i'){
+                    setCorectMode(find(R.id.img_word_1));
+                }else{
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if(speech.charAt(1) == 'b'){
+                    setCorectMode(find(R.id.img_word_3));
+                }else{
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if(speech.charAt(2) == 'u'){
+                    setCorectMode(find(R.id.img_word_4));
+                }else{
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("ibu");
             default:
                 return false;
         }
@@ -115,7 +137,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     private void setImageLevel() {
         level = getIntent().getIntExtra("LEVEL", 1);
         switch (level) {
-            case 0: //bumi
+            case 0: //ibu
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_i);
                 find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);

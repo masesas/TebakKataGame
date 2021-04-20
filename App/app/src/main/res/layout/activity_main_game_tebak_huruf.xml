@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_main"
     tools:context=".Activity.MainActivity">
 
+    <View
+        android:id="@+id/view_blur"
+        android:background="#6d000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <include layout="@layout/toolbar" />
+
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/ly_container_tittle"
@@ -68,7 +81,8 @@
                 android:layout_marginTop="-14dp"
                 android:layout_marginBottom="15dp"
                 android:src="@drawable/letter_empty"
-                tools:ignore="ContentDescription"/>
+                tools:ignore="ContentDescription"
+                app:tint="@color/red_500" />
 
             <ImageView
                 android:id="@+id/img_guess_2"
@@ -81,6 +95,7 @@
                 android:layout_marginBottom="15dp"
                 android:src="@drawable/letter_empty"
                 android:layout_toEndOf="@+id/img_guess_1"
+                app:tint="@color/red_500"
                 tools:ignore="ContentDescription"/>
 
             <ImageView
