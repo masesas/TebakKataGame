@@ -6,7 +6,8 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/container_word">
 
     <LinearLayout
         android:id="@+id/ly_eja_1"
@@ -20,8 +21,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/letter_p"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
         <ImageView
@@ -30,8 +29,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="-10dp"
             android:src="@drawable/letter_i"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
     </LinearLayout>
@@ -59,8 +56,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/letter_s"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
         <ImageView
@@ -69,8 +64,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="-10dp"
             android:src="@drawable/letter_a"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
     </LinearLayout>
@@ -100,8 +93,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/letter_n"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
         <ImageView
@@ -110,8 +101,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="-10dp"
             android:src="@drawable/letter_g"
-            android:tint="@color/red_500"
-            android:tintMode="multiply"
             tools:ignore="ContentDescription,UseAppTint" />
 
     </LinearLayout>
@@ -134,8 +123,6 @@
         android:layout_marginStart="-10dp"
         android:layout_marginBottom="10dp"
         android:src="@drawable/letter_i"
-        android:tint="@color/red_500"
-        android:tintMode="multiply"
         tools:ignore="ContentDescription,UseAppTint"
         android:visibility="gone"/>
 

@@ -143,9 +143,9 @@ public class BaseApp extends AppCompatActivity {
         finish();
     }
 
-    public void showWinDialog(int level, String tahap, int countWrong) {
+    public void showWinDialog(int level, String tahap, boolean isBenar) {
         FragmentManager fm = getSupportFragmentManager();
-        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap, countWrong);
+        WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap, isBenar);
         winDialogFragment.show(fm, "NEXT_LEVEL");
     }
 

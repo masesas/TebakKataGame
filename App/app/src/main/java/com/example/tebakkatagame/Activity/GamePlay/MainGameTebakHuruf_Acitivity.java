@@ -331,7 +331,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 //dialogwin
                 if(isGuest3){
                     if(countCorrect == 3 ){
-                        selebrateWin();
+                        selebrateWin(true);
                         setCorectMode(imgGuest4);
                         setCorectMode(imgGuest5);
                     }
@@ -339,7 +339,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                     if(countCorrect == 2 ){
                         setCorectMode(imgGuest3);
                         setCorectMode(imgGuest4);
-                        selebrateWin();
+                        selebrateWin(true);
                     }
                 }
             });
@@ -368,23 +368,28 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         }
     }
 
-    private void selebrateWin() {
+    private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
-        konfettiView.post(() -> konfettiView.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                .setDirection(0.0, 359.0)
-                .setSpeed(1f, 5f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
-                .addSizes(new Size(12, 5f))
-                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
-                .streamFor(300, 5000L));
+        if(isBenar){
+            konfettiView.post(() -> konfettiView.build()
+                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(1f, 5f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(2000L)
+                    .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                    .addSizes(new Size(12, 5f))
+                    .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                    .streamFor(300, 5000L));
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                showWinDialog(level + 1, "TEBAK HURUF", true);
+            }, 2000);
+        }else{
+            showWinDialog(level + 1, "TEBAK HURUF", false);
+        }
 
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            showWinDialog(level + 1, "TEBAK HURUF", countWrong);
-        }, 2000);
+
     }
 
 }

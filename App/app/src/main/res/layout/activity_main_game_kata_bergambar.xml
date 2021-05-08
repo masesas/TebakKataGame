@@ -117,7 +117,10 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:soundEffectsEnabled="false"
-            android:visibility="gone" />
+            android:backgroundTint="@color/colorWhite"
+            android:background="@drawable/box_transparent"
+            android:padding="10dp"
+            />
 
         <TextView
             android:id="@+id/tv_result"
@@ -126,7 +129,8 @@
             android:text="Results"
             android:textSize="16sp"
             android:background="@android:color/white"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:visibility="gone"/>
 
         <include layout="@layout/item_word_box" />
 

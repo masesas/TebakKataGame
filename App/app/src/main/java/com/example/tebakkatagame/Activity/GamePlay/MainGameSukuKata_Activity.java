@@ -82,31 +82,37 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         countSpeak++;
         if (countSpeak == WORD_1) {
             if (setCorrectAnswer(eja[0])) {
-                selebrateWin();
+                selebrateWin(true);
             } else {
                 countWrong++;
                 countSpeak = 0;
+                selebrateWin(false);
             }
         }
     }
 
-    private void selebrateWin() {
+    private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
-        konfettiView.post(() -> konfettiView.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                .setDirection(0.0, 359.0)
-                .setSpeed(1f, 5f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
-                .addSizes(new Size(12, 5f))
-                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
-                .streamFor(300, 5000L));
+        if(isBenar){
+            konfettiView.post(() -> konfettiView.build()
+                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(1f, 5f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(2000L)
+                    .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                    .addSizes(new Size(12, 5f))
+                    .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                    .streamFor(300, 5000L));
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                showWinDialog(level + 1, "SUKU KATA", true);
+            }, 2000);
+        }else{
+            showWinDialog(level + 1, "SUKU KATA", false);
+        }
 
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            showWinDialog(level + 1, "SUKU KATA", countWrong);
-        }, 2000);
+
     }
 
     private boolean setCorrectAnswer(String speech) {
