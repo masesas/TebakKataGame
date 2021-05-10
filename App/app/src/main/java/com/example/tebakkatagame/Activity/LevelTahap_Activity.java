@@ -14,6 +14,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tebakkatagame.Activity.GamePlay.MainGameKalimat_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameSukuKata_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
@@ -47,21 +48,22 @@ public class LevelTahap_Activity extends BaseApp {
             iconMenuList.add(icon);
         }
 
-        int savedLevel;
+        int savedLevel = 0;
         if (getIntent().hasExtra("TEBAK HURUF")) {
             savedLevel = SharePrefUtils.getLevel(getActivity(), "HURUF", 1);
         } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
             savedLevel = SharePrefUtils.getLevel(getActivity(), "GAMBAR", 1);
         } else if (getIntent().hasExtra("SUKU KATA")) {
             savedLevel = SharePrefUtils.getLevel(getActivity(), "KATA", 1);
-        } else {
-            savedLevel = 0; //kalimat not yet implemented
+        } else if(getIntent().hasExtra("MEMBACA")){
+            savedLevel = SharePrefUtils.getLevel(getActivity(), "MEMBACA", 1);
         }
 
+        int finalSavedLevel = savedLevel;
         menuAdapter = new ArrayAdapter<String>(getActivity(), R.layout.item_level_menu, iconMenuList) {
             @Override
             public boolean isEnabled(int position) {
-                return position < savedLevel;
+                return position < finalSavedLevel;
             }
 
             @NonNull
@@ -76,7 +78,7 @@ public class LevelTahap_Activity extends BaseApp {
                     setImageFromString((ImageView) v.findViewById(R.id.img_icon_number), iconMenuList.get(position));
                 }
 
-                if (position < savedLevel) {
+                if (position < finalSavedLevel) {
                     v.findViewById(R.id.img_lock).setVisibility(View.GONE);
                 } else {
                     v.findViewById(R.id.img_lock).setVisibility(View.VISIBLE);
@@ -94,8 +96,8 @@ public class LevelTahap_Activity extends BaseApp {
                 setIntent(MainGameKataBergambar_Activity.class, "LEVEL", position);
             } else if (getIntent().hasExtra("SUKU KATA")) {
                 setIntent(MainGameSukuKata_Activity.class, "LEVEL", position);
-            } else {
-                setIntent(MainActivity.class, "LEVEL", position);
+            } else  if (getIntent().hasExtra("MEMBACA")){
+                setIntent(MainGameKalimat_Activity.class, "LEVEL", position);
             }
         });
     }
@@ -113,8 +115,8 @@ public class LevelTahap_Activity extends BaseApp {
             find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tittle_kata_bergambar);
         } else if (getIntent().hasExtra("SUKU KATA")) {
             find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tittle_suku_kata);
-        } else {
-            find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tittle_tebak_huruf);
+        } else if (getIntent().hasExtra("MEMBACA")){
+            find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_ayo_membaca);
         }
     }
 }

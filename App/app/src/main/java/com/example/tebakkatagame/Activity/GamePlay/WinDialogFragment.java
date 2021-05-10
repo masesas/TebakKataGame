@@ -67,6 +67,10 @@ public class WinDialogFragment extends DialogFragment {
                         baseApp = (MainGameTebakHuruf_Acitivity) getActivity();
                         SharePrefUtils.saveLevel(getContext(), "HURUF", nextLevel + 1);
                         break;
+                    case "MEMBACA":
+                        baseApp = (MainGameKalimat_Activity) getActivity();
+                        SharePrefUtils.saveLevel(getContext(), "MEMBACA", nextLevel + 1);
+                        break;
                 }
             }
         }
@@ -123,30 +127,22 @@ public class WinDialogFragment extends DialogFragment {
 
         view.findViewById(R.id.img_btn_next).setOnClickListener(v -> {
             if(((ImageView)view.findViewById(R.id.img_btn_next)).getTag().toString().equals("WRONG")){
-                switch (jenisTahap) {
-                    case "TEBAK GAMBAR":
-                        setIntent(MainGameKataBergambar_Activity.class, "LEVEL", (nextLevel - 1));
-                        break;
-                    case "SUKU KATA":
-                        setIntent(MainGameSukuKata_Activity.class, "LEVEL", (nextLevel));
-                        break;
-                    case "TEBAK HURUF":
-                        setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", (nextLevel));
-                        break;
-                }
+                nextLevel -= 1;
+            }
 
-            }else{
-                switch (jenisTahap) {
-                    case "TEBAK GAMBAR":
-                        setIntent(MainGameKataBergambar_Activity.class, "LEVEL", nextLevel);
-                        break;
-                    case "SUKU KATA":
-                        setIntent(MainGameSukuKata_Activity.class, "LEVEL", nextLevel);
-                        break;
-                    case "TEBAK HURUF":
-                        setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", nextLevel);
-                        break;
-                }
+            switch (jenisTahap) {
+                case "TEBAK GAMBAR":
+                    setIntent(MainGameKataBergambar_Activity.class, "LEVEL", (nextLevel));
+                    break;
+                case "SUKU KATA":
+                    setIntent(MainGameSukuKata_Activity.class, "LEVEL", (nextLevel));
+                    break;
+                case "TEBAK HURUF":
+                    setIntent(MainGameTebakHuruf_Acitivity.class, "LEVEL", (nextLevel));
+                    break;
+                case "MEMBACA":
+                    setIntent(MainGameKalimat_Activity.class, "LEVEL", (nextLevel));
+                    break;
             }
         });
 

@@ -41,72 +41,238 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ly_benar"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ly_container_tittle"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/green_500" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Benar"
+            android:textColor="@color/grey_800"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ly_benar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/red_500" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Salah"
+            android:textColor="@color/grey_800"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ly_main"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/ly_container_tittle"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
+
 
         <LinearLayout
-            android:layout_width="70dp"
+            android:id="@+id/ly_kalimat_main1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginEnd="20dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/green_500" />
+                android:id="@+id/img_word_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_l" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Benar"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/grey_800" />
+            <ImageView
+                android:id="@+id/img_word_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_e" />
+
+            <ImageView
+                android:id="@+id/img_word_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_b" />
+
+            <ImageView
+                android:id="@+id/img_word_4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_a" />
+
+            <ImageView
+                android:id="@+id/img_word_5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_h" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="70dp"
+            android:id="@+id/ly_kalimat_main2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_gravity="end"
-            android:gravity="center">
+            android:layout_marginTop="10dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/red_500" />
+                android:id="@+id/img_word_6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_m" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salah"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/grey_800" />
+            <ImageView
+                android:id="@+id/img_word_7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_a" />
+
+            <ImageView
+                android:id="@+id/img_word_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_k" />
+
+            <ImageView
+                android:id="@+id/img_word_9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_a" />
+
+            <ImageView
+                android:id="@+id/img_word_10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_n" />
 
         </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ly_kalimat_tambahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-        <include layout="@layout/item_word_box" />
+        <ImageView
+            android:id="@+id/img_word_tambahan1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/letter_d" />
+
+        <ImageView
+            android:id="@+id/img_word_tambahan2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/letter_i" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_kalimat_main3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/img_word_11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_k" />
+
+            <ImageView
+                android:id="@+id/img_word_12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_e" />
+
+            <ImageView
+                android:id="@+id/img_word_13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_l" />
+
+            <ImageView
+                android:id="@+id/img_word_14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_e" />
+
+            <ImageView
+                android:id="@+id/img_word_15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_d" />
+
+            <ImageView
+                android:id="@+id/img_word_16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_a" />
+
+            <ImageView
+                android:id="@+id/img_word_17"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/letter_i" />
 
 
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_speak"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_voice"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

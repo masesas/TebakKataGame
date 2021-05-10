@@ -38,7 +38,8 @@
         android:layout_below="@+id/ly_sukukata"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="40dp"
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/img_kata_bergambar"
@@ -69,7 +70,8 @@
         android:orientation="horizontal"
         android:layout_below="@+id/ly_kata"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="50dp"
+        android:padding="20dp">
 
         <ImageView
             android:id="@+id/img_tebak_huruf"
@@ -79,24 +81,21 @@
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_horizontal"
-            tools:ignore="ContentDescription" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/ly_tebak"
-        android:gravity="center_horizontal">
+            tools:ignore="ContentDescription"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"/>
 
         <ImageView
-            android:id="@+id/img_evaluasi"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_tittle_evaluasi"
+            android:id="@+id/img_ayo_membaca"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_ayo_membaca"
             android:layout_gravity="center"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            android:layout_weight="10"
+            android:layout_marginStart="20dp"/>
 
     </LinearLayout>
+
 
 </RelativeLayout>

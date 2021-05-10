@@ -21,7 +21,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         find(R.id.img_kata_bergambar).setOnClickListener(this);
         find(R.id.img_suku_kata).setOnClickListener(this);
         find(R.id.img_tebak_huruf).setOnClickListener(this);
-        find(R.id.img_evaluasi).setOnClickListener(this);
+        find(R.id.img_ayo_membaca).setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -37,8 +37,8 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
             case R.id.img_tebak_huruf:
                 setIntent(LevelTahap_Activity.class, "TEBAK HURUF", "");
                 break;
-            case R.id.img_evaluasi:
-
+            case R.id.img_ayo_membaca:
+                setIntent(LevelTahap_Activity.class, "MEMBACA", "");
                 break;
         }
     }
