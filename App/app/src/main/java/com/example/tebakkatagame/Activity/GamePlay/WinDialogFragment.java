@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tebakkatagame.Activity.BaseApp;
+import com.example.tebakkatagame.Activity.LevelTahap_Activity;
 import com.example.tebakkatagame.Activity.Tahap_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
@@ -157,8 +158,13 @@ public class WinDialogFragment extends DialogFragment {
     }
 
     public void setIntent(Class<?> to, String key, int value) {
-        Intent intent = new Intent(getActivity(), to);
-        intent.putExtra(key, value);
+        Intent intent;
+        if (value == 20){
+            intent = new Intent(getActivity(), Tahap_Activity.class);
+        }else {
+            intent = new Intent(getActivity(), to);
+            intent.putExtra(key, value);
+        }
         startActivity(intent);
         getActivity().finish();
         dismiss();
