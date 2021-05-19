@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -22,6 +23,7 @@ import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.R;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +31,8 @@ import java.util.Locale;
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
@@ -40,6 +44,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
+    private GifImageView gifView;
 
     private int countSpeak = 0;
     private int level;
@@ -72,38 +77,36 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             playWord();
         });
 
-        find(R.id.speak_progress_view).setOnTouchListener((View v, MotionEvent event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_UP:
-                    mSpeechRecognizer.stopListening();
-                    find(R.id.tv_result, TextView.class).setHint("You will see input here");
-                    break;
-
-                case MotionEvent.ACTION_DOWN:
-                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    find(R.id.tv_result, TextView.class).setText("");
-                    find(R.id.tv_result, TextView.class).setHint("Listening...");
-                    break;
-            }
-            return false;
-        });
-
-        find(R.id.img_tebak).setOnTouchListener((View v, MotionEvent event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_UP:
-                    mSpeechRecognizer.stopListening();
-                    find(R.id.tv_result, TextView.class).setHint("You will see input here");
-                    break;
-
-                case MotionEvent.ACTION_DOWN:
-                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    find(R.id.tv_result, TextView.class).setText("");
-                    find(R.id.tv_result, TextView.class).setHint("Listening...");
-                    break;
-            }
-            return false;
+        find(R.id.btn_speak).setOnClickListener(v -> {
+            setTimerGif();
+            mSpeechRecognizer.stopListening();
+            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         });
     }
+
+    private void setTimerGif(){
+        GifDrawable gifDrawable = null;
+        try {
+            gifDrawable = new GifDrawable(getResources().openRawResource(R.raw.btn_speak_5s));
+            gifView.setImageDrawable(gifDrawable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        find(R.id.btn_speak).setVisibility(View.GONE);
+        gifView.setVisibility(View.VISIBLE);
+        new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //implements count timer if need
+            }
+            @Override
+            public void onFinish() {
+                gifView.setVisibility(View.GONE);
+                find(R.id.btn_speak).setVisibility(View.VISIBLE);
+            }
+        }.start();
+    }
+
 
     private void playWord(){
         MediaPlayer mediaPlayer = null;
