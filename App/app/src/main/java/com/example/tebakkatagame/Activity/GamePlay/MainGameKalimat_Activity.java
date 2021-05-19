@@ -1,6 +1,7 @@
 package com.example.tebakkatagame.Activity.GamePlay;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,7 +9,12 @@ import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+
+import androidx.transition.TransitionManager;
+
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,6 +67,48 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
             mSpeechRecognizer.stopListening();
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         });
+
+        setOpeningStart();
+    }
+
+    private void setOpeningStart() {
+        FrameLayout openingContainer = findViewById(R.id.container_opening);
+        find(R.id.view_blur).bringToFront();
+        openingContainer.bringToFront();
+        FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        frameParams.width = 300;
+        frameParams.height = 300;
+        frameParams.bottomMargin = 200;
+        frameParams.gravity = Gravity.CENTER;
+
+        Runnable runnable = () -> {
+            find(R.id.view_blur).setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setLayoutParams(frameParams);
+            imageView.setImageResource(R.drawable.number_1);
+            openingContainer.addView(imageView);
+            imageView.postDelayed(() -> {
+                imageView.setImageResource(R.drawable.number_2);
+                imageView.postDelayed(() -> {
+                    imageView.setImageResource(R.drawable.number_3);
+                    imageView.postDelayed(() -> {
+                        openingContainer.setVisibility(View.GONE);
+                        find(R.id.view_blur).setVisibility(View.GONE);
+                        burstEffect();
+                    }, 1500);
+                }, 1500);
+            }, 1500);
+        };
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            //TransitionManager.beginDelayedTransition();
+            handler.postDelayed(runnable, 0);
+        }, 0);
     }
 
     private void setTimerGif() {
@@ -85,6 +133,19 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                 find(R.id.btn_speak).setVisibility(View.VISIBLE);
             }
         }.start();
+    }
+
+    private void burstEffect(){
+        konfettiView.post(() -> konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5))
+                .setPosition(konfettiView.getX() + konfettiView.getWidth() / 2, konfettiView.getY()  + konfettiView.getHeight() / 3)
+                .burst(100));
     }
 
     private void selebrateWin(boolean isBenar) {
