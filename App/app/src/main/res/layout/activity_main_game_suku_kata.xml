@@ -13,7 +13,14 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
+    <FrameLayout
+        android:id="@+id/container_opening"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <include layout="@layout/toolbar" />
+
+
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti_sukukata"
@@ -57,12 +64,25 @@
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="70dp"
+            android:id="@+id/ly_True"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
             android:gravity="center"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="30dp">
+
+            <TextView
+                android:id="@+id/tv_result_sukukata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:foregroundGravity=""
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:text="Results"
+                android:gravity="center"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -84,7 +104,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="80dp"
             android:layout_gravity="end"
             android:gravity="center">
 
@@ -110,24 +131,12 @@
             android:soundEffectsEnabled="false"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_result_sukukata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Results"
-            android:textSize="16sp"
-            android:background="@android:color/white"
-            android:padding="10dp" />
-
         <include layout="@layout/item_word_box" />
 
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="start voice"/>
-
+        <include layout="@layout/layout_speak"/>
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

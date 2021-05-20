@@ -7,24 +7,30 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.R;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 import static com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity.getErrorText;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
@@ -36,11 +42,9 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
-    private String word1,word3,word4;
+    private GifImageView gifView;
 
-    private int countSpeak = 0;
     private int level;
-    private int countWrong = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,41 +57,106 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     @SuppressLint("ClickableViewAccessibility")
     private void setComponent() {
         konfettiView = findViewById(R.id.viewKonfetti_sukukata);
+        gifView = findViewById(R.id.gif_speak);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mSpeechRecognizer.setRecognitionListener(this);
-
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
 
-        find(R.id.btn_start).setOnTouchListener((View v, MotionEvent event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_UP:
-                    mSpeechRecognizer.stopListening();
-                    find(R.id.tv_result_sukukata, TextView.class).setHint("You will see input here");
-                    break;
-
-                case MotionEvent.ACTION_DOWN:
-                    mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-                    find(R.id.tv_result_sukukata, TextView.class).setText("");
-                    find(R.id.tv_result_sukukata, TextView.class).setHint("Listening...");
-                    break;
-            }
-            return false;
+        find(R.id.btn_speak).setOnClickListener(v -> {
+            setTimerGif();
+            mSpeechRecognizer.stopListening();
+            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         });
+
+        setOpeningStart();
     }
 
-    private void setResultSpech(String... eja) {
-        countSpeak++;
-        if (countSpeak == WORD_1) {
-            if (setCorrectAnswer(eja[0])) {
-                selebrateWin(true);
-            } else {
-                countWrong++;
-                countSpeak = 0;
-                selebrateWin(false);
+    private void setOpeningStart() {
+        FrameLayout openingContainer = findViewById(R.id.container_opening);
+        find(R.id.view_blur).bringToFront();
+        openingContainer.bringToFront();
+        FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        frameParams.width = 300;
+        frameParams.height = 300;
+        frameParams.bottomMargin = 200;
+        frameParams.gravity = Gravity.CENTER;
+
+        Runnable runnable = () -> {
+            find(R.id.view_blur).setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setLayoutParams(frameParams);
+            imageView.setImageResource(R.drawable.number_1);
+            openingContainer.addView(imageView);
+            imageView.postDelayed(() -> {
+                imageView.setImageResource(R.drawable.number_2);
+                imageView.postDelayed(() -> {
+                    imageView.setImageResource(R.drawable.number_3);
+                    imageView.postDelayed(() -> {
+                        openingContainer.setVisibility(View.GONE);
+                        find(R.id.view_blur).setVisibility(View.GONE);
+                        burstEffect();
+                    }, 1500);
+                }, 1500);
+            }, 1500);
+        };
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            //TransitionManager.beginDelayedTransition();
+            handler.postDelayed(runnable, 0);
+        }, 0);
+    }
+
+    private void setTimerGif() {
+        GifDrawable gifDrawable;
+        try {
+            gifDrawable = new GifDrawable(getResources().openRawResource(R.raw.btn_speak_5s));
+            gifView.setImageDrawable(gifDrawable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        find(R.id.btn_speak).setVisibility(View.GONE);
+        gifView.setVisibility(View.VISIBLE);
+        new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //implements count timer if need
             }
+
+            @Override
+            public void onFinish() {
+                gifView.setVisibility(View.GONE);
+                find(R.id.btn_speak).setVisibility(View.VISIBLE);
+            }
+        }.start();
+    }
+
+    private void burstEffect(){
+        konfettiView.post(() -> konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5))
+                .setPosition(konfettiView.getX() + konfettiView.getWidth() / 2, konfettiView.getY()  + konfettiView.getHeight() / 3)
+                .burst(100));
+    }
+
+
+    private void setResultSpech(String... eja) {
+        if (setCorrectAnswer(eja[0])) {
+            selebrateWin(true);
+        } else {
+            selebrateWin(false);
         }
     }
 
@@ -191,7 +260,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     @Override
     public void onError(int error) {
-        showInfo(getErrorText(error));
+//        showInfo(getErrorText(error));
     }
 
     @Override
