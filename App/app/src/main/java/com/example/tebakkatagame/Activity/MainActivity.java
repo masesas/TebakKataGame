@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
@@ -24,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends BaseApp {
+
+    private boolean doubleBackToExitPressedOnce;
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,29 @@ public class MainActivity extends BaseApp {
         });
     }
 
+    private final Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            doubleBackToExitPressedOnce = false;
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        this.doubleBackToExitPressedOnce = false;
+    }
+
     @Override
     public void onBackPressed() {
-        onPause();
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        showInfo("Tekan sekali lagi untuk keluar");
+        mHandler.postDelayed(mRunnable, 2000);
     }
 
     private void showConnectionDialog(){

@@ -20,7 +20,19 @@
 
     <include layout="@layout/toolbar" />
 
-
+    <TextView
+        android:id="@+id/tv_result_sukukata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ly_container_tittle"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="150dp"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:text="Results"
+        android:gravity="center"
+        android:textSize="16sp" />
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti_sukukata"
@@ -65,24 +77,12 @@
 
         <LinearLayout
             android:id="@+id/ly_True"
-            android:layout_width="match_parent"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="end"
             android:gravity="center"
             android:layout_marginEnd="30dp">
-
-            <TextView
-                android:id="@+id/tv_result_sukukata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:foregroundGravity=""
-                android:background="@android:color/white"
-                android:padding="10dp"
-                android:text="Results"
-                android:gravity="center"
-                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="20dp"
