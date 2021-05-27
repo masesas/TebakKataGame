@@ -5,14 +5,18 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,10 +43,11 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_3;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_4;
 
-public class MainGameKataBergambar_Activity extends BaseApp implements RecognitionListener {
+public class MainGameKataBergambar_Activity extends BaseApp implements RecognitionListener, TextToSpeech.OnInitListener {
 
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
+    TextToSpeech textToSpeech;
     private KonfettiView konfettiView;
     private GifImageView gifView;
 
@@ -64,7 +69,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     @SuppressLint("ClickableViewAccessibility")
     private void setComponent() {
         konfettiView = findViewById(R.id.viewKonfetti);
+        gifView = findViewById(R.id.gif_speak);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        textToSpeech = new TextToSpeech(this, this);
+
+        textToSpeech.setLanguage(localeIndonesia);
         mSpeechRecognizer.setRecognitionListener(this);
         find(R.id.img_tebak).setVisibility(View.GONE);
 
@@ -73,8 +82,12 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
 
-        find(R.id.container_word).setOnClickListener(v -> {
-            playWord();
+        find(R.id.ly_eja_1).setOnClickListener(v -> {
+            playWord(1);
+        });
+
+        find(R.id.ly_eja_2).setOnClickListener(v -> {
+            playWord(2);
         });
 
         find(R.id.btn_speak).setOnClickListener(v -> {
@@ -108,68 +121,173 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     }
 
 
-    private void playWord(){
+    private void playWord(int sukuKata){
         MediaPlayer mediaPlayer = null;
-
+       // AudioTrack audioTrack = new AudioTrack(3, 16000, 2, 2, 3);
         switch (level) {
             case 0: //bumi
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bumi);
+                if(sukuKata == 1){
+                    textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
+                }else{
+                    textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
+                }
                 break;
             case 1: //padi
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
                 break;
             case 2: //gigi
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gigi);
                 break;
             case 3: //dadu
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dadu);
                 break;
             case 4: //biji
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.biji);
                 break;
             case 5: //gula
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gula);
                 break;
             case 6: //pipi
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pipi);
                 break;
             case 7: //kopi
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kopi);
                 break;
             case 8: //duri
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
                 break;
             case 9: //kayu
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kayu);
                 break;
             case 10: //rusa
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
                 break;
             case 11: //tali
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
                 break;
             case 12: //peta
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
                 break;
             case 13: //desa
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.desa);
                 break;
             case 14: //roda
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.roda);
                 break;
             case 15: //buaya
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
                 break;
             case 16: //rumah
+                if(sukuKata == 1){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
                 break;
             case 17: //delima
+                if(sukuKata == 1){
+
+                }else if(sukuKata == 2){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
                 break;
             case 18: //keledai
+                if(sukuKata == 1){
+
+                }else if(sukuKata == 2){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.keledai);
                 break;
             case 19: //kebaya
+                if(sukuKata == 1){
+
+                }else if(sukuKata == 2){
+
+                }else{
+
+                }
                 mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
                 break;
             default:
@@ -1000,5 +1118,25 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 break;
         }
         return message;
+    }
+
+    @Override
+    public void onInit(int status) {
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+        });
     }
 }

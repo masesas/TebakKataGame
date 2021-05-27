@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -102,6 +105,12 @@ public class BaseApp extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -163,6 +172,14 @@ public class BaseApp extends AppCompatActivity {
                 setViewAndChildrenEnabled(child, enabled);
             }
         }
+    }
+
+    public void clickSound(){
+        MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sound_click_coin);
+        mediaPlayer.start();
+        Runnable runnable = mediaPlayer::stop;
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(runnable, 1000);
     }
 }
 

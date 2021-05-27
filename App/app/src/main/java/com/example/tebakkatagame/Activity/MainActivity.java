@@ -37,10 +37,12 @@ public class MainActivity extends BaseApp {
         if(!isNetworkAvailable()){
             showConnectionDialog();
         }
+
         wafeAnimate(find(R.id.img_tittle));
         rollAnimate(find(R.id.img_charcters));
 
         find(R.id.btn_mulai).setOnClickListener(v -> {
+            clickSound();
             if(!isNetworkAvailable()){
                 showConnectionDialog();
             }else{

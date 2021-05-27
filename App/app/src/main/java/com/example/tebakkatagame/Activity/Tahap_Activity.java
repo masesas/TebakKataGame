@@ -27,6 +27,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
+        clickSound();
         switch (v.getId()){
             case R.id.img_kata_bergambar:
                 setIntent(LevelTahap_Activity.class, "TEBAK GAMBAR", "");
