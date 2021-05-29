@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -163,6 +164,8 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if(isBenar){
+            MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
+            mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
                     .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                     .setDirection(0.0, 359.0)
@@ -189,7 +192,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         int length = speech.length();
         switch (level) {
             case 0: //ibu
-                if (length > 3 ) {
+                if (length >= 3 ) {
                     if(speech.charAt(0) == 'i'){
                     setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -210,7 +213,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 1: //abi
-                if (length > 3 ) {
+                if (length >= 3 ) {
                     if(speech.charAt(0) == 'a'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -231,7 +234,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 2: //ubi
-                if (length > 3 ) {
+                if (length >= 3 ) {
                     if(speech.charAt(0) == 'u'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -252,7 +255,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 3: //api
-                if (length > 3 ) {
+                if (length >= 3 ) {
                     if(speech.charAt(0) == 'a'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -273,7 +276,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 4: //soda
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 's'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -299,7 +302,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 5: //pagi
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'p'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -325,7 +328,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 6: //bagi
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'b'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -351,7 +354,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 7: //goda
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'g'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -377,7 +380,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 8: //haji
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'h'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -403,7 +406,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 9: //beli
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'b'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -429,7 +432,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 10: //lupa
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'l'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -455,7 +458,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 11: //jasa
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'j'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -481,7 +484,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 12: //bawa
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'b'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -507,7 +510,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 13: //coba
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'c'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -533,7 +536,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 14: //nada
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'n'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -559,7 +562,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 15: //jaga
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'j'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -585,7 +588,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 16: //jago
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'j'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -611,7 +614,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 17: //sore
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 's'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -637,7 +640,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 18: //hama
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'h'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{
@@ -663,7 +666,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     return false;
                 }
             case 19: //bola
-                if (length > 4 ) {
+                if (length >= 4 ) {
                     if(speech.charAt(0) == 'b'){
                         setCorectMode(find(R.id.img_word_1));
                     }else{

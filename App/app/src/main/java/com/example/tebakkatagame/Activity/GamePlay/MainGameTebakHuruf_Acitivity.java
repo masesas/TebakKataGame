@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -372,6 +373,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                             setWrongMode(imgGuest2);
                             shakesAnimate(lyGuest1);
                         }
+                        selebrateWin(false);
 
 
                     }
@@ -405,6 +407,8 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if (isBenar) {
+            MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
+            mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
                     .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                     .setDirection(0.0, 359.0)

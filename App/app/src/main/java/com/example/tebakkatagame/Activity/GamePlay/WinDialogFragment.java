@@ -4,10 +4,17 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,25 +61,31 @@ public class WinDialogFragment extends DialogFragment {
             nextLevel = getArguments().getInt("LEVEL");
             jenisTahap = getArguments().getString("TAHAP");
             isBenar = getArguments().getBoolean("WRONG");
-            if(isBenar){
-                switch (jenisTahap) {
-                    case "TEBAK GAMBAR":
-                        baseApp = (MainGameKataBergambar_Activity) getActivity();
+            switch (jenisTahap) {
+                case "TEBAK GAMBAR":
+                    baseApp = (MainGameKataBergambar_Activity) getActivity();
+                    if(isBenar){
                         SharePrefUtils.saveLevel(getContext(), "GAMBAR", nextLevel + 1);
-                        break;
-                    case "SUKU KATA":
-                        baseApp = (MainGameSukuKata_Activity) getActivity();
+                    }
+                    break;
+                case "SUKU KATA":
+                    baseApp = (MainGameSukuKata_Activity) getActivity();
+                    if(isBenar){
                         SharePrefUtils.saveLevel(getContext(), "KATA", nextLevel + 1);
-                        break;
-                    case "TEBAK HURUF":
-                        baseApp = (MainGameTebakHuruf_Acitivity) getActivity();
+                    }
+                    break;
+                case "TEBAK HURUF":
+                    baseApp = (MainGameTebakHuruf_Acitivity) getActivity();
+                    if(isBenar){
                         SharePrefUtils.saveLevel(getContext(), "HURUF", nextLevel + 1);
-                        break;
-                    case "MEMBACA":
-                        baseApp = (MainGameKalimat_Activity) getActivity();
+                    }
+                    break;
+                case "MEMBACA":
+                    baseApp = (MainGameKalimat_Activity) getActivity();
+                    if(isBenar){
                         SharePrefUtils.saveLevel(getContext(), "MEMBACA", nextLevel + 1);
-                        break;
-                }
+                    }
+                    break;
             }
         }
     }
@@ -116,19 +129,42 @@ public class WinDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
+        MediaPlayer mediaPlayerLose = MediaPlayer.create(getActivity(), R.raw.sound_lose);
+        Vibrator vib = (Vibrator) baseApp.getSystemService(Context.VIBRATOR_SERVICE);
+        // Vibrate for 500 milliseconds
+        long[] pattern = {1000, 1500, 1000, 1500};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vib.vibrate(VibrationEffect.createWaveform(pattern, 0));
+        } else {
+            //deprecated in API 26
+            vib.vibrate(pattern, 0);
+        }
+
         if(!isBenar){
+            mediaPlayerLose.start();
+            mediaPlayerLose.setLooping(true);
             ((ImageView)view.findViewById(R.id.img_stiker)).setImageResource(R.drawable.ic_stiker_salah);
             ((ImageView)view.findViewById(R.id.img_btn_next)).setImageResource(R.drawable.ic_repeat_resize);
             ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("WRONG");
             view.findViewById(R.id.img_btn_close).setVisibility(View.GONE);
+
             ((TextView)view.findViewById(R.id.tv_info)).setText("Kamu Hampir Benar, Ayo Periksa Lagi!");
         }else{
+            mediaPlayerWin.start();
+            mediaPlayerWin.setLooping(true);
             ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("RIGHT");
         }
 
         view.findViewById(R.id.img_btn_next).setOnClickListener(v -> {
             if(((ImageView)view.findViewById(R.id.img_btn_next)).getTag().toString().equals("WRONG")){
                 nextLevel -= 1;
+                vib.cancel();
+                if(!isBenar){
+                    mediaPlayerLose.stop();
+                }else {
+                    mediaPlayerWin.stop();
+                }
             }
 
             switch (jenisTahap) {
@@ -149,6 +185,12 @@ public class WinDialogFragment extends DialogFragment {
 
         view.findViewById(R.id.img_btn_close).setOnClickListener(v -> {
             startActivity(new Intent(getContext(), Tahap_Activity.class));
+            vib.cancel();
+            if(!isBenar){
+                mediaPlayerLose.stop();
+            }else {
+                mediaPlayerWin.stop();
+            }
             getActivity().finish();
         });
     }
@@ -175,5 +217,4 @@ public class WinDialogFragment extends DialogFragment {
             ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.grey_600), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
     }
-
 }
