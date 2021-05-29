@@ -322,6 +322,8 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if (isBenar) {
+            MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
+            mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
                     .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                     .setDirection(0.0, 359.0)
