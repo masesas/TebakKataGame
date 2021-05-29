@@ -134,161 +134,153 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 break;
             case 1: //padi
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("PA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("DI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
+               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
                 break;
             case 2: //gigi
-                if(sukuKata == 1){
-
-                }else{
-
-                }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gigi);
+                textToSpeech.speak("GI",TextToSpeech.QUEUE_FLUSH,null,null);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gigi);
                 break;
             case 3: //dadu
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dadu);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dadu);
                 break;
             case 4: //biji
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("BI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("JI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.biji);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.biji);
                 break;
             case 5: //gula
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("GU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("LA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gula);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gula);
                 break;
             case 6: //pipi
-                if(sukuKata == 1){
-
-                }else{
-
-                }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pipi);
+                textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pipi);
                 break;
             case 7: //kopi
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("KO",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kopi);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kopi);
                 break;
             case 8: //duri
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("RI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
+              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
                 break;
             case 9: //kayu
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("KA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("YU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kayu);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kayu);
                 break;
             case 10: //rusa
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
+               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
                 break;
             case 11: //tali
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
+             //   mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
                 break;
             case 12: //peta
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("PE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
+               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
                 break;
             case 13: //desa
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.desa);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.desa);
                 break;
             case 14: //roda
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("RO",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.roda);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.roda);
                 break;
             case 15: //buaya
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("BUA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
+               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
                 break;
             case 16: //rumah
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("MAH",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
+              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
                 break;
             case 17: //delima
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else if(sukuKata == 2){
-
+                    textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("MA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
+               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
                 break;
             case 18: //keledai
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else if(sukuKata == 2){
-
+                    textToSpeech.speak("LE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("DAI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.keledai);
+                //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.keledai);
                 break;
             case 19: //kebaya
                 if(sukuKata == 1){
-
+                    textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else if(sukuKata == 2){
-
+                    textToSpeech.speak("BA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }else{
-
+                    textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
+              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
                 break;
             default:
                 break;
