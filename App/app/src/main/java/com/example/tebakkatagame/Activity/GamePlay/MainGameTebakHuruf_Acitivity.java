@@ -372,6 +372,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                             setWrongMode(imgGuest2);
                             shakesAnimate(lyGuest1);
                         }
+                        selebrateWin(false);
 
 
                     }
