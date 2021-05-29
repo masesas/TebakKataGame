@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -329,6 +330,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             Handler handler = new Handler();
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK GAMBAR", true);
+                mediaPlayerWin.stop();
             }, 3000);
         } else {
             showWinDialog(level + 1, "TEBAK GAMBAR", false);

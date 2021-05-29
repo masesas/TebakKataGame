@@ -65,19 +65,19 @@ public class WinDialogFragment extends DialogFragment {
                 case "TEBAK GAMBAR":
                     baseApp = (MainGameKataBergambar_Activity) getActivity();
                     if(isBenar){
-                        SharePrefUtils.saveLevel(getContext(), "GAMBAR", nextLevel + 1);
+                        SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "GAMBAR", nextLevel + 1);
                     }
                     break;
                 case "SUKU KATA":
                     baseApp = (MainGameSukuKata_Activity) getActivity();
                     if(isBenar){
-                        SharePrefUtils.saveLevel(getContext(), "KATA", nextLevel + 1);
+                        SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "KATA", nextLevel + 1);
                     }
                     break;
                 case "TEBAK HURUF":
                     baseApp = (MainGameTebakHuruf_Acitivity) getActivity();
                     if(isBenar){
-                        SharePrefUtils.saveLevel(getContext(), "HURUF", nextLevel + 1);
+                        SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "HURUF", nextLevel + 1);
                     }
                     break;
                 case "MEMBACA":
@@ -149,10 +149,24 @@ public class WinDialogFragment extends DialogFragment {
             ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("WRONG");
             view.findViewById(R.id.img_btn_close).setVisibility(View.GONE);
 
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayerLose.stop();
+                    vib.cancel();
+                }
+            }, 2000);
             ((TextView)view.findViewById(R.id.tv_info)).setText("Kamu Hampir Benar, Ayo Periksa Lagi!");
         }else{
             mediaPlayerWin.start();
             mediaPlayerWin.setLooping(true);
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayerWin.stop();
+                    vib.cancel();
+                }
+            }, 2000);
             ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("RIGHT");
         }
 
