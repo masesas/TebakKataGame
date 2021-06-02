@@ -94,7 +94,7 @@
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="-2dp"
                     android:src="@drawable/letter_empty"
                     android:layout_toEndOf="@+id/img_guess_1"
                     tools:ignore="ContentDescription"/>
@@ -124,7 +124,7 @@
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="-2dp"
                     android:layout_toEndOf="@+id/img_guess_3"
                     android:src="@drawable/letter_empty"
                     tools:ignore="ContentDescription" />
@@ -196,7 +196,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/img_word_3"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="-2dp"
                 android:src="@drawable/letter_u"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
@@ -220,7 +220,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/img_word_3"
-                android:layout_marginStart="10dp"
                 android:src="@drawable/letter_u"
                 tools:ignore="ContentDescription" />
 
@@ -232,7 +231,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/img_word_3"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="-2dp"
                 android:src="@drawable/letter_u"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
