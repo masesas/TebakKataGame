@@ -7,12 +7,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +35,7 @@ import nl.dionsegijn.konfetti.models.Size;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 import static com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity.getErrorText;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
@@ -40,6 +43,7 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_3;
 
 public class MainGameSukuKata_Activity extends BaseApp implements RecognitionListener {
 
+    private static final String TAG = "main";
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
@@ -62,9 +66,15 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mSpeechRecognizer.setRecognitionListener(this);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
+        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk menganggap input selesai 7 detik.
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
+        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk mempertimbangkan kemungkinan input selesai.
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
+        //Panjang minimal sebuah ujaran.
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 70000000);
+
 
         find(R.id.btn_speak).setOnClickListener(v -> {
             setTimerGif();
@@ -861,15 +871,28 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     @Override
     public void onError(int error) {
-//        showInfo(getErrorText(error));
+        String errorMessage = getErrorText(error);
+        Log.d("LOG_onError" , errorMessage);
+        if(errorMessage.contains("RecognitionService busy")){
+            mSpeechRecognizer.stopListening();
+            showInfo("Server Sedang Sibuk");
+        }else if(errorMessage.contains("No speech input")){
+            mSpeechRecognizer.stopListening();
+            showInfo("Coba Lagi");
+        }else if(errorMessage.contains("No match")){
+            mSpeechRecognizer.stopListening();
+            showInfo("Coba Lagi");
+        }
     }
 
     @Override
     public void onResults(Bundle results) {
+
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
         find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0));//just dummy
+
     }
 
     @Override
