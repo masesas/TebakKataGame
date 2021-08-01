@@ -33,6 +33,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.tebakkatagame.Activity.GamePlay.WinDialogFragment;
 import com.example.tebakkatagame.R;
 
+import java.lang.ref.WeakReference;
+
 import static com.example.tebakkatagame.Utils.Constanst.ONESEC;
 
 
@@ -44,6 +46,7 @@ public class BaseApp extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
     }
+
 
     public <T extends View> T to(View v, Class<? super T> s) {
         return (T) (v);
@@ -181,5 +184,6 @@ public class BaseApp extends AppCompatActivity {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(runnable, 1000);
     }
+
 }
 

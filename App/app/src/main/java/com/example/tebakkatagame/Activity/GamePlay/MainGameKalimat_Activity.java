@@ -136,7 +136,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
         }.start();
     }
 
-    private void burstEffect(){
+    private void burstEffect() {
         konfettiView.post(() -> konfettiView.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(0.0, 359.0)
@@ -145,7 +145,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                 .setTimeToLive(2000L)
                 .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
                 .addSizes(new Size(12, 5))
-                .setPosition(konfettiView.getX() + konfettiView.getWidth() / 2, konfettiView.getY()  + konfettiView.getHeight() / 3)
+                .setPosition(konfettiView.getX() + konfettiView.getWidth() / 2, konfettiView.getY() + konfettiView.getHeight() / 3)
                 .burst(100));
     }
 
@@ -618,351 +618,95 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
         speech = speech.replaceAll("-", "");
         switch (level) {
             case 0: ////ibu cuci ubi
-                if (speech.charAt(0) == 'i') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'b') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'u') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'c') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'u') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'c') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'i') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(7) == 'u') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(8) == 'b') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(9) == 'i') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                return speech.toLowerCase().contains("ibucuciubi");
-            case 1: //dadu dodi satu
-                if (speech.charAt(0) == 'd') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'u') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'd') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'o') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'd') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 'i') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(8) == '1') {
-                    setCorectMode(find(R.id.img_word_11));
-                    setCorectMode(find(R.id.img_word_12));
-                    setCorectMode(find(R.id.img_word_13));
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    if (speech.charAt(8) == 's') {
-                        setCorectMode(find(R.id.img_word_11));
+                try {
+                    if (speech.charAt(0) == 'i') {
+                        setCorectMode(find(R.id.img_word_1));
                     } else {
-                        setWrongMode(find(R.id.img_word_11));
+                        setWrongMode(find(R.id.img_word_1));
                     }
-                    if (speech.length() > 9 && speech.charAt(9) == 'a') {
-                        setCorectMode(find(R.id.img_word_12));
+                    if (speech.charAt(1) == 'b') {
+                        setCorectMode(find(R.id.img_word_2));
                     } else {
-                        setWrongMode(find(R.id.img_word_12));
+                        setWrongMode(find(R.id.img_word_2));
                     }
-                    if (speech.length() > 10 && speech.charAt(10) == 't') {
-                        setCorectMode(find(R.id.img_word_13));
+                    if (speech.charAt(2) == 'u') {
+                        setCorectMode(find(R.id.img_word_3));
                     } else {
-                        setWrongMode(find(R.id.img_word_13));
+                        setWrongMode(find(R.id.img_word_3));
                     }
-                    if (speech.length() > 11 && speech.charAt(11) == 'u') {
-                        setCorectMode(find(R.id.img_word_14));
-                    } else {
-                        setWrongMode(find(R.id.img_word_14));
-                    }
-                }
-
-                return speech.toLowerCase().contains("dadudodisatu") || speech.toLowerCase().contains("dadudodi1");
-            case 2: //baju jojo hijau
-                if (speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'j') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'u') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'j') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'o') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'j') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 'o') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(8) == 'h') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'i') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'j') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'a') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(12) == 'u') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
-                return speech.toLowerCase().contains("bajujojohijau");
-            case 3: ////bagai gigi hiu
-                if (speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'g') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'i') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'g') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'i') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'g') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'i') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(9) == 'h') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(10) == 'i') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(11) == 'u') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                return speech.toLowerCase().contains("bagaigigihiu");
-            case 4: //gado gado adi
-                if (speech.charAt(0) == 'g') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'o') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'g') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'g') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'o') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'a') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'd') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'i') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                return speech.toLowerCase().contains("gadogadoadi");
-            case 5://bola bili tiga
-                if (speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'o') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'l') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.contains("billy")) {
-                    setCorectMode(find(R.id.img_word_6));
-                    setCorectMode(find(R.id.img_word_7));
-                    setCorectMode(find(R.id.img_word_8));
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    if (speech.charAt(4) == 'b') {
+                    if (speech.charAt(3) == 'c') {
                         setCorectMode(find(R.id.img_word_6));
                     } else {
                         setWrongMode(find(R.id.img_word_6));
                     }
-                    if (speech.charAt(5) == 'i') {
+                    if (speech.charAt(4) == 'u') {
                         setCorectMode(find(R.id.img_word_7));
                     } else {
                         setWrongMode(find(R.id.img_word_7));
                     }
-                    if (speech.charAt(6) == 'l') {
+                    if (speech.charAt(5) == 'c') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'i') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(7) == 'u') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(8) == 'b') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(9) == 'i') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                } catch (Exception e) {
+                    return false;
+                }
+
+                return speech.toLowerCase().contains("ibucuciubi");
+            case 1: //dadu dodi satu
+                try {
+                    if (speech.charAt(0) == 'd') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'd') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'u') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'd') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'o') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'd') {
                         setCorectMode(find(R.id.img_word_8));
                     } else {
                         setWrongMode(find(R.id.img_word_8));
@@ -972,1013 +716,1362 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                     } else {
                         setWrongMode(find(R.id.img_word_9));
                     }
+                    if (speech.charAt(8) == '1') {
+                        setCorectMode(find(R.id.img_word_11));
+                        setCorectMode(find(R.id.img_word_12));
+                        setCorectMode(find(R.id.img_word_13));
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        if (speech.charAt(8) == 's') {
+                            setCorectMode(find(R.id.img_word_11));
+                        } else {
+                            setWrongMode(find(R.id.img_word_11));
+                        }
+                        if (speech.length() > 9 && speech.charAt(9) == 'a') {
+                            setCorectMode(find(R.id.img_word_12));
+                        } else {
+                            setWrongMode(find(R.id.img_word_12));
+                        }
+                        if (speech.length() > 10 && speech.charAt(10) == 't') {
+                            setCorectMode(find(R.id.img_word_13));
+                        } else {
+                            setWrongMode(find(R.id.img_word_13));
+                        }
+                        if (speech.length() > 11 && speech.charAt(11) == 'u') {
+                            setCorectMode(find(R.id.img_word_14));
+                        } else {
+                            setWrongMode(find(R.id.img_word_14));
+                        }
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
-
-                if (speech.contains("3")) {
-                    setCorectMode(find(R.id.img_word_11));
-                    setCorectMode(find(R.id.img_word_12));
-                    setCorectMode(find(R.id.img_word_13));
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    if (speech.length() > 8 && speech.charAt(8) == 't') {
+                return speech.toLowerCase().contains("dadudodisatu") || speech.toLowerCase().contains("dadudodi1");
+            case 2: //baju jojo hijau
+                try {
+                    if (speech.charAt(0) == 'b') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'j') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'u') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'j') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'o') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'j') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(7) == 'o') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(8) == 'h') {
                         setCorectMode(find(R.id.img_word_11));
                     } else {
                         setWrongMode(find(R.id.img_word_11));
                     }
-                    if (speech.length() > 9 && speech.charAt(9) == 'i') {
+                    if (speech.charAt(9) == 'i') {
                         setCorectMode(find(R.id.img_word_12));
                     } else {
                         setWrongMode(find(R.id.img_word_12));
                     }
-                    if (speech.length() > 10 && speech.charAt(10) == 'g') {
+                    if (speech.charAt(10) == 'j') {
                         setCorectMode(find(R.id.img_word_13));
                     } else {
                         setWrongMode(find(R.id.img_word_13));
                     }
-                    if (speech.length() > 11 && speech.charAt(11) == 'a') {
+                    if (speech.charAt(11) == 'a') {
                         setCorectMode(find(R.id.img_word_14));
                     } else {
                         setWrongMode(find(R.id.img_word_14));
                     }
+                    if (speech.charAt(12) == 'u') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
+
+                return speech.toLowerCase().contains("bajujojohijau");
+            case 3: ////bagai gigi hiu
+                try {
+                    if (speech.charAt(0) == 'b') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'g') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'i') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'g') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'i') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'g') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'i') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(9) == 'h') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(10) == 'i') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(11) == 'u') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                } catch (Exception e) {
+                    return false;
+                }
+
+                return speech.toLowerCase().contains("bagaigigihiu");
+            case 4: //gado gado adi
+                try {
+                    if (speech.charAt(0) == 'g') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'd') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'o') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'g') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'a') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'g') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'o') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'a') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'd') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'i') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                } catch (Exception e) {
+                    return false;
+                }
+
+                return speech.toLowerCase().contains("gadogadoadi");
+            case 5://bola bili tiga
+                try {
+                    if (speech.charAt(0) == 'b') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'o') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'l') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.contains("billy")) {
+                        setCorectMode(find(R.id.img_word_6));
+                        setCorectMode(find(R.id.img_word_7));
+                        setCorectMode(find(R.id.img_word_8));
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        if (speech.charAt(4) == 'b') {
+                            setCorectMode(find(R.id.img_word_6));
+                        } else {
+                            setWrongMode(find(R.id.img_word_6));
+                        }
+                        if (speech.charAt(5) == 'i') {
+                            setCorectMode(find(R.id.img_word_7));
+                        } else {
+                            setWrongMode(find(R.id.img_word_7));
+                        }
+                        if (speech.charAt(6) == 'l') {
+                            setCorectMode(find(R.id.img_word_8));
+                        } else {
+                            setWrongMode(find(R.id.img_word_8));
+                        }
+                        if (speech.charAt(7) == 'i') {
+                            setCorectMode(find(R.id.img_word_9));
+                        } else {
+                            setWrongMode(find(R.id.img_word_9));
+                        }
+                    }
+
+                    if (speech.contains("3")) {
+                        setCorectMode(find(R.id.img_word_11));
+                        setCorectMode(find(R.id.img_word_12));
+                        setCorectMode(find(R.id.img_word_13));
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        if (speech.length() > 8 && speech.charAt(8) == 't') {
+                            setCorectMode(find(R.id.img_word_11));
+                        } else {
+                            setWrongMode(find(R.id.img_word_11));
+                        }
+                        if (speech.length() > 9 && speech.charAt(9) == 'i') {
+                            setCorectMode(find(R.id.img_word_12));
+                        } else {
+                            setWrongMode(find(R.id.img_word_12));
+                        }
+                        if (speech.length() > 10 && speech.charAt(10) == 'g') {
+                            setCorectMode(find(R.id.img_word_13));
+                        } else {
+                            setWrongMode(find(R.id.img_word_13));
+                        }
+                        if (speech.length() > 11 && speech.charAt(11) == 'a') {
+                            setCorectMode(find(R.id.img_word_14));
+                        } else {
+                            setWrongMode(find(R.id.img_word_14));
+                        }
+                    }
+                } catch (Exception e) {
+                    return false;
+                }
+
 
                 return speech.toLowerCase().contains("bolabilitiga") || speech.toLowerCase().contains("bolabili3") || speech.toLowerCase().contains("bolabilly3");
             case 6: //kuku kaki kuda
-                if (speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try {
+                    if (speech.charAt(0) == 'k') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'u') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'k') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'u') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'k') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'k') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(7) == 'i') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(8) == 'k') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'u') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'd') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(10) == 'a') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
-                if (speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'k') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'u') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'k') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'k') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 'i') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(8) == 'k') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'u') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'd') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(10) == 'a') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
+
                 return speech.toLowerCase().contains("kukukakikuda");
             case 7: //// kado ema lucu
-                if (speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try {
+                    if (speech.charAt(0) == 'k') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'd') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'o') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'e') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'm') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(7) == 'l') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(8) == 'u') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(9) == 'c') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(10) == 'u') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'o') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'e') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'm') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 'l') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(8) == 'u') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(9) == 'c') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(10) == 'u') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
+
                 return speech.toLowerCase().contains("kadoemalucu");
             case 8: ////ada dua keledai
-                if (speech.charAt(0) == 'a') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try {
+                    if (speech.charAt(0) == 'a') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'd') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'a') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'd') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(4) == 'u') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(5) == 'a') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'k') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(7) == 'e') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(9) == 'l') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(10) == 'e') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(11) == 'd') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                    if (speech.charAt(12) == 'a') {
+                        setCorectMode(find(R.id.img_word_16));
+                    } else {
+                        setWrongMode(find(R.id.img_word_16));
+                    }
+                    if (speech.charAt(12) == 'i') {
+                        setCorectMode(find(R.id.img_word_17));
+                    } else {
+                        setWrongMode(find(R.id.img_word_17));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
-                if (speech.charAt(1) == 'd') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'd') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'u') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'k') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(7) == 'e') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(9) == 'l') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(10) == 'e') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(11) == 'd') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
-                if (speech.charAt(12) == 'a') {
-                    setCorectMode(find(R.id.img_word_16));
-                } else {
-                    setWrongMode(find(R.id.img_word_16));
-                }
-                if (speech.charAt(12) == 'i') {
-                    setCorectMode(find(R.id.img_word_17));
-                } else {
-                    setWrongMode(find(R.id.img_word_17));
-                }
+
                 return speech.toLowerCase().contains("adaduakeledai");
             case 9: ////pada suatu sore
-                if (speech.charAt(0) == 'p') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 's') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'u') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 't') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(8) == 'u') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(9) == 's') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(10) == 'o') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(11) == 'r') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(12) == 'e') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
+                try {
+                    if (speech.charAt(0) == 'p') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'd') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 's') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'u') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(7) == 't') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(8) == 'u') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(9) == 's') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(10) == 'o') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(11) == 'r') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(12) == 'e') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
 
                 return speech.toLowerCase().contains("padasuatusore");
             case 10: ////ula pakai kebaya
-                if (speech.charAt(0) == 'u') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try {
+                    if (speech.charAt(0) == 'u') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'l') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'a') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'p') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(4) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(5) == 'k') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(7) == 'i') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(8) == 'k') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'e') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'b') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(11) == 'a') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(12) == 'y') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                    if (speech.charAt(13) == 'a') {
+                        setCorectMode(find(R.id.img_word_16));
+                    } else {
+                        setWrongMode(find(R.id.img_word_16));
+                    }
+                } catch (Exception e) {
+                    return false;
                 }
-                if (speech.charAt(1) == 'l') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'p') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'k') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(7) == 'i') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(8) == 'k') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'e') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'b') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'a') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(12) == 'y') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
-                if (speech.charAt(13) == 'a') {
-                    setCorectMode(find(R.id.img_word_16));
-                } else {
-                    setWrongMode(find(R.id.img_word_16));
-                }
+
                 return speech.toLowerCase().contains("ulapakaikebaya");
             case 11: //tanam padi di sawah
-                if (speech.charAt(0) == 't') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try {
+                    if (speech.charAt(0) == 't') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'n') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'm') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'p') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'd') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'i') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.contains("di")) {
+                        setCorectMode(find(R.id.img_word_tambahan1));
+                        setCorectMode(find(R.id.img_word_tambahan2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_tambahan1));
+                        setWrongMode(find(R.id.img_word_tambahan2));
+                    }
+                    if (speech.charAt(11) == 's') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(12) == 'a') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(13) == 'w') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(14) == 'a') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(15) == 'h') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+
+                } catch (Exception e) {
+                    return false;
                 }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'n') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'm') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'p') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'd') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'i') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.contains("di")) {
-                    setCorectMode(find(R.id.img_word_tambahan1));
-                    setCorectMode(find(R.id.img_word_tambahan2));
-                } else {
-                    setWrongMode(find(R.id.img_word_tambahan1));
-                    setWrongMode(find(R.id.img_word_tambahan2));
-                }
-                if (speech.charAt(11) == 's') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(12) == 'a') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(13) == 'w') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(14) == 'a') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(15) == 'h') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
+
                 return speech.toLowerCase().contains("tanampadidisawah");
             case 12: ////awan seputih kapas
-                if (speech.charAt(0) == 'a') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try{
+                    if (speech.charAt(0) == 'a') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'w') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'a') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'n') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 's') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(5) == 'e') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(6) == 'p') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(7) == 'u') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(8) == 't') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(9) == 'i') {
+                        setCorectMode(find(R.id.img_word_10_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10_1));
+                    }
+                    if (speech.charAt(10) == 'h') {
+                        setCorectMode(find(R.id.img_word_10_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10_2));
+                    }
+                    if (speech.charAt(11) == 'k') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(12) == 'a') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(13) == 'p') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(14) == 's') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(15) == 'd') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
-                if (speech.charAt(1) == 'w') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'n') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 's') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(5) == 'e') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(6) == 'p') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(7) == 'u') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(8) == 't') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(9) == 'i') {
-                    setCorectMode(find(R.id.img_word_10_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_10_1));
-                }
-                if (speech.charAt(10) == 'h') {
-                    setCorectMode(find(R.id.img_word_10_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_10_2));
-                }
-                if (speech.charAt(11) == 'k') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(12) == 'a') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(13) == 'p') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(14) == 's') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(15) == 'd') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
+
 
                 return speech.toLowerCase().contains("awanseputihkapas");
             case 13: //panda makan bambu
-                if (speech.charAt(0) == 'p') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'n') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'd') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'a') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'm') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'k') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'a') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(9) == 'n') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(10) == 'b') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(11) == 'a') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(12) == 'm') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'b') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(12) == 'u') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
+                try{
+                    if (speech.charAt(0) == 'p') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'a') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'n') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'd') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'a') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'm') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'k') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'a') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(9) == 'n') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(10) == 'b') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(11) == 'a') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(12) == 'm') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(11) == 'b') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(12) == 'u') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
 
                 return speech.toLowerCase().contains("pandamakanbambu");
             case 14: ////abi minum kopi
-                if (speech.charAt(0) == 'a') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'b') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'i') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'm') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'i') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'n') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'u') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(7) == 'm') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(8) == 'k') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'o') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'p') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'i') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
+                try{
+                    if (speech.charAt(0) == 'a') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'b') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'i') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'm') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(4) == 'i') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(5) == 'n') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'u') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(7) == 'm') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(8) == 'k') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'o') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'p') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(11) == 'i') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
 
                 return speech.toLowerCase().contains("abiminumkopi");
             case 15: //ada balon udara
-                if (speech.charAt(0) == 'a') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'd') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'b') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'l') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'o') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(7) == 'n') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(8) == 'u') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'd') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'a') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'r') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(12) == 'a') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
+                try{
+                    if (speech.charAt(0) == 'a') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'd') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'a') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'b') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(4) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(5) == 'l') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'o') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(7) == 'n') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(8) == 'u') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'd') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'a') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(11) == 'r') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(12) == 'a') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
 
                 return speech.toLowerCase().contains("adabalonudara");
             case 16: ////gitar itu bagus
-                if (speech.charAt(0) == 'g') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try{
+                    if (speech.charAt(0) == 'g') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'i') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 't') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'r') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'i') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 't') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'u') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'b') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'a') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'g') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(10) == 'u') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(10) == 's') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
-                if (speech.charAt(1) == 'i') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 't') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'r') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'i') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 't') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'u') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'b') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'a') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'g') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(10) == 'u') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(10) == 's') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
+
                 return speech.toLowerCase().contains("gitaritubagus");
             case 17: ////ada pohon apel
-                if (speech.charAt(0) == 'a') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'd') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'p') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(4) == 'o') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(5) == 'h') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(6) == 'o') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(7) == 'n') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(8) == 'a') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(9) == 'p') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(10) == 'e') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(11) == 'l') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
+                try{
+                    if (speech.charAt(0) == 'a') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'd') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'a') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'p') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(4) == 'o') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(5) == 'h') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(6) == 'o') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(7) == 'n') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(8) == 'a') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(9) == 'p') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(10) == 'e') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(11) == 'l') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
 
                 return speech.toLowerCase().contains("adapohonapel");
             case 18: ////lebah ada di pohon
-                if (speech.charAt(0) == 'l') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
+                try{
+                    if (speech.charAt(0) == 'l') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'e') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'b') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'a') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'h') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'a') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'd') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'a') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.contains("di")) {
+                        setCorectMode(find(R.id.img_word_tambahan1));
+                        setCorectMode(find(R.id.img_word_tambahan2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_tambahan1));
+                        setWrongMode(find(R.id.img_word_tambahan2));
+                    }
+                    if (speech.charAt(10) == 'p') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(11) == 'o') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(12) == 'h') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(13) == 'o') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(14) == 'n') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
-                if (speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'b') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'h') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'd') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'a') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.contains("di")) {
-                    setCorectMode(find(R.id.img_word_tambahan1));
-                    setCorectMode(find(R.id.img_word_tambahan2));
-                } else {
-                    setWrongMode(find(R.id.img_word_tambahan1));
-                    setWrongMode(find(R.id.img_word_tambahan2));
-                }
-                if (speech.charAt(10) == 'p') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(11) == 'o') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(12) == 'h') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(13) == 'o') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(14) == 'n') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
-                }
+
                 return speech.toLowerCase().contains("lebahadadipohon");
             case 19: //bunga mawar merah
-                if (speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.charAt(2) == 'n') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.charAt(3) == 'g') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.charAt(4) == 'a') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.charAt(5) == 'm') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                if (speech.charAt(6) == 'a') {
-                    setCorectMode(find(R.id.img_word_7));
-                } else {
-                    setWrongMode(find(R.id.img_word_7));
-                }
-                if (speech.charAt(7) == 'w') {
-                    setCorectMode(find(R.id.img_word_8));
-                } else {
-                    setWrongMode(find(R.id.img_word_8));
-                }
-                if (speech.charAt(8) == 'a') {
-                    setCorectMode(find(R.id.img_word_9));
-                } else {
-                    setWrongMode(find(R.id.img_word_9));
-                }
-                if (speech.charAt(9) == 'r') {
-                    setCorectMode(find(R.id.img_word_10));
-                } else {
-                    setWrongMode(find(R.id.img_word_10));
-                }
-                if (speech.charAt(10) == 'm') {
-                    setCorectMode(find(R.id.img_word_11));
-                } else {
-                    setWrongMode(find(R.id.img_word_11));
-                }
-                if (speech.charAt(11) == 'e') {
-                    setCorectMode(find(R.id.img_word_12));
-                } else {
-                    setWrongMode(find(R.id.img_word_12));
-                }
-                if (speech.charAt(12) == 'r') {
-                    setCorectMode(find(R.id.img_word_13));
-                } else {
-                    setWrongMode(find(R.id.img_word_13));
-                }
-                if (speech.charAt(13) == 'a') {
-                    setCorectMode(find(R.id.img_word_14));
-                } else {
-                    setWrongMode(find(R.id.img_word_14));
-                }
-                if (speech.charAt(14) == 'h') {
-                    setCorectMode(find(R.id.img_word_15));
-                } else {
-                    setWrongMode(find(R.id.img_word_15));
+                try{
+                    if (speech.charAt(0) == 'b') {
+                        setCorectMode(find(R.id.img_word_1));
+                    } else {
+                        setWrongMode(find(R.id.img_word_1));
+                    }
+                    if (speech.charAt(1) == 'u') {
+                        setCorectMode(find(R.id.img_word_2));
+                    } else {
+                        setWrongMode(find(R.id.img_word_2));
+                    }
+                    if (speech.charAt(2) == 'n') {
+                        setCorectMode(find(R.id.img_word_3));
+                    } else {
+                        setWrongMode(find(R.id.img_word_3));
+                    }
+                    if (speech.charAt(3) == 'g') {
+                        setCorectMode(find(R.id.img_word_4));
+                    } else {
+                        setWrongMode(find(R.id.img_word_4));
+                    }
+                    if (speech.charAt(4) == 'a') {
+                        setCorectMode(find(R.id.img_word_5));
+                    } else {
+                        setWrongMode(find(R.id.img_word_5));
+                    }
+                    if (speech.charAt(5) == 'm') {
+                        setCorectMode(find(R.id.img_word_6));
+                    } else {
+                        setWrongMode(find(R.id.img_word_6));
+                    }
+                    if (speech.charAt(6) == 'a') {
+                        setCorectMode(find(R.id.img_word_7));
+                    } else {
+                        setWrongMode(find(R.id.img_word_7));
+                    }
+                    if (speech.charAt(7) == 'w') {
+                        setCorectMode(find(R.id.img_word_8));
+                    } else {
+                        setWrongMode(find(R.id.img_word_8));
+                    }
+                    if (speech.charAt(8) == 'a') {
+                        setCorectMode(find(R.id.img_word_9));
+                    } else {
+                        setWrongMode(find(R.id.img_word_9));
+                    }
+                    if (speech.charAt(9) == 'r') {
+                        setCorectMode(find(R.id.img_word_10));
+                    } else {
+                        setWrongMode(find(R.id.img_word_10));
+                    }
+                    if (speech.charAt(10) == 'm') {
+                        setCorectMode(find(R.id.img_word_11));
+                    } else {
+                        setWrongMode(find(R.id.img_word_11));
+                    }
+                    if (speech.charAt(11) == 'e') {
+                        setCorectMode(find(R.id.img_word_12));
+                    } else {
+                        setWrongMode(find(R.id.img_word_12));
+                    }
+                    if (speech.charAt(12) == 'r') {
+                        setCorectMode(find(R.id.img_word_13));
+                    } else {
+                        setWrongMode(find(R.id.img_word_13));
+                    }
+                    if (speech.charAt(13) == 'a') {
+                        setCorectMode(find(R.id.img_word_14));
+                    } else {
+                        setWrongMode(find(R.id.img_word_14));
+                    }
+                    if (speech.charAt(14) == 'h') {
+                        setCorectMode(find(R.id.img_word_15));
+                    } else {
+                        setWrongMode(find(R.id.img_word_15));
+                    }
+                }catch (Exception e){
+                    return false;
                 }
 
                 return speech.contains("bungamawarmerah");

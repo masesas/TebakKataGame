@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -29,10 +30,13 @@ import com.example.tebakkatagame.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import edu.cmu.pocketsphinx.Assets;
+import edu.cmu.pocketsphinx.SpeechRecognizerSetup;
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
@@ -120,7 +124,6 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             }
         }.start();
     }
-
 
     private void playWord(int sukuKata){
         MediaPlayer mediaPlayer = null;
@@ -295,7 +298,6 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         }
 
     }
-
     //by ejakata
     private void setResultSpech(String... eja) {
         countSpeak++;
@@ -1135,4 +1137,8 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             }
         });
     }
+
+
+
+
 }

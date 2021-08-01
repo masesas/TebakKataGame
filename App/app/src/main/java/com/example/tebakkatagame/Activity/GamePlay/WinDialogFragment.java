@@ -217,6 +217,18 @@ public class WinDialogFragment extends DialogFragment {
         Intent intent;
         if (value == 20){
             intent = new Intent(getActivity(), Tahap_Activity.class);
+            //2nd value it's for the next tahap
+            switch (jenisTahap) {
+                case "TEBAK GAMBAR":
+                    SharePrefUtils.saveTahap(getContext(), "TEBAK GAMBAR", "SUKU_KATA");
+                    break;
+                case "SUKU KATA":
+                    SharePrefUtils.saveTahap(getContext(), "SUKU KATA", "TEBAK_HURUF");
+                    break;
+                case "TEBAK HURUF":
+                    SharePrefUtils.saveTahap(getContext(), "TEBAK HURUF", "MEMBACA");
+                    break;
+            }
         }else {
             intent = new Intent(getActivity(), to);
             intent.putExtra(key, value);
