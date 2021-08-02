@@ -101,6 +101,13 @@ public class LevelTahap_Activity extends BaseApp {
                 setIntent(MainGameKalimat_Activity.class, "LEVEL", position);
             }
         });
+
+        find(R.id.img_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Back();
+            }
+        });
     }
 
     @Override
@@ -119,5 +126,9 @@ public class LevelTahap_Activity extends BaseApp {
         } else if (getIntent().hasExtra("MEMBACA")){
             find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_ayo_membaca);
         }
+    }
+
+    public void Back(){
+        super.onBackPressed();
     }
 }

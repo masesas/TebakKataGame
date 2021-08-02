@@ -62,6 +62,13 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         imgIcon = (ImageView) findViewById(R.id.img_icon_tebak);
         konfettiView = findViewById(R.id.viewKonfetti);
 
+        find(R.id.img_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Back();
+            }
+        });
+
     }
 
     private void loadData(){
@@ -426,5 +433,9 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         } else {
             showWinDialog(level + 1, "TEBAK HURUF", false);
         }
+    }
+
+    public void Back(){
+        super.onBackPressed();
     }
 }

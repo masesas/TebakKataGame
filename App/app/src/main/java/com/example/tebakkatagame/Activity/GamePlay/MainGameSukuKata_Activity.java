@@ -82,6 +82,13 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         });
 
+        find(R.id.img_btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Back();
+            }
+        });
+
         setOpeningStart();
     }
 
@@ -891,7 +898,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
-        find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0));//just dummy
+        find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0).toUpperCase());//just dummy
 
     }
 
@@ -903,5 +910,9 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     @Override
     public void onEvent(int eventType, Bundle params) {
 
+    }
+
+    public void Back(){
+        super.onBackPressed();
     }
 }

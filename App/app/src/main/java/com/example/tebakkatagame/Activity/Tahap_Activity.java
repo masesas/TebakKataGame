@@ -26,6 +26,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         find(R.id.img_suku_kata).setOnClickListener(this);
         find(R.id.img_tebak_huruf).setOnClickListener(this);
         find(R.id.img_ayo_membaca).setOnClickListener(this);
+        find(R.id.img_btn_back).setOnClickListener(this);
     }
 
     private void getTahapComplete(){
@@ -73,6 +74,10 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
                     setIntent(LevelTahap_Activity.class, "MEMBACA", "");
                 }
                 break;
+            case R.id.img_btn_back:
+                super.onBackPressed();
+                break;
+
         }
     }
 }
