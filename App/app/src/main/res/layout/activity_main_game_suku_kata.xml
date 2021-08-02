@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_main"
     tools:context=".Activity.MainActivity">
 
@@ -19,20 +20,6 @@
         android:layout_height="match_parent" />
 
     <include layout="@layout/toolbar" />
-
-    <TextView
-        android:id="@+id/tv_result_sukukata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ly_container_tittle"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="150dp"
-        android:background="@android:color/white"
-        android:padding="10dp"
-        android:text="Results"
-        android:gravity="center"
-        android:textSize="16sp" />
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti_sukukata"
@@ -74,55 +61,55 @@
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
         android:gravity="center">
+<!--       -->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ly_True"-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginEnd="30dp">-->
 
-        <LinearLayout
-            android:id="@+id/ly_True"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end"
-            android:gravity="center"
-            android:layout_marginEnd="30dp">
+<!--            <ImageView-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:background="@color/green_500" />-->
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/green_500" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Benar"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/grey_800" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Benar"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/grey_800" />
+<!--        </LinearLayout>-->
 
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="30dp"-->
+<!--            android:layout_marginBottom="80dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:gravity="center">-->
 
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="80dp"
-            android:layout_gravity="end"
-            android:gravity="center">
+<!--            <ImageView-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:background="@color/red_500" />-->
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@color/red_500" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Salah"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/grey_800" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salah"
-                android:layout_marginStart="10dp"
-                android:textStyle="bold"
-                android:textColor="@color/grey_800" />
-
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <net.gotev.speech.ui.SpeechProgressView
             android:id="@+id/speak_progress_view"
@@ -132,6 +119,25 @@
             android:visibility="gone" />
 
         <include layout="@layout/item_word_box" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:id="@+id/tv_result_sukukata"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ly_container_tittle"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:text="HASIL"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
 
         <include layout="@layout/layout_speak"/>
     </LinearLayout>

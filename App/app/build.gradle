@@ -51,7 +51,7 @@ dependencies {
     //glitch animation
     implementation "com.github.skydoves:androidribbon:1.0.0"
     //pocketspinkx
-    implementation project(':pocketsphinx-android-5prealpha-release')
+    //implementation project(':pocketsphinx-android-5prealpha-release')
 
 
 }

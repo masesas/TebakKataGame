@@ -35,8 +35,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import edu.cmu.pocketsphinx.Assets;
-import edu.cmu.pocketsphinx.SpeechRecognizerSetup;
+
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;

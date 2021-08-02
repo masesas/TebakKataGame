@@ -6,7 +6,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.tebakkatagame.Activity.GamePlay.TestingActivity;
+
+import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
 
@@ -48,7 +49,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         clickSound();
         switch (v.getId()) {
             case R.id.img_kata_bergambar:
-                setIntent(TestingActivity.class, "TEBAK GAMBAR", "");
+                setIntent(LevelTahap_Activity.class, "TEBAK GAMBAR", "");
                 break;
             case R.id.img_suku_kata:
                 if (find(R.id.img_lock_suku_kata).getVisibility() == View.VISIBLE) {
