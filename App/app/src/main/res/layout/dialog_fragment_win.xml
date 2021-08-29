@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="400dp"
-    android:layout_gravity="center"
     android:background="@drawable/rounded"
     android:padding="1dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -23,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/img_stiker"
-                android:layout_width="150dp"
-                android:layout_height="170dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
                 android:src="@drawable/ic_stiker_benar"
                 tools:ignore="ContentDescription, UseAppTint" />
 
@@ -34,7 +33,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/container_card_view"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             app:cardCornerRadius="20dp"
@@ -49,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:padding="5dp"
                 android:orientation="vertical"
                 >
 
@@ -61,7 +61,7 @@
                     android:gravity="center"
                     android:text="@string/three_star_description"
                     android:textColor="@color/grey_800"
-                    android:textSize="16sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -75,16 +75,16 @@
 
                     <ImageButton
                         android:id="@+id/img_btn_close"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_marginEnd="30dp"
                         android:background="@android:color/white"
                         android:src="@drawable/ic_x_resize" />
 
                     <ImageButton
                         android:id="@+id/img_btn_next"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@android:color/white"
                         android:src="@drawable/ic_next_resize" />
 

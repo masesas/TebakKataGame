@@ -34,10 +34,10 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         if(!tebakGambar.isEmpty() && tebakGambar.equals("SUKU_KATA")){
             find(R.id.img_lock_suku_kata).setVisibility(View.GONE);
             String sukuKata =  SharePrefUtils.getTahap(getActivity(), "SUKU KATA", "TEBAK_HURUF");
-            if((sukuKata != null || !sukuKata.isEmpty()) && sukuKata.equals("TEBAK_HURUF")){
+            if(sukuKata.equals("TEBAK_HURUF")){
                 find(R.id.img_lock_tebak_kata).setVisibility(View.GONE);
                 String tebakHuruf =  SharePrefUtils.getTahap(getActivity(), "TEBAK HURUF", "MEMBACA");
-                if((tebakHuruf != null || !tebakHuruf.isEmpty()) && tebakHuruf.equals("MEMBACA")){
+                if(tebakHuruf.equals("MEMBACA")){
                     find(R.id.img_lock_membaca).setVisibility(View.GONE);
                 }
             }

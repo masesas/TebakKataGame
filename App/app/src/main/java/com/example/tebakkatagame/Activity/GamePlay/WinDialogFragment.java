@@ -96,8 +96,9 @@ public class WinDialogFragment extends DialogFragment {
         Window window = Objects.requireNonNull(getDialog()).getWindow();
         if (window == null) return;
         WindowManager.LayoutParams params = window.getAttributes();
+        params.y = -100;
         params.width = 1000;
-        params.height = 1000;
+        params.height = 1200;
         window.setAttributes(params);
     }
 
@@ -111,7 +112,7 @@ public class WinDialogFragment extends DialogFragment {
         ObjectAnimator fadeIn = ObjectAnimator.ofFloat(dialog, "alpha", .6f, 4f);
         fadeIn.setDuration(2000);
 
-        final AnimatorSet mAnimationSet = new AnimatorSet();
+        @SuppressLint("Recycle") final AnimatorSet mAnimationSet = new AnimatorSet();
         mAnimationSet.play(fadeIn).after(fadeOut);
 
         return dialog;

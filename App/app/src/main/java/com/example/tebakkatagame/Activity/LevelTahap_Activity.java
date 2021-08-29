@@ -98,7 +98,7 @@ public class LevelTahap_Activity extends BaseApp {
             } else if (getIntent().hasExtra("SUKU KATA")) {
                 setIntent(MainGameSukuKata_Activity.class, "LEVEL", position);
             } else  if (getIntent().hasExtra("MEMBACA")){
-                setIntent(MainGameKalimat_Activity.class, "LEVEL", position);
+                setIntent(MainGameKalimat_Activity.class, "LEVEL", 18);
             }
         });
 

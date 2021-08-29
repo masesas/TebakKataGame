@@ -24,8 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TebakKataGame"
         tools:ignore="AllowBackup">
-        <activity android:name=".Activity.GamePlay.TestingActivity"></activity>
-        <activity android:name=".Activity.GamePlay.MainGameKalimat_Activity" />
+        <activity android:name=".Activity.GamePlay.MainGameKalimat_Activity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Activity.GamePlay.Evaluasi_Activity"
             android:screenOrientation="portrait" />

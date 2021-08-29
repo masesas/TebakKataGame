@@ -63,6 +63,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
 
+
         find(R.id.btn_speak).setOnClickListener(v -> {
             setTimerGif();
             mSpeechRecognizer.stopListening();
@@ -186,6 +187,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
         find(R.id.img_word_10_1, ImageView.class).setVisibility(View.GONE);
         find(R.id.img_word_10_2, ImageView.class).setVisibility(View.GONE);
         find(R.id.ly_kalimat_tambahan).setVisibility(View.GONE);
+        find(R.id.img_strip_di).setVisibility(View.GONE);
 
         switch (level) {
             case 0: //ibu cuci ubi
@@ -572,6 +574,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                 find(R.id.img_word_9, ImageView.class).setVisibility(View.GONE);
                 find(R.id.img_word_10, ImageView.class).setVisibility(View.GONE);
                 find(R.id.ly_kalimat_tambahan).setVisibility(View.VISIBLE);
+                find(R.id.img_strip_di).setVisibility(View.VISIBLE);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_l);
                 find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);

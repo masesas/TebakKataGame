@@ -84,15 +84,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
 
-        find(R.id.ly_eja_1).setOnClickListener(v -> {
-            playWord(1);
-        });
+        find(R.id.ly_eja_1).setOnClickListener(v -> playWord(1));
 
-        find(R.id.ly_eja_2).setOnClickListener(v -> {
-            playWord(2);
-        });
+        find(R.id.ly_eja_2).setOnClickListener(v -> playWord(2));
 
         find(R.id.btn_speak).setOnClickListener(v -> {
             setTimerGif();
@@ -342,485 +338,485 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         speech = speech.toLowerCase();
         switch (level) {
             case 0: //bumi
-                if (speech.charAt(0) == 'b') {
+                if ( speech.length() > 0 && speech.charAt(0) == 'b') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'm') {
+                if (speech.length() > 2 && speech.charAt(2) == 'm') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("bumi");
             case 1: //padi
-                if (speech.charAt(0) == 'p') {
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'a') {
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'd') {
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("padi");
             case 2: //gigi
-                if (speech.charAt(0) == 'g') {
+                if (speech.length() > 0 && speech.charAt(0) == 'g') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'i') {
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'g') {
+                if (speech.length() > 2 && speech.charAt(2) == 'g') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("gigi");
             case 3: //dadu
-                if (speech.charAt(0) == 'd') {
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'a') {
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'd') {
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'u') {
+                if (speech.length() > 3 && speech.charAt(3) == 'u') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("dadu");
             case 4: //biji
-                if (speech.charAt(0) == 'b') {
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'i') {
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'j') {
+                if (speech.length() > 2 && speech.charAt(2) == 'j') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("biji");
             case 5: //gula
-                if (speech.charAt(0) == 'g') {
+                if (speech.length() > 0 && speech.charAt(0) == 'g') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'l') {
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("gula");
             case 6: //pipi
-                if (speech.charAt(0) == 'p') {
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'i') {
+                if (speech.length() > 1 &&speech.charAt(1) == 'i') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'p') {
+                if (speech.length() > 2 && speech.charAt(2) == 'p') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("pipi");
             case 7: //kopi
-                if (speech.charAt(0) == 'k') {
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'o') {
+                if (speech.length() > 1 && speech.charAt(1) == 'o') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'p') {
+                if (speech.length() > 2 && speech.charAt(2) == 'p') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("kopi");
             case 8: //duri
-                if (speech.charAt(0) == 'd') {
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'r') {
+                if (speech.length() > 2 && speech.charAt(2) == 'r') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("duri");
             case 9: //kayu
-                if (speech.charAt(0) == 'k') {
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'a') {
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'y') {
+                if (speech.length() > 2 && speech.charAt(2) == 'y') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'u') {
+                if (speech.length() > 3 && speech.charAt(3) == 'u') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("kayu");
             case 10: //rusa
-                if (speech.charAt(0) == 'r') {
+                if (speech.length() > 0 && speech.charAt(0) == 'r') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() >  1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 's') {
+                if (speech.length() > 2 && speech.charAt(2) == 's') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("rusa");
             case 11: //tali
-                if (speech.charAt(0) == 't') {
+                if (speech.length() > 0 && speech.charAt(0) == 't') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'a') {
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'l') {
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("tali");
             case 12: //peta
-                if (speech.charAt(0) == 'p') {
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'e') {
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 't') {
+                if (speech.length() > 2 && speech.charAt(2) == 't') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("peta");
             case 13: //desa
-                if (speech.charAt(0) == 'd') {
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'e') {
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 's') {
+                if (speech.length() > 2 && speech.charAt(2) == 's') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("desa");
             case 14: //roda
-                if (speech.charAt(0) == 'r') {
+                if (speech.length() > 0 && speech.charAt(0) == 'r') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'o') {
+                if (speech.length() > 1 && speech.charAt(1) == 'o') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'd') {
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
                 return speech.toLowerCase().contains("roda");
             case 15: //buaya
-                if (speech.charAt(0) == 'b') {
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'a') {
+                if (speech.length() > 2 && speech.charAt(2) == 'a') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'y') {
+                if (speech.length() > 3 && speech.charAt(3) == 'y') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
-                if (speech.charAt(4) == 'a') {
+                if (speech.length() > 4 && speech.charAt(4) == 'a') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
                 return speech.toLowerCase().contains("buaya");
             case 16: //rumah
-                if (speech.charAt(0) == 'r') {
+                if (speech.length() > 0 && speech.charAt(0) == 'r') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'm') {
+                if (speech.length() > 2 && speech.charAt(2) == 'm') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
-                if (speech.charAt(4) == 'h') {
+                if (speech.length() > 4 && speech.charAt(4) == 'h') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
                 return speech.toLowerCase().contains("rumah");
             case 17: //delima
-                if (speech.charAt(0) == 'd') {
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'e') {
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'l') {
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'i') {
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
-                if (speech.charAt(4) == 'm') {
+                if (speech.length() > 4 && speech.charAt(4) == 'm') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
-                if (speech.charAt(5) == 'a') {
+                if (speech.length() > 5 && speech.charAt(5) == 'a') {
                     setCorectMode(find(R.id.img_word_6));
                 } else {
                     setWrongMode(find(R.id.img_word_6));
                 }
                 return speech.toLowerCase().contains("delima");
             case 18: //keledai
-                if (speech.charAt(0) == 'k') {
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'e') {
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'l') {
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'e') {
+                if (speech.length() > 3 && speech.charAt(3) == 'e') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
-                if (speech.charAt(4) == 'd') {
+                if (speech.length() > 4 && speech.charAt(4) == 'd') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
-                if (speech.charAt(5) == 'a') {
+                if (speech.length() > 5 && speech.charAt(5) == 'a') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
-                if (speech.charAt(6) == 'i') {
+                if (speech.length() > 6 && speech.charAt(6) == 'i') {
                     setCorectMode(find(R.id.img_word_6));
                 } else {
                     setWrongMode(find(R.id.img_word_6));
                 }
                 return speech.toLowerCase().contains("keledai");
             case 19: //kebaya
-                if (speech.charAt(0) == 'k') {
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.charAt(1) == 'e') {
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
                 }
-                if (speech.charAt(2) == 'b') {
+                if (speech.length() > 2 && speech.charAt(2) == 'b') {
                     setCorectMode(find(R.id.img_word_3));
                 } else {
                     setWrongMode(find(R.id.img_word_3));
                 }
-                if (speech.charAt(3) == 'a') {
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
                     setCorectMode(find(R.id.img_word_4));
                 } else {
                     setWrongMode(find(R.id.img_word_4));
                 }
-                if (speech.charAt(4) == 'y') {
+                if (speech.length() > 4 && speech.charAt(4) == 'y') {
                     setCorectMode(find(R.id.img_word_5));
                 } else {
                     setWrongMode(find(R.id.img_word_5));
                 }
-                if (speech.charAt(5) == 'a') {
+                if (speech.length() > 5 && speech.charAt(5) == 'a') {
                     setCorectMode(find(R.id.img_word_6));
                 } else {
                     setWrongMode(find(R.id.img_word_6));
@@ -1067,7 +1063,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
-        find(R.id.tv_result, TextView.class).setText(matches.get(0));//just dummy
+        //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
     }
 
     @Override
