@@ -52,12 +52,7 @@ public class MainActivity extends BaseApp {
             }
         });
 
-        find(R.id.btn_tutor).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setIntent(TutorActivity.class, "", "");
-            }
-        });
+        find(R.id.btn_tutor).setOnClickListener(v -> setIntent(TutorActivity.class, "", ""));
     }
 
     private final Runnable mRunnable = new Runnable() {
