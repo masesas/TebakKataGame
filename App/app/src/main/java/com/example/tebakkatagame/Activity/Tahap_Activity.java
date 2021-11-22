@@ -1,22 +1,23 @@
 package com.example.tebakkatagame.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
 
-import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
+import com.example.tebakkatagame.Activity.Tutorial.Tutor_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
 
 public class Tahap_Activity extends BaseApp implements View.OnClickListener {
 
+    private static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tahap);
+        Tahap_Activity.context = getApplicationContext();
         getTahapComplete();
         setComponent();
     }
@@ -44,27 +45,40 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         }
     }
 
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         clickSound();
+
         switch (v.getId()) {
             case R.id.img_kata_bergambar:
                 setIntent(LevelTahap_Activity.class, "TEBAK GAMBAR", "");
                 break;
             case R.id.img_suku_kata:
+                String tutor =  SharePrefUtils.getTutorial(getActivity(), "TUTOR SUKU KATA", "TUTOR_SUKU_KATA");
                 if (find(R.id.img_lock_suku_kata).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Kata Bergambar!");
                 } else {
-                    setIntent(LevelTahap_Activity.class, "SUKU KATA", "");
+                    if(tutor.equals("TUTOR_SUKU_KATA")){
+                        setIntent(LevelTahap_Activity.class, "SUKU KATA", "");
+                    }else{
+                        SharePrefUtils.saveTutorial(getAppContext(), "TUTOR SUKU KATA", "TUTOR_SUKU_KATA");
+                        setIntent(Tutor_Activity.class, "SUKU KATA", "");
+                    }
                 }
                 break;
             case R.id.img_tebak_huruf:
+                String tutortebak =  SharePrefUtils.getTutorial(getActivity(), "TUTOR TEBAK HURUF", "TUTOR_TEBAK_HURUF");
                 if (find(R.id.img_lock_tebak_kata).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Suku Kata");
                 } else {
-                    setIntent(LevelTahap_Activity.class, "TEBAK HURUF", "");
-
+                    if(tutortebak.equals("TUTOR_TEBAK_HURUF")){
+                        setIntent(LevelTahap_Activity.class, "TEBAK HURUF", "");
+                    }else{
+                        SharePrefUtils.saveTutorial(getAppContext(), "TUTOR TEBAK HURUF", "TUTOR_TEBAK_HURUF");
+                        setIntent(Tutor_Activity.class, "TEBAK HURUF", "");
+                    }
                 }
                 break;
             case R.id.img_ayo_membaca:
@@ -79,5 +93,9 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    public static Context getAppContext() {
+        return Tahap_Activity.context;
     }
 }

@@ -51,20 +51,4 @@
             android:background="@drawable/ic_btn_mulai"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/ly_btn"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/btn_tutor"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:background="@drawable/ic_btn_mulai"/>
-    </LinearLayout>
-
-
 </RelativeLayout>

@@ -25,14 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Powerted by E&amp;K Solution"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/cardview_light_background"
-            android:layout_gravity="center|bottom"/>
-
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

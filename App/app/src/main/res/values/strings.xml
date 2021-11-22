@@ -4,6 +4,25 @@
     <string name="two_star_description">Tingkatkan di Levek Berikutnya ya!</string>
     <string name="one_star_description">Kamu Harus Terus Berlatih</string>
 
+    <string name="title_sukukata">Suku Kata</string>
+    <string name="pilih_level_1">Pilih level 1  untuk memulai permainan</string>
+    <string name="merekamsuara">Merekam Suara</string>
+    <string name="tombolsuara">Tekan tombol lalu berbicara untuk merekan suara</string>
+    <string name="hasilmemuaskan">Hasil Memuaskan ! </string>
+    <string name="lanjutmainlv2">Pilih level 2, lanjut bermain selamat bersenang-senang</string>
+    <string name="salah">Jawaban Salah</string>
+    <string name="benar">Jawaban Benar</string>
+    <string name="salahjawaban">Aplikasi akan mengecek dari hasil yang kamu bicara jika jawaban salah kamu bisa bermain kembali dengan menekan tombol ulang</string>
+    <string name="benarjawaban">Aplikasi akan mengecek dari hasil yang kamu bicara jika jawaban benar kamu bisa bermain ke level berikutnya dengan menekan tombol lanjut</string>
+    <string name="pilihhuruf">Pilih salah satu suku kata yang di sediakan lalu tekan </string>
+    <string name="memilihsukukata">Memilih Suku Kata</string>
+    <string name="salahjawabantebak">Aplikasi akan mengecek dari hasil yang pilih jika jawaban salah kamu bisa bermain kembali dengan menekan tombol ulang</string>
+    <string name="benarjawabantebak">Aplikasi akan mengecek dari hasil yang kamu pilih jika jawaban benar kamu bisa bermain ke level berikutnya dengan menekan tombol lanjut</string>
+
+    <string name="title_tebakhuruf">Tebak Suku Kata</string>
+
+
+    <string name="continue_and_learn">Lanjutkan dan pelajari caranya</string>
 
     <string name="automatic_data">Automatic Data</string>
     <string name="permission_title">Grant Access</string>
@@ -11,12 +30,12 @@
     <string name="choose_the_song">Choose the song</string>
     <string name="edit_data">Edit Data</string>
     <string name="result_awesome">Result is awesome!</string>
-    <string name="continue_and_learn">Continue and learn how to do</string>
     <string name="continue_and_update">Continue and learn how to update</string>
     <string name="continue_and_result">Continue and see the result</string>
     <string name="thank_you">Thank you, have fun</string>
     <string name="gm_finds_photos">GM Music Playlist automatically finds photos and genres of singers and albums and displays it.*   (*) Music information data should be in a proper format for this feature to work.</string>
-    <string name="swap_to_the_tab">Swap to the songs tab and touch the (⋮) sign which located at every songs right side , and choose Update Data</string>   <string name="update_easily">You can update Song/Singer Name, Album and Genre data easily</string>
+    <string name="swap_to_the_tab">Swap to the songs tab and touch the (⋮) sign which located at every songs right side , and choose Update Data</string>
+    <string name="update_easily">You can update Song/Singer Name, Album and Genre data easily</string>
     <string name="after_updating">After updating data album cover, wiki information of artist and genre screens looks brilliant, don\'t forget to do this process for the other songs of you</string>
 
 </resources>

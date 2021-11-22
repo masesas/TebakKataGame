@@ -18,6 +18,7 @@ import com.example.tebakkatagame.Activity.GamePlay.MainGameKalimat_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameSukuKata_Activity;
 import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
+import com.example.tebakkatagame.Activity.Tutorial.Tutor_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
 
@@ -30,6 +31,7 @@ import androidx.annotation.Nullable;
 public class LevelTahap_Activity extends BaseApp {
 
     ArrayAdapter<String> menuAdapter;
+    private String TahapGame = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,16 @@ public class LevelTahap_Activity extends BaseApp {
 
         int savedLevel = 0;
         if (getIntent().hasExtra("TEBAK HURUF")) {
+            TahapGame = "TEBAK HURUF";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "HURUF", 1);
         } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
+            TahapGame = "TEBAK HURUF";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "GAMBAR", 1);
         } else if (getIntent().hasExtra("SUKU KATA")) {
+            TahapGame = "SUKU KATA";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "KATA", 1);
         } else if(getIntent().hasExtra("MEMBACA")){
+            TahapGame = "SUKU KATA";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "MEMBACA", 1);
         }
 
@@ -108,6 +114,10 @@ public class LevelTahap_Activity extends BaseApp {
                 Back();
             }
         });
+
+        find(R.id.img_tittle_icon).setOnClickListener(v -> {
+            setIntent(Tutor_Activity.class, TahapGame,"");
+        });
     }
 
     @Override
@@ -118,7 +128,7 @@ public class LevelTahap_Activity extends BaseApp {
 
     private void loadData() {
         if (getIntent().hasExtra("TEBAK HURUF")) {
-            find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tittle_tebak_huruf);
+            find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tebak_suku_kata);
         } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
             find(R.id.img_tittle_icon, ImageView.class).setImageResource(R.drawable.ic_tittle_kata_bergambar);
         } else if (getIntent().hasExtra("SUKU KATA")) {

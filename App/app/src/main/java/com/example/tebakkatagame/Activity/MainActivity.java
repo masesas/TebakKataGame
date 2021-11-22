@@ -1,24 +1,18 @@
 package com.example.tebakkatagame.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.tebakkatagame.Activity.GamePlay.MainGameKataBergambar_Activity;
-import com.example.tebakkatagame.Activity.GamePlay.MainGameTebakHuruf_Acitivity;
-import com.example.tebakkatagame.Activity.GamePlay.TutorActivity;
 import com.example.tebakkatagame.R;
 
 import java.util.ArrayList;
@@ -51,8 +45,6 @@ public class MainActivity extends BaseApp {
                 setIntent(Tahap_Activity.class, "", "");
             }
         });
-
-        find(R.id.btn_tutor).setOnClickListener(v -> setIntent(TutorActivity.class, "", ""));
     }
 
     private final Runnable mRunnable = new Runnable() {
