@@ -20,6 +20,9 @@
     <string name="benarjawabantebak">Aplikasi akan mengecek dari hasil yang kamu pilih jika jawaban benar kamu bisa bermain ke level berikutnya dengan menekan tombol lanjut</string>
 
     <string name="title_tebakhuruf">Tebak Suku Kata</string>
+    <string name="title_tebak_bergambar">Tebak Kata Bergambar</string>
+    <string name="title_ayo_membaca">Ayo Membaca</string>
+
 
 
     <string name="continue_and_learn">Lanjutkan dan pelajari caranya</string>

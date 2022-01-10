@@ -1,16 +1,20 @@
 package com.example.tebakkatagame.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.example.tebakkatagame.R;
@@ -29,8 +33,10 @@ public class MainActivity extends BaseApp {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        checkAndRequestPermissions();
-        if(!isNetworkAvailable()){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            checkAndRequestPermissions();
+        }
+        if (!isNetworkAvailable()) {
             showConnectionDialog();
         }
 
@@ -39,9 +45,9 @@ public class MainActivity extends BaseApp {
 
         find(R.id.btn_mulai).setOnClickListener(v -> {
             clickSound();
-            if(!isNetworkAvailable()){
+            if (!isNetworkAvailable()) {
                 showConnectionDialog();
-            }else{
+            } else {
                 setIntent(Tahap_Activity.class, "", "");
             }
         });
@@ -72,7 +78,7 @@ public class MainActivity extends BaseApp {
         mHandler.postDelayed(mRunnable, 2000);
     }
 
-    private void showConnectionDialog(){
+    private void showConnectionDialog() {
         new AlertDialog.Builder(getActivity())
                 .setMessage("Di perlukan Koneksi Internet Untuk Memulai Permainan :(")
                 .setCancelable(false)
@@ -85,21 +91,32 @@ public class MainActivity extends BaseApp {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void checkAndRequestPermissions() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            int permissionVoice = ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION);
-            int permissionVoiceRecord = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
-            List<String> listPermissionsNeeded = new ArrayList<>();
-            if (permissionVoice != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.ACTIVITY_RECOGNITION);
-            }
-            if (permissionVoiceRecord != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO);
-            }
+        int permissionVoice = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            permissionVoice = ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION);
+        }
+        int permissionVoiceRecord = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        int readStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int writeStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-            if (!listPermissionsNeeded.isEmpty()) {
-                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[0]), REQUEST_ID_MULTIPLE_PERMISSIONS);
-            }
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (permissionVoice != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.ACTIVITY_RECOGNITION);
+        }
+        if (permissionVoiceRecord != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO);
+        }
+        if (readStoragePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if (writeStoragePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[0]), REQUEST_ID_MULTIPLE_PERMISSIONS);
         }
     }
 
@@ -109,21 +126,29 @@ public class MainActivity extends BaseApp {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS) {
             Map<String, Integer> perms = new HashMap<>();
-            perms.put(Manifest.permission.ACTIVITY_RECOGNITION, PackageManager.PERMISSION_GRANTED);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                perms.put(Manifest.permission.ACTIVITY_RECOGNITION, PackageManager.PERMISSION_GRANTED);
+            }
             perms.put(Manifest.permission.RECORD_AUDIO, PackageManager.PERMISSION_GRANTED);
+            perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+            perms.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
 
             if (grantResults.length > 0) {
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
                 if (perms.get(Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED
-                        || perms.get(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                        || perms.get(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
+                        perms.get(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                        perms.get(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACTIVITY_RECOGNITION) ||
                             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
                         showDialogOK("Izin Rekam Suara dan Aktivitas Suara di Butuhkan untuk Aplikasi Ini",
                                 (dialog, which) -> {
                                     switch (which) {
                                         case DialogInterface.BUTTON_POSITIVE:
-                                            checkAndRequestPermissions();
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                                checkAndRequestPermissions();
+                                            }
                                             break;
                                         case DialogInterface.BUTTON_NEGATIVE:
                                             break;
@@ -132,10 +157,22 @@ public class MainActivity extends BaseApp {
                     } else {
                         Toast.makeText(getActivity(), "Pergi Ke Pengaturan untuk Mengizinkan Aplikasi di Akses",
                                 Toast.LENGTH_LONG).show();
+                        goSettings();
                     }
                 }
             }
         }
+    }
+
+    private void goSettings() {
+        new AlertDialog.Builder(this)
+                .setMessage("Pergi Ke Pengaturan Dan Ijinkan Akses Aplikasi!")
+                .setPositiveButton("Pengaturan", (dialog, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                            Uri.fromParts("package", getPackageName(), null));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }).setCancelable(false);
     }
 
     private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {

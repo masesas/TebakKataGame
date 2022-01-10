@@ -30,10 +30,10 @@
         android:id="@+id/img_charcters"
         android:layout_width="wrap_content"
         android:layout_height="170dp"
+        android:layout_below="@+id/ly_logo"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/charcters"
-        android:layout_below="@+id/ly_logo"/>
+        android:src="@drawable/charcters" />
 
     <LinearLayout
         android:id="@+id/ly_btn"

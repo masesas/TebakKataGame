@@ -8,10 +8,10 @@ public class SharePrefUtils {
 
     public static int getLevel(Context context, String key, int level) {
         if (context != null) {
-            try{
+            try {
                 SharedPreferences settings = context.getApplicationContext().getSharedPreferences("TebakKata", 0);
                 return settings.getInt(key, 1);
-            }catch (Exception e){
+            } catch (Exception e) {
                 return level;
             }
         } else {
@@ -21,15 +21,15 @@ public class SharePrefUtils {
 
     public static String getTahap(Context context, String key, String tahap) {
         if (context != null) {
-            try{
+            try {
                 SharedPreferences settings = context.getApplicationContext().getSharedPreferences("Tahap", 0);
                 String check = settings.getString(key, tahap);
-                if(check != null ){
+                if (check != null) {
                     return check;
-                }else{
+                } else {
                     return "";
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 return "";
             }
         } else {
@@ -39,15 +39,15 @@ public class SharePrefUtils {
 
     public static String getTutorial(Context context, String key, String tutorial) {
         if (context != null) {
-            try{
+            try {
                 SharedPreferences settings = context.getApplicationContext().getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
                 String check = settings.getString(key, null);
-                if(check != null ){
+                if (check != null) {
                     return check;
-                }else{
+                } else {
                     return "";
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 return "";
             }
         } else {
@@ -78,6 +78,20 @@ public class SharePrefUtils {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(key, tutorial);
         editor.commit();
+    }
+
+    @SuppressLint("ApplySharedPref")
+    public static void saveTutorial(Context context, String key, boolean isComplete) {
+        SharedPreferences settings = context.getApplicationContext().getSharedPreferences("Tutorial", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(key, isComplete);
+        editor.commit();
+    }
+
+    public static boolean getTutorial(Context context, String key) {
+        if (context == null || key == null) return false;
+        SharedPreferences settings = context.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+        return settings.getBoolean(key, false);
     }
 
 }

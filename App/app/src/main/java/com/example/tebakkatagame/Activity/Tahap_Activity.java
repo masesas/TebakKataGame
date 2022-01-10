@@ -13,6 +13,7 @@ import com.example.tebakkatagame.Utils.SharePrefUtils;
 public class Tahap_Activity extends BaseApp implements View.OnClickListener {
 
     private static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +31,15 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         find(R.id.img_btn_back).setOnClickListener(this);
     }
 
-    private void getTahapComplete(){
+    private void getTahapComplete() {
         String tebakGambar = SharePrefUtils.getTahap(getActivity(), "TEBAK GAMBAR", "SUKU_KATA");
-        if(!tebakGambar.isEmpty() && tebakGambar.equals("SUKU_KATA")){
+        if (!tebakGambar.isEmpty() && tebakGambar.equals("SUKU_KATA")) {
             find(R.id.img_lock_suku_kata).setVisibility(View.GONE);
-            String sukuKata =  SharePrefUtils.getTahap(getActivity(), "SUKU KATA", "TEBAK_HURUF");
-            if(sukuKata.equals("TEBAK_HURUF")){
+            String sukuKata = SharePrefUtils.getTahap(getActivity(), "SUKU KATA", "TEBAK_HURUF");
+            if (sukuKata.equals("TEBAK_HURUF")) {
                 find(R.id.img_lock_tebak_kata).setVisibility(View.GONE);
-                String tebakHuruf =  SharePrefUtils.getTahap(getActivity(), "TEBAK HURUF", "MEMBACA");
-                if(tebakHuruf.equals("MEMBACA")){
+                String tebakHuruf = SharePrefUtils.getTahap(getActivity(), "TEBAK HURUF", "MEMBACA");
+                if (tebakHuruf.equals("MEMBACA")) {
                     find(R.id.img_lock_membaca).setVisibility(View.GONE);
                 }
             }
@@ -50,42 +51,51 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         clickSound();
+        boolean hasTutor = false;
 
         switch (v.getId()) {
             case R.id.img_kata_bergambar:
-                setIntent(LevelTahap_Activity.class, "TEBAK GAMBAR", "");
+                hasTutor = SharePrefUtils.getTutorial(this, "TEBAK GAMBAR");
+                if (hasTutor) {
+                    setIntent(LevelTahap_Activity.class, "TEBAK GAMBAR", "");
+                } else {
+                    setIntent(Tutor_Activity.class, "TEBAK GAMBAR", "");
+                }
                 break;
             case R.id.img_suku_kata:
-                String tutor =  SharePrefUtils.getTutorial(getActivity(), "TUTOR SUKU KATA", "TUTOR_SUKU_KATA");
+                hasTutor = SharePrefUtils.getTutorial(this, "SUKU KATA");
                 if (find(R.id.img_lock_suku_kata).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Kata Bergambar!");
                 } else {
-                    if(tutor.equals("TUTOR_SUKU_KATA")){
+                    if (hasTutor) {
                         setIntent(LevelTahap_Activity.class, "SUKU KATA", "");
-                    }else{
-                        SharePrefUtils.saveTutorial(getAppContext(), "TUTOR SUKU KATA", "TUTOR_SUKU_KATA");
+                    } else {
                         setIntent(Tutor_Activity.class, "SUKU KATA", "");
                     }
                 }
                 break;
             case R.id.img_tebak_huruf:
-                String tutortebak =  SharePrefUtils.getTutorial(getActivity(), "TUTOR TEBAK HURUF", "TUTOR_TEBAK_HURUF");
+                hasTutor = SharePrefUtils.getTutorial(this, "TEBAK HURUF");
                 if (find(R.id.img_lock_tebak_kata).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Suku Kata");
                 } else {
-                    if(tutortebak.equals("TUTOR_TEBAK_HURUF")){
+                    if (hasTutor) {
                         setIntent(LevelTahap_Activity.class, "TEBAK HURUF", "");
-                    }else{
-                        SharePrefUtils.saveTutorial(getAppContext(), "TUTOR TEBAK HURUF", "TUTOR_TEBAK_HURUF");
+                    } else {
                         setIntent(Tutor_Activity.class, "TEBAK HURUF", "");
                     }
                 }
                 break;
             case R.id.img_ayo_membaca:
+                hasTutor = SharePrefUtils.getTutorial(this, "MEMBACA");
                 if (find(R.id.img_lock_membaca).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Tebak Huruf");
                 } else {
-                    setIntent(LevelTahap_Activity.class, "MEMBACA", "");
+                    if(hasTutor){
+                        setIntent(LevelTahap_Activity.class, "MEMBACA", "");
+                    }else{
+                        setIntent(Tutor_Activity.class, "MEMBACA", "");
+                    }
                 }
                 break;
             case R.id.img_btn_back:
