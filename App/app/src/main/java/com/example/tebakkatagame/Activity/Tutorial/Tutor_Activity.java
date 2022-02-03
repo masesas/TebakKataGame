@@ -161,15 +161,15 @@ public class Tutor_Activity extends TutorialActivity {
                             .setTitle(getString(R.string.title_ayo_membaca))
                             .setContent(getString(R.string.pilih_level_1))
                             .setBackgroundColor(Color.parseColor("#a4d8ed"))
-                            .setDrawable(R.drawable.tebaksukukata_1)
+                            .setDrawable(R.drawable.ayomembaca1)
                             .setSummary(getString(R.string.continue_and_learn))
                             .build());
             addFragment(
                     new Step.Builder()
-                            .setTitle(getString(R.string.memilihsukukata))
-                            .setContent(getString(R.string.pilihhuruf))
+                            .setTitle(getString(R.string.merekamsuara))
+                            .setContent(getString(R.string.tombolsuara))
                             .setBackgroundColor(Color.parseColor("#a4d8ed"))
-                            .setDrawable(R.drawable.tebaksukukata_2)
+                            .setDrawable(R.drawable.ayomembaca2)
                             .setSummary(getString(R.string.continue_and_learn))
                             .build());
             addFragment(
@@ -177,7 +177,7 @@ public class Tutor_Activity extends TutorialActivity {
                             .setTitle(getString(R.string.salah))
                             .setContent(getString(R.string.salahjawabantebak))
                             .setBackgroundColor(Color.parseColor("#4b585d"))
-                            .setDrawable(R.drawable.tebaksukukata_3)
+                            .setDrawable(R.drawable.ayomembaca3)
                             .setSummary(getString(R.string.continue_and_update))
                             .build());
             addFragment(
@@ -185,7 +185,7 @@ public class Tutor_Activity extends TutorialActivity {
                             .setTitle(getString(R.string.benar))
                             .setContent(getString(R.string.benarjawabantebak))
                             .setBackgroundColor(Color.parseColor("#4b585d"))
-                            .setDrawable(R.drawable.tebaksukukata_4)
+                            .setDrawable(R.drawable.ayomembaca4)
                             .setSummary(getString(R.string.continue_and_result))
                             .build());
             addFragment(
@@ -193,7 +193,7 @@ public class Tutor_Activity extends TutorialActivity {
                             .setTitle(getString(R.string.hasilmemuaskan))
                             .setContent(getString(R.string.lanjutmainlv2))
                             .setBackgroundColor(Color.parseColor("#a4d8ed"))
-                            .setDrawable(R.drawable.tebaksukukata_5)
+                            .setDrawable(R.drawable.ayomembaca5)
                             .build());
         }
     }
