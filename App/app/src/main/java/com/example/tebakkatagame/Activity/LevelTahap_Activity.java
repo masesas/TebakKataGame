@@ -55,13 +55,13 @@ public class LevelTahap_Activity extends BaseApp {
             TahapGame = "TEBAK HURUF";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "HURUF", 1);
         } else if (getIntent().hasExtra("TEBAK GAMBAR")) {
-            TahapGame = "TEBAK HURUF";
+            TahapGame = "TEBAK GAMBAR";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "GAMBAR", 1);
         } else if (getIntent().hasExtra("SUKU KATA")) {
             TahapGame = "SUKU KATA";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "KATA", 1);
         } else if(getIntent().hasExtra("MEMBACA")){
-            TahapGame = "SUKU KATA";
+            TahapGame = "MEMBACA";
             savedLevel = SharePrefUtils.getLevel(getActivity(), "MEMBACA", 1);
         }
 
@@ -104,7 +104,7 @@ public class LevelTahap_Activity extends BaseApp {
             } else if (getIntent().hasExtra("SUKU KATA")) {
                 setIntent(MainGameSukuKata_Activity.class, "LEVEL", position);
             } else  if (getIntent().hasExtra("MEMBACA")){
-                setIntent(MainGameKalimat_Activity.class, "LEVEL", 18);
+                setIntent(MainGameKalimat_Activity.class, "LEVEL", position);
             }
         });
 

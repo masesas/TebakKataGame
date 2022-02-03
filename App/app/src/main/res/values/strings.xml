@@ -15,6 +15,7 @@
     <string name="salahjawaban">Aplikasi akan mengecek dari hasil yang kamu bicara jika jawaban salah kamu bisa bermain kembali dengan menekan tombol ulang</string>
     <string name="benarjawaban">Aplikasi akan mengecek dari hasil yang kamu bicara jika jawaban benar kamu bisa bermain ke level berikutnya dengan menekan tombol lanjut</string>
     <string name="pilihhuruf">Pilih salah satu suku kata yang di sediakan lalu tekan </string>
+    <string name="pilihgambar">Tekan tombol lalu berbicara sesuai kata yang di gambar sistem akan merekam</string>
     <string name="memilihsukukata">Memilih Suku Kata</string>
     <string name="salahjawabantebak">Aplikasi akan mengecek dari hasil yang pilih jika jawaban salah kamu bisa bermain kembali dengan menekan tombol ulang</string>
     <string name="benarjawabantebak">Aplikasi akan mengecek dari hasil yang kamu pilih jika jawaban benar kamu bisa bermain ke level berikutnya dengan menekan tombol lanjut</string>

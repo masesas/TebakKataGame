@@ -2140,7 +2140,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
-        find(R.id.tv_result, TextView.class).setText(matches.get(0));//just dummy
+        //find(R.id.tv_result, TextView.class).setText(matches.get(0));//just dummy
     }
 
     @Override
