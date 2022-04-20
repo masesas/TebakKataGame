@@ -14,10 +14,11 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container_opening"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="center"/>
 
     <include layout="@layout/toolbar" />
 

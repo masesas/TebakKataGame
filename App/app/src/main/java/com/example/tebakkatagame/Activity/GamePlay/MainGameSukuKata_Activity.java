@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.BaseApp;
@@ -93,10 +94,10 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     }
 
     private void setOpeningStart() {
-        FrameLayout openingContainer = findViewById(R.id.container_opening);
+        RelativeLayout openingContainer = findViewById(R.id.container_opening);
         find(R.id.view_blur).bringToFront();
         openingContainer.bringToFront();
-        FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(
+        RelativeLayout.LayoutParams frameParams = new RelativeLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
@@ -104,7 +105,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         frameParams.width = 300;
         frameParams.height = 300;
         frameParams.bottomMargin = 200;
-        frameParams.gravity = Gravity.CENTER;
+//        frameParams.gravity = Gravity.CENTER;
 
         Runnable runnable = () -> {
             find(R.id.view_blur).setVisibility(View.VISIBLE);
