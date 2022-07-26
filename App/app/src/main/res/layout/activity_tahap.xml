@@ -31,12 +31,12 @@
 
     <LinearLayout
         android:id="@+id/ly_kata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="223dp"
+        android:layout_height="161dp"
         android:layout_below="@+id/ly_sukukata"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="20dp">
@@ -57,39 +57,25 @@
 
         </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="3">
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/img_suku_kata"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tittle_suku_kata"
-                tools:ignore="ContentDescription" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-            <ImageView
-                android:id="@+id/img_lock_suku_kata"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="50dp"
-                android:src="@drawable/ic_padlock"
-                tools:ignore="ContentDescription" />
-
-        </FrameLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="577dp"
+        android:orientation="vertical">
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ly_tebak"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ly_kata"
-        android:layout_marginTop="50dp"
+        android:layout_width="250dp"
+        android:layout_height="166dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:padding="20dp">
@@ -112,8 +98,8 @@
                 android:id="@+id/img_lock_tebak_kata"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="30dp"
+                android:layout_gravity="center|top"
+                android:layout_marginStart="60dp"
                 android:src="@drawable/ic_padlock"
                 tools:ignore="ContentDescription" />
 
@@ -123,14 +109,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:visibility="gone">
 
             <ImageView
-                android:id="@+id/img_ayo_membaca"
+                android:id="@+id/img_mengenal_huruf"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_ayo_membaca"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_mengenal_huruf_new"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -138,13 +126,45 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/ic_padlock"
                 tools:ignore="ContentDescription" />
 
         </FrameLayout>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="221dp"
+        android:layout_height="167dp"
+        android:layout_below="@+id/ly_kata"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="190dp"
+        android:layout_marginBottom="224dp">
+
+        <ImageView
+            android:id="@+id/img_suku_kata"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_tittle_suku_kata"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/img_lock_suku_kata"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_padlock"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
 
 
 </RelativeLayout>

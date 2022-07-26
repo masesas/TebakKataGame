@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/pocketsphinx-android-5prealpha-release" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

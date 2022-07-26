@@ -30,6 +30,7 @@ public class Tutor_Activity extends TutorialActivity {
     private void setComponent() {
         setPrevText("Kembali");
         setNextText("Selanjutnya");
+        setCancelText("Lewati");
 
         if (getIntent().hasExtra("TEBAK HURUF")) {
             tahap = "TEBAK HURUF";

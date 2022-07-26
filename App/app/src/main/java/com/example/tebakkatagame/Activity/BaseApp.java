@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -68,7 +69,7 @@ public class BaseApp extends AppCompatActivity {
         return this;
     }
 
-    public void showInfo(String message){
+    public void showInfo(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -93,16 +94,30 @@ public class BaseApp extends AppCompatActivity {
         icon.requestLayout();
     }
 
-    public void setIntent(Class<?> to, String key, String value){
+    public void setIntent(Class<?> to, String key, String value) {
         Intent intent = new Intent(getActivity(), to);
         intent.putExtra(key, value);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    public void setIntent(Class<?> to, String key, int value){
+    public void setIntentFinish(Class<?> to, String key, String value) {
         Intent intent = new Intent(getActivity(), to);
         intent.putExtra(key, value);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public void setIntent(Class<?> to, String key, int value) {
+        Intent intent = new Intent(getActivity(), to);
+        intent.putExtra(key, value);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public void setIntent(Class<?> to) {
+        Intent intent = new Intent(getActivity(), to);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
@@ -125,29 +140,29 @@ public class BaseApp extends AppCompatActivity {
         super.onStop();
     }
 
-    public YoYo.YoYoString shakesAnimate(View view){
+    public YoYo.YoYoString shakesAnimate(View view) {
         return YoYo.with(Techniques.Tada).duration(ONESEC).playOn(view);
     }
 
-    public YoYo.YoYoString bounceAnimate(View view){
+    public YoYo.YoYoString bounceAnimate(View view) {
         return YoYo.with(Techniques.BounceIn).duration(ONESEC).playOn(view);
     }
 
-    public YoYo.YoYoString wafeAnimate(View view){
+    public YoYo.YoYoString wafeAnimate(View view) {
         return YoYo.with(Techniques.Swing).duration(5000).repeat(10).playOn(view);
     }
 
-    public YoYo.YoYoString rollAnimate(View view){
+    public YoYo.YoYoString rollAnimate(View view) {
         return YoYo.with(Techniques.BounceInDown).duration(3000).repeat(2).playOn(view);
     }
 
-    public void setIntentLevel(Class context, String key, String value){
+    public void setIntentLevel(Class context, String key, String value) {
         Intent intent = new Intent(getActivity(), context);
         intent.putExtra(key, value);
         startActivity(intent);
     }
 
-    public void setIntentLevel(Class context, String key1, String key2, String value1, String value2){
+    public void setIntentLevel(Class context, String key1, String key2, String value1, String value2) {
         Intent intent = new Intent(getActivity(), context);
         intent.putExtra(key1, value1);
         intent.putExtra(key2, value2);
@@ -159,6 +174,8 @@ public class BaseApp extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap, isBenar);
         winDialogFragment.show(fm, "NEXT_LEVEL");
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(winDialogFragment::dismiss, 2000);
     }
 
     public boolean isNetworkAvailable() {
@@ -177,7 +194,7 @@ public class BaseApp extends AppCompatActivity {
         }
     }
 
-    public void clickSound(){
+    public void clickSound() {
         MediaPlayer mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sound_click_coin);
         mediaPlayer.start();
         Runnable runnable = mediaPlayer::stop;

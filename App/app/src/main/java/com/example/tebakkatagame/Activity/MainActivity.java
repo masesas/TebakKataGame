@@ -63,7 +63,6 @@ public class MainActivity extends BaseApp {
     @Override
     protected void onResume() {
         super.onResume();
-
         this.doubleBackToExitPressedOnce = false;
     }
 
@@ -82,11 +81,7 @@ public class MainActivity extends BaseApp {
         new AlertDialog.Builder(getActivity())
                 .setMessage("Di perlukan Koneksi Internet Untuk Memulai Permainan :(")
                 .setCancelable(false)
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                })
+                .setPositiveButton("Ya", (dialog, id) -> dialog.dismiss())
                 .show();
     }
 

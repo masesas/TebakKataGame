@@ -328,7 +328,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK GAMBAR", true);
                 mediaPlayerWin.stop();
-            }, 3000);
+            }, 10000);
         } else {
             showWinDialog(level + 1, "TEBAK GAMBAR", false);
         }

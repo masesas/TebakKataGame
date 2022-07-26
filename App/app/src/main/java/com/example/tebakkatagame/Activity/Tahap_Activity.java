@@ -3,9 +3,11 @@ package com.example.tebakkatagame.Activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 
+import com.example.tebakkatagame.Activity.GamePlay.HurufCategory_Activity;
 import com.example.tebakkatagame.Activity.Tutorial.Tutor_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
@@ -27,7 +29,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
         find(R.id.img_kata_bergambar).setOnClickListener(this);
         find(R.id.img_suku_kata).setOnClickListener(this);
         find(R.id.img_tebak_huruf).setOnClickListener(this);
-        find(R.id.img_ayo_membaca).setOnClickListener(this);
+        find(R.id.img_mengenal_huruf).setOnClickListener(this);
         find(R.id.img_btn_back).setOnClickListener(this);
     }
 
@@ -51,7 +53,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         clickSound();
-        boolean hasTutor = false;
+        boolean hasTutor;
 
         switch (v.getId()) {
             case R.id.img_kata_bergambar:
@@ -86,8 +88,9 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
                     }
                 }
                 break;
-            case R.id.img_ayo_membaca:
-                hasTutor = SharePrefUtils.getTutorial(this, "MEMBACA");
+            case R.id.img_mengenal_huruf:
+                setIntent(HurufCategory_Activity.class);
+               /* hasTutor = SharePrefUtils.getTutorial(this, "MEMBACA");
                 if (find(R.id.img_lock_membaca).getVisibility() == View.VISIBLE) {
                     showInfo("Kamu Belum Menyelesaikan Tahap Tebak Huruf");
                 } else {
@@ -96,7 +99,7 @@ public class Tahap_Activity extends BaseApp implements View.OnClickListener {
                     }else{
                         setIntent(Tutor_Activity.class, "MEMBACA", "");
                     }
-                }
+                }*/
                 break;
             case R.id.img_btn_back:
                 super.onBackPressed();
