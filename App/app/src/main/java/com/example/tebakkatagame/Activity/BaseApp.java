@@ -35,6 +35,8 @@ import com.example.tebakkatagame.Activity.GamePlay.WinDialogFragment;
 import com.example.tebakkatagame.R;
 
 import java.lang.ref.WeakReference;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.example.tebakkatagame.Utils.Constanst.ONESEC;
 
@@ -109,6 +111,14 @@ public class BaseApp extends AppCompatActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
+    public void setIntentFinish(Class<?> to, String key, int value) {
+        Intent intent = new Intent(getActivity(), to);
+        intent.putExtra(key, value);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
     public void setIntent(Class<?> to, String key, int value) {
         Intent intent = new Intent(getActivity(), to);
         intent.putExtra(key, value);
@@ -174,8 +184,6 @@ public class BaseApp extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         WinDialogFragment winDialogFragment = WinDialogFragment.newInstance(level, tahap, isBenar);
         winDialogFragment.show(fm, "NEXT_LEVEL");
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(winDialogFragment::dismiss, 2000);
     }
 
     public boolean isNetworkAvailable() {

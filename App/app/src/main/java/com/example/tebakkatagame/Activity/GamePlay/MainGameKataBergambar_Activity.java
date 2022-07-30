@@ -1,5 +1,6 @@
 package com.example.tebakkatagame.Activity.GamePlay;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -19,18 +20,23 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tebakkatagame.Activity.BaseApp;
+import com.example.tebakkatagame.Activity.LevelTahap_Activity;
 import com.example.tebakkatagame.R;
+import com.example.tebakkatagame.Utils.STT;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -47,11 +53,10 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_3;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_4;
 
-public class MainGameKataBergambar_Activity extends BaseApp implements RecognitionListener, TextToSpeech.OnInitListener {
+public class MainGameKataBergambar_Activity extends BaseApp {
 
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
-    TextToSpeech textToSpeech;
     private KonfettiView konfettiView;
     private GifImageView gifView;
 
@@ -60,6 +65,8 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     private int countWrong = 0;
 
     private String word1, word2, word3, word4, word5, word6;
+
+    STT stt;
 
     @SuppressLint({"QueryPermissionsNeeded", "ClickableViewAccessibility"})
     @Override
@@ -75,29 +82,91 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         konfettiView = findViewById(R.id.viewKonfetti);
         gifView = findViewById(R.id.gif_speak);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        textToSpeech = new TextToSpeech(this, this);
+        stt = new STT(this);
 
-        textToSpeech.setLanguage(localeIndonesia);
-        mSpeechRecognizer.setRecognitionListener(this);
         find(R.id.img_tebak).setVisibility(View.GONE);
 
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, this.getPackageName());
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 7000);
 
         find(R.id.ly_eja_1).setOnClickListener(v -> playWord(1));
-
         find(R.id.ly_eja_2).setOnClickListener(v -> playWord(2));
-
         find(R.id.btn_speak).setOnClickListener(v -> {
-            setTimerGif();
-            mSpeechRecognizer.stopListening();
-            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            // setTimerGif();
+//            mSpeechRecognizer.stopListening();
+//            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            setGoogleSpeechToText();
+            // stt.speak();
         });
+        find(R.id.img_btn_back).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
+
+        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+                showInfo("Mulai");
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+                showInfo("Selesai");
+            }
+
+            @Override
+            public void onError(int error) {
+                showInfo("Error " + getErrorText(error));
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> matchess = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                if (matches != null) {
+                    String[] result = matches.toArray(new String[]{});
+                    setResultSpech(result);
+                }
+
+                //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
+
     }
 
-    private void setTimerGif(){
+    private void setTimerGif() {
         GifDrawable gifDrawable = null;
         try {
             gifDrawable = new GifDrawable(getResources().openRawResource(R.raw.btn_speak_5s));
@@ -112,174 +181,230 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             public void onTick(long millisUntilFinished) {
                 //implements count timer if need
             }
+
             @Override
             public void onFinish() {
+                mSpeechRecognizer.stopListening();
                 gifView.setVisibility(View.GONE);
                 find(R.id.btn_speak).setVisibility(View.VISIBLE);
             }
         }.start();
     }
 
-    private void playWord(int sukuKata){
+    private void setGoogleSpeechToText() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Ucapkan Kata Sesuai Gambar");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, 10);
+        } else {
+            showInfo("Perangkat tidak di dukung");
+        }
+    }
+
+    private void playWord(int sukuKata) {
         MediaPlayer mediaPlayer = null;
-       // AudioTrack audioTrack = new AudioTrack(3, 16000, 2, 2, 3);
+        // AudioTrack audioTrack = new AudioTrack(3, 16000, 2, 2, 3);
         switch (level) {
             case 0: //bumi
-                if(sukuKata == 1){
-                    textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
+                    //textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
+                    // textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 break;
             case 1: //padi
-                if(sukuKata == 1){
-                    textToSpeech.speak("PA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("DI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pa);
+                    // textToSpeech.speak("PA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.di);
+                    //textToSpeech.speak("DI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
+                // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
                 break;
             case 2: //gigi
-                textToSpeech.speak("GI",TextToSpeech.QUEUE_FLUSH,null,null);
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gi);
+                // textToSpeech.speak("GI",TextToSpeech.QUEUE_FLUSH,null,null);
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gigi);
                 break;
             case 3: //dadu
-                if(sukuKata == 1){
-                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
+                    // textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
+                    //textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dadu);
                 break;
             case 4: //biji
-                if(sukuKata == 1){
-                    textToSpeech.speak("BI",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("JI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bi);
+                    //textToSpeech.speak("BI",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ji);
+                    //textToSpeech.speak("JI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.biji);
                 break;
             case 5: //gula
-                if(sukuKata == 1){
-                    textToSpeech.speak("GU",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("LA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gu);
+                    //textToSpeech.speak("GU",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.la);
+                    // textToSpeech.speak("LA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gula);
                 break;
             case 6: //pipi
-                textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
+                // textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pipi);
                 break;
             case 7: //kopi
-                if(sukuKata == 1){
-                    textToSpeech.speak("KO",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ko);
+                    //textToSpeech.speak("KO",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
+                    //textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kopi);
                 break;
             case 8: //duri
-                if(sukuKata == 1){
-                    textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("RI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
+                    // textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ri);
+                    //textToSpeech.speak("RI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
+                //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
                 break;
             case 9: //kayu
-                if(sukuKata == 1){
-                    textToSpeech.speak("KA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("YU",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ka);
+                    //textToSpeech.speak("KA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.yu);
+                    //textToSpeech.speak("YU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kayu);
                 break;
             case 10: //rusa
-                if(sukuKata == 1){
-                    textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
+                    // textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
+                    //textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
+                // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
                 break;
             case 11: //tali
-                if(sukuKata == 1){
-                    textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
+                    // textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.li);
+                    //textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-             //   mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
+                //   mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
                 break;
             case 12: //peta
-                if(sukuKata == 1){
-                    textToSpeech.speak("PE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pe);
+                    //textToSpeech.speak("PE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
+                    //textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
+                // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
                 break;
             case 13: //desa
-                if(sukuKata == 1){
-                    textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.de);
+                    // textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
+                    //textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.desa);
                 break;
             case 14: //roda
-                if(sukuKata == 1){
-                    textToSpeech.speak("RO",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ro);
+//                    textToSpeech.speak("RO",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
+//                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.roda);
                 break;
             case 15: //buaya
-                if(sukuKata == 1){
-                    textToSpeech.speak("BUA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bua);
+//                    textToSpeech.speak("BUA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ya);
+                    //textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
+                // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
                 break;
             case 16: //rumah
-                if(sukuKata == 1){
-                    textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("MAH",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
+                    // textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mah);
+                    // textToSpeech.speak("MAH",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
+                //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
                 break;
             case 17: //delima
-                if(sukuKata == 1){
-                    textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else if(sukuKata == 2){
-                    textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("MA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.de);
+                    // textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else if (sukuKata == 2) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.li);
+                    //  textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ma);
+                    // textToSpeech.speak("MA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-               // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
+                // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
                 break;
             case 18: //keledai
-                if(sukuKata == 1){
-                    textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else if(sukuKata == 2){
-                    textToSpeech.speak("LE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("DAI",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ke);
+                    //textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else if (sukuKata == 2) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.le);
+                    //textToSpeech.speak("LE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dai);
+                    //textToSpeech.speak("DAI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.keledai);
                 break;
             case 19: //kebaya
-                if(sukuKata == 1){
-                    textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else if(sukuKata == 2){
-                    textToSpeech.speak("BA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }else{
-                    textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ke);
+                    //textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else if (sukuKata == 2) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ba);
+                    //textToSpeech.speak("BA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ya);
+                    //textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
-              //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
+                //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
                 break;
             default:
                 break;
@@ -293,6 +418,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         }
 
     }
+
     //by ejakata
     private void setResultSpech(String... eja) {
         countSpeak++;
@@ -312,6 +438,8 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if (isBenar) {
+            find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
             mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
@@ -324,11 +452,17 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler();
+
+            Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK GAMBAR", true);
                 mediaPlayerWin.stop();
-            }, 10000);
+            }, 3000);
+
+            handler.postDelayed(() -> {
+                find(R.id.ly_next).setVisibility(View.VISIBLE);
+            }, 6000);
+
         } else {
             showWinDialog(level + 1, "TEBAK GAMBAR", false);
         }
@@ -338,7 +472,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         speech = speech.toLowerCase();
         switch (level) {
             case 0: //bumi
-                if ( speech.length() > 0 && speech.charAt(0) == 'b') {
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
                     setCorectMode(find(R.id.img_word_1));
                 } else {
                     setWrongMode(find(R.id.img_word_1));
@@ -475,7 +609,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.length() > 1 &&speech.charAt(1) == 'i') {
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
@@ -563,7 +697,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 } else {
                     setWrongMode(find(R.id.img_word_1));
                 }
-                if (speech.length() >  1 && speech.charAt(1) == 'u') {
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
                     setCorectMode(find(R.id.img_word_2));
                 } else {
                     setWrongMode(find(R.id.img_word_2));
@@ -1028,54 +1162,6 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         }
     }
 
-    @Override
-    public void onReadyForSpeech(Bundle params) {
-    }
-
-    @Override
-    public void onBeginningOfSpeech() {
-    }
-
-    @Override
-    public void onRmsChanged(float rmsdB) {
-//        Log.i(LOG_TAG, "onRmsChanged: " + rmsdB);
-//        progressBar.setProgress((int) rmsdB);
-
-    }
-
-    @Override
-    public void onBufferReceived(byte[] buffer) {
-
-    }
-
-    @Override
-    public void onEndOfSpeech() {
-
-    }
-
-    @Override
-    public void onError(int error) {
-//        showInfo(getErrorText(error));
-    }
-
-    @Override
-    public void onResults(Bundle results) {
-        List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        String[] result = matches.toArray(new String[]{});
-        setResultSpech(result);
-        //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
-    }
-
-    @Override
-    public void onPartialResults(Bundle partialResults) {
-
-    }
-
-    @Override
-    public void onEvent(int eventType, Bundle params) {
-
-    }
-
     public static String getErrorText(int errorCode) {
         String message;
         switch (errorCode) {
@@ -1114,26 +1200,20 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     }
 
     @Override
-    public void onInit(int status) {
-        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String utteranceId) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        stt.toPerformInOnActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == 10) {
+            if (resultCode == RESULT_OK && data != null) {
+                List<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (matches != null) {
+                    String[] result = matches.toArray(new String[]{});
+                    setResultSpech(result);
+                } else {
+                    showInfo("Ucapkan Kata");
+                }
             }
-
-            @Override
-            public void onDone(String utteranceId) {
-
-            }
-
-            @Override
-            public void onError(String utteranceId) {
-
-            }
-        });
+        }
     }
-
-
-
-
 }

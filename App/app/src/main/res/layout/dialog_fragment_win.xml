@@ -35,15 +35,15 @@
             android:id="@+id/container_card_view"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            android:layout_marginBottom="30dp"
+            android:layout_below="@+id/layouts"
             android:layout_gravity="bottom"
-            android:translationZ="10dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="-15dp"
-            android:layout_below="@+id/layouts">
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="30dp"
+            android:translationZ="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,13 +54,13 @@
                 android:padding="5dp">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageButton
                         android:id="@+id/img_btn_close"
@@ -89,6 +89,15 @@
                     android:textColor="@color/grey_800"
                     android:textSize="13sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_tutup"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:textSize="13sp"
+                    android:text="Tutup"
+                    android:background="@drawable/ic_bg_button"/>
 
             </LinearLayout>
 

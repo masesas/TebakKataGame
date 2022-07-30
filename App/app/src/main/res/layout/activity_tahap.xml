@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
+    android:background="@drawable/new_bg_40"
     tools:context=".Activity.MainActivity">
 
     <include layout="@layout/toolbar" />
@@ -47,11 +47,29 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="3">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:translationZ="100dp"
+                app:cardBackgroundColor="@android:color/black"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="1dp"
+                    android:src="@drawable/numb_1" />
+
+            </androidx.cardview.widget.CardView>
+
             <ImageView
                 android:id="@+id/img_kata_bergambar"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_tittle_kata_bergambar"
                 tools:ignore="ContentDescription" />
 
@@ -62,7 +80,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="577dp"
         android:orientation="vertical">
@@ -75,7 +92,8 @@
         android:layout_height="166dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="125dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:padding="20dp">
@@ -85,6 +103,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_weight="3">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:translationZ="100dp"
+                app:cardBackgroundColor="@android:color/black"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/numb_3" />
+
+            </androidx.cardview.widget.CardView>
 
             <ImageView
                 android:id="@+id/img_tebak_huruf"
@@ -136,6 +173,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/fm_suku_kata"
         android:layout_width="221dp"
         android:layout_height="167dp"
         android:layout_below="@+id/ly_kata"
@@ -144,7 +182,27 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="190dp"
-        android:layout_marginBottom="224dp">
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="250dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:translationZ="100dp"
+            app:cardBackgroundColor="@android:color/black"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/numb_2" />
+
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/img_suku_kata"

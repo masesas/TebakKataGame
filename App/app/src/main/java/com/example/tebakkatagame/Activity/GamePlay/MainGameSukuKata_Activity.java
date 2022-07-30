@@ -11,6 +11,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -24,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.BaseApp;
+import com.example.tebakkatagame.Activity.LevelTahap_Activity;
 import com.example.tebakkatagame.R;
 
 import java.io.IOException;
@@ -70,11 +72,11 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
         //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk menganggap input selesai 7 detik.
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000);
         //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk mempertimbangkan kemungkinan input selesai.
 //        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
         //Panjang minimal sebuah ujaran.
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 70000000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 7000);
 
 
         find(R.id.btn_speak).setOnClickListener(v -> {
@@ -83,14 +85,16 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         });
 
-        find(R.id.img_btn_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Back();
-            }
+        find(R.id.img_btn_back).setOnClickListener(v -> {
+           /* Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();*/
+            super.onBackPressed();
         });
 
-        setOpeningStart();
+        //setOpeningStart();
     }
 
     private void setOpeningStart() {
@@ -126,7 +130,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
             }, 1500);
         };
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> {
             //TransitionManager.beginDelayedTransition();
             handler.postDelayed(runnable, 0);
@@ -151,6 +155,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
             @Override
             public void onFinish() {
+                mSpeechRecognizer.stopListening();
                 gifView.setVisibility(View.GONE);
                 find(R.id.btn_speak).setVisibility(View.VISIBLE);
             }
@@ -182,6 +187,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if(isBenar){
+            find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameSukuKata_Activity.class, "LEVEL", (level + 1)));
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
             mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
@@ -194,10 +200,14 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "SUKU KATA", true);
-            }, 2000);
+            }, 3000);
+
+            handler.postDelayed(() -> {
+                find(R.id.ly_next).setVisibility(View.VISIBLE);
+            }, 6000);
         }else{
             showWinDialog(level + 1, "SUKU KATA", false);
         }

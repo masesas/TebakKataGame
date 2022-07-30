@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
+    android:background="@drawable/new_bg_40"
     tools:context=".Activity.MainActivity">
 
     <LinearLayout
@@ -33,7 +33,7 @@
         android:layout_below="@+id/ly_logo"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/charcters" />
+        android:src="@drawable/bg_sd" />
 
     <LinearLayout
         android:id="@+id/ly_btn"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/img_charcters"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:gravity="center">
 
         <ImageView

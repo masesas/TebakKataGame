@@ -4,10 +4,12 @@ import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,6 +43,12 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         loadData();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
     private void initcomponent(){
 
         LinierArray[0] = findViewById(R.id.ly_choice1);
@@ -62,13 +70,14 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         imgIcon = (ImageView) findViewById(R.id.img_icon_tebak);
         konfettiView = findViewById(R.id.viewKonfetti);
 
-        find(R.id.img_btn_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Back();
-            }
+        find(R.id.img_btn_back).setOnClickListener(v -> {
+            /*Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();*/
+            super.onBackPressed();
         });
-
     }
 
     private void loadData(){
@@ -90,7 +99,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setImage(key1);
                 break;
             case 1: //gu-ru
-                imgIcon.setImageResource(R.drawable.ic_teacher);
+                imgIcon.setImageResource(R.drawable.ic_guru);
 
                 imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_g" , "drawable",getApplicationContext())));
                 imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_u" , "drawable",getApplicationContext())));
@@ -104,7 +113,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setImage(key2);
                 break;
             case 2: //la-yu
-                imgIcon.setImageResource(R.drawable.ic_withered);
+                imgIcon.setImageResource(R.drawable.ic_layu);
 
                 imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_l" , "drawable",getApplicationContext())));
                 imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_a" , "drawable",getApplicationContext())));
@@ -118,7 +127,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setImage(key3);
                 break;
             case 3: //ha-ti
-                imgIcon.setImageResource(R.drawable.ic_heart);
+                imgIcon.setImageResource(R.drawable.ic_hati);
 
                 imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_h" , "drawable",getApplicationContext())));
                 imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_a" , "drawable",getApplicationContext())));
@@ -184,7 +193,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 setImage(key8);
                 break;
             case 8: //cu-ci
-                imgIcon.setImageResource(R.drawable.ic_washing_machine);
+                imgIcon.setImageResource(R.drawable.ic_cuci);
                 imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_c" , "drawable",getApplicationContext())));
                 imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_u" , "drawable",getApplicationContext())));
 
@@ -349,41 +358,38 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
     private void setImage(String[] key){
         for (int i = 0; i <2; i++) {
             int finalI = i;
-            LinierArray[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(LinierArray[finalI].getTag() == "key"){
-                        if(level < 10){
-                            imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[0] , "drawable",getApplicationContext())));
-                            imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[1] , "drawable",getApplicationContext())));
+            LinierArray[i].setOnClickListener(v -> {
+                if(LinierArray[finalI].getTag() == "key"){
+                    if(level < 10){
+                        imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[0] , "drawable",getApplicationContext())));
+                        imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[1] , "drawable",getApplicationContext())));
 
-                        }else {
-                            imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[0] , "drawable",getApplicationContext())));
-                            imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[1] , "drawable",getApplicationContext())));
-                        }
-                        setCorectMode(imgGuest1);
-                        setCorectMode(imgGuest2);
-                        setCorectMode(imgGuest3);
-                        setCorectMode(imgGuest4);
-                        selebrateWin(true);
                     }else {
-                        if(level < 10){
-                            imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
-                            imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
-                            setWrongMode(imgGuest3);
-                            setWrongMode(imgGuest4);
-                            shakesAnimate(lyGuest2);
-                        }else {
-                            imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
-                            imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
-                            setWrongMode(imgGuest1);
-                            setWrongMode(imgGuest2);
-                            shakesAnimate(lyGuest1);
-                        }
-                        selebrateWin(false);
-
-
+                        imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[0] , "drawable",getApplicationContext())));
+                        imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_" + key[1] , "drawable",getApplicationContext())));
                     }
+                    setCorectMode(imgGuest1);
+                    setCorectMode(imgGuest2);
+                    setCorectMode(imgGuest3);
+                    setCorectMode(imgGuest4);
+                    selebrateWin(true);
+                }else {
+                    if(level < 10){
+                        imgGuest3.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
+                        imgGuest4.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
+                        setWrongMode(imgGuest3);
+                        setWrongMode(imgGuest4);
+                        shakesAnimate(lyGuest2);
+                    }else {
+                        imgGuest1.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
+                        imgGuest2.setImageDrawable(getResources().getDrawable(getResourceID("letter_empty" , "drawable",getApplicationContext())));
+                        setWrongMode(imgGuest1);
+                        setWrongMode(imgGuest2);
+                        shakesAnimate(lyGuest1);
+                    }
+                    selebrateWin(false);
+
+
                 }
             });
         }
@@ -414,6 +420,8 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
     private void selebrateWin(boolean isBenar) {
         find(R.id.view_blur).setVisibility(View.VISIBLE);
         if (isBenar) {
+            find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameTebakHuruf_Acitivity.class, "LEVEL", (level + 1)));
+
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
             mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
@@ -426,10 +434,13 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK HURUF", true);
             }, 3000);
+            handler.postDelayed(() -> {
+                find(R.id.ly_next).setVisibility(View.VISIBLE);
+            }, 6000);
         } else {
             showWinDialog(level + 1, "TEBAK HURUF", false);
         }

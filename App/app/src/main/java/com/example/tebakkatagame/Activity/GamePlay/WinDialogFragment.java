@@ -37,6 +37,8 @@ import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.SharePrefUtils;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WinDialogFragment extends DialogFragment {
 
@@ -65,25 +67,25 @@ public class WinDialogFragment extends DialogFragment {
             switch (jenisTahap) {
                 case "TEBAK GAMBAR":
                     baseApp = (MainGameKataBergambar_Activity) getActivity();
-                    if(isBenar){
+                    if (isBenar) {
                         SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "GAMBAR", nextLevel + 1);
                     }
                     break;
                 case "SUKU KATA":
                     baseApp = (MainGameSukuKata_Activity) getActivity();
-                    if(isBenar){
+                    if (isBenar) {
                         SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "KATA", nextLevel + 1);
                     }
                     break;
                 case "TEBAK HURUF":
                     baseApp = (MainGameTebakHuruf_Acitivity) getActivity();
-                    if(isBenar){
+                    if (isBenar) {
                         SharePrefUtils.saveLevel(Objects.requireNonNull(getContext()), "HURUF", nextLevel + 1);
                     }
                     break;
                 case "MEMBACA":
                     baseApp = (MainGameKalimat_Activity) getActivity();
-                    if(isBenar){
+                    if (isBenar) {
                         SharePrefUtils.saveLevel(getContext(), "MEMBACA", nextLevel + 1);
                     }
                     break;
@@ -98,8 +100,8 @@ public class WinDialogFragment extends DialogFragment {
         if (window == null) return;
         WindowManager.LayoutParams params = window.getAttributes();
         params.y = -100;
-        params.width = 1000;
-        params.height = 1200;
+//        params.width = 1000;
+//        params.height = 1200;
         window.setAttributes(params);
     }
 
@@ -144,42 +146,37 @@ public class WinDialogFragment extends DialogFragment {
             vib.vibrate(pattern, 0);
         }
 
-        if(!isBenar){
+        if (!isBenar) {
             mediaPlayerLose.start();
             mediaPlayerLose.setLooping(true);
-            ((ImageView)view.findViewById(R.id.img_stiker)).setImageResource(R.drawable.ic_stiker_salah);
-            ((ImageView)view.findViewById(R.id.img_btn_next)).setImageResource(R.drawable.ic_repeat_resize);
-            ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("WRONG");
+            ((ImageView) view.findViewById(R.id.img_stiker)).setImageResource(R.drawable.ic_stiker_salah);
+            ((ImageView) view.findViewById(R.id.img_btn_next)).setImageResource(R.drawable.ic_repeat_resize);
+            ((ImageView) view.findViewById(R.id.img_btn_next)).setTag("WRONG");
             view.findViewById(R.id.img_btn_close).setVisibility(View.GONE);
 
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayerLose.stop();
-                    vib.cancel();
-                }
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                mediaPlayerLose.stop();
+                vib.cancel();
             }, 2000);
-            ((TextView)view.findViewById(R.id.tv_info)).setText("Kamu Hampir Benar, Ayo Periksa Lagi!");
-        }else{
+            ((TextView) view.findViewById(R.id.tv_info)).setText("Kamu Hampir Benar, Ayo Periksa Lagi!");
+        } else {
             mediaPlayerWin.start();
             mediaPlayerWin.setLooping(true);
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayerWin.stop();
-                    vib.cancel();
-                }
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                mediaPlayerWin.stop();
+                vib.cancel();
             }, 2000);
-            ((ImageView)view.findViewById(R.id.img_btn_next)).setTag("RIGHT");
+            ((ImageView) view.findViewById(R.id.img_btn_next)).setTag("RIGHT");
         }
 
+        view.findViewById(R.id.btn_tutup).setOnClickListener(v -> dismiss());
         view.findViewById(R.id.img_btn_next).setOnClickListener(v -> {
-            if(((ImageView)view.findViewById(R.id.img_btn_next)).getTag().toString().equals("WRONG")){
+            if (view.findViewById(R.id.img_btn_next).getTag().toString().equals("WRONG")) {
                 nextLevel -= 1;
                 vib.cancel();
-                if(!isBenar){
+                if (!isBenar) {
                     mediaPlayerLose.stop();
-                }else {
+                } else {
                     mediaPlayerWin.stop();
                 }
             }
@@ -203,22 +200,22 @@ public class WinDialogFragment extends DialogFragment {
         view.findViewById(R.id.img_btn_close).setOnClickListener(v -> {
             startActivity(new Intent(getContext(), Tahap_Activity.class));
             vib.cancel();
-            if(!isBenar){
+            if (!isBenar) {
                 mediaPlayerLose.stop();
-            }else {
+            } else {
                 mediaPlayerWin.stop();
             }
             getActivity().finish();
         });
     }
 
-    public void showInfo(String message){
+    public void showInfo(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public void setIntent(Class<?> to, String key, int value) {
         Intent intent;
-        if (value == 20){
+        if (value == 20) {
             intent = new Intent(getActivity(), Tahap_Activity.class);
             //2nd value it's for the next tahap
             switch (jenisTahap) {
@@ -232,7 +229,7 @@ public class WinDialogFragment extends DialogFragment {
                     SharePrefUtils.saveTahap(getContext(), "TEBAK HURUF", "MEMBACA");
                     break;
             }
-        }else {
+        } else {
             intent = new Intent(getActivity(), to);
             intent.putExtra(key, value);
         }

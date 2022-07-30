@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -106,7 +107,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
             }, 1500);
         };
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() -> {
             //TransitionManager.beginDelayedTransition();
             handler.postDelayed(runnable, 0);
@@ -165,7 +166,7 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> showWinDialog(level + 1, "MEMBACA", true), 3000);
         } else {
             showWinDialog(level + 1, "MEMBACA", false);
