@@ -53,13 +53,13 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_3;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_4;
 
-public class MainGameKataBergambar_Activity extends BaseApp {
+public class MainGameKataBergambar_Activity extends BaseApp implements RecognitionListener, TextToSpeech.OnInitListener {
 
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
     private GifImageView gifView;
-
+    TextToSpeech textToSpeech;
     private int countSpeak = 0;
     private int level;
     private int countWrong = 0;
@@ -82,24 +82,25 @@ public class MainGameKataBergambar_Activity extends BaseApp {
         konfettiView = findViewById(R.id.viewKonfetti);
         gifView = findViewById(R.id.gif_speak);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        stt = new STT(this);
+        //stt = new STT(this);
+        textToSpeech = new TextToSpeech(this, this);
 
-        find(R.id.img_tebak).setVisibility(View.GONE);
+        textToSpeech.setLanguage(localeIndonesia);
+        mSpeechRecognizer.setRecognitionListener(this);
+        //find(R.id.img_tebak).setVisibility(View.GONE);
 
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, this.getPackageName());
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 7000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
 
         find(R.id.ly_eja_1).setOnClickListener(v -> playWord(1));
         find(R.id.ly_eja_2).setOnClickListener(v -> playWord(2));
         find(R.id.btn_speak).setOnClickListener(v -> {
-            // setTimerGif();
-//            mSpeechRecognizer.stopListening();
-//            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-            setGoogleSpeechToText();
+            setTimerGif();
+            mSpeechRecognizer.stopListening();
+            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            //setGoogleSpeechToText();
             // stt.speak();
         });
         find(R.id.img_btn_back).setOnClickListener(v -> {
@@ -110,59 +111,59 @@ public class MainGameKataBergambar_Activity extends BaseApp {
             finish();
         });
 
-        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
-            @Override
-            public void onReadyForSpeech(Bundle params) {
-
-            }
-
-            @Override
-            public void onBeginningOfSpeech() {
-                showInfo("Mulai");
-            }
-
-            @Override
-            public void onRmsChanged(float rmsdB) {
-
-            }
-
-            @Override
-            public void onBufferReceived(byte[] buffer) {
-
-            }
-
-            @Override
-            public void onEndOfSpeech() {
-                showInfo("Selesai");
-            }
-
-            @Override
-            public void onError(int error) {
-                showInfo("Error " + getErrorText(error));
-            }
-
-            @Override
-            public void onResults(Bundle results) {
-                ArrayList<String> matchess = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                if (matches != null) {
-                    String[] result = matches.toArray(new String[]{});
-                    setResultSpech(result);
-                }
-
-                //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
-            }
-
-            @Override
-            public void onPartialResults(Bundle partialResults) {
-
-            }
-
-            @Override
-            public void onEvent(int eventType, Bundle params) {
-
-            }
-        });
+//        mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
+//            @Override
+//            public void onReadyForSpeech(Bundle params) {
+//
+//            }
+//
+//            @Override
+//            public void onBeginningOfSpeech() {
+//                showInfo("Mulai");
+//            }
+//
+//            @Override
+//            public void onRmsChanged(float rmsdB) {
+//
+//            }
+//
+//            @Override
+//            public void onBufferReceived(byte[] buffer) {
+//
+//            }
+//
+//            @Override
+//            public void onEndOfSpeech() {
+//                showInfo("Selesai");
+//            }
+//
+//            @Override
+//            public void onError(int error) {
+//                showInfo("Error " + getErrorText(error));
+//            }
+//
+//            @Override
+//            public void onResults(Bundle results) {
+//                ArrayList<String> matchess = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+//                List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+//                if (matches != null) {
+//                    String[] result = matches.toArray(new String[]{});
+//                    setResultSpech(result);
+//                }
+//
+//                //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
+//            }
+//
+//            @Override
+//            public void onPartialResults(Bundle partialResults) {
+//
+//            }
+//
+//            @Override
+//            public void onEvent(int eventType, Bundle params) {
+//
+//            }
+//        });
 
     }
 
@@ -210,11 +211,11 @@ public class MainGameKataBergambar_Activity extends BaseApp {
         switch (level) {
             case 0: //bumi
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
-                    //textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
+                    //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
+                    textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
-                    // textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
+                    //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
+                     textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 break;
             case 1: //padi
@@ -1161,6 +1162,53 @@ public class MainGameKataBergambar_Activity extends BaseApp {
             ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
     }
+    @Override
+    public void onReadyForSpeech(Bundle params) {
+    }
+
+    @Override
+    public void onBeginningOfSpeech() {
+    }
+
+    @Override
+    public void onRmsChanged(float rmsdB) {
+//        Log.i(LOG_TAG, "onRmsChanged: " + rmsdB);
+//        progressBar.setProgress((int) rmsdB);
+
+    }
+
+    @Override
+    public void onBufferReceived(byte[] buffer) {
+
+    }
+
+    @Override
+    public void onEndOfSpeech() {
+
+    }
+
+    @Override
+    public void onError(int error) {
+//        showInfo(getErrorText(error));
+    }
+
+    @Override
+    public void onResults(Bundle results) {
+        List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        String[] result = matches.toArray(new String[]{});
+        setResultSpech(result);
+        //find(R.id.tv_output_suara, TextView.class).setText(matches.get(0));//just dummy
+    }
+
+    @Override
+    public void onPartialResults(Bundle partialResults) {
+
+    }
+
+    @Override
+    public void onEvent(int eventType, Bundle params) {
+
+    }
 
     public static String getErrorText(int errorCode) {
         String message;
@@ -1199,21 +1247,43 @@ public class MainGameKataBergambar_Activity extends BaseApp {
         return message;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        stt.toPerformInOnActivityResult(requestCode, resultCode, data);
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        stt.toPerformInOnActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == 10) {
+//            if (resultCode == RESULT_OK && data != null) {
+//                List<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+//                if (matches != null) {
+//                    String[] result = matches.toArray(new String[]{});
+//                    setResultSpech(result);
+//                } else {
+//                    showInfo("Ucapkan Kata");
+//                }
+//            }
+//        }
+//    }
 
-        if (requestCode == 10) {
-            if (resultCode == RESULT_OK && data != null) {
-                List<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                if (matches != null) {
-                    String[] result = matches.toArray(new String[]{});
-                    setResultSpech(result);
-                } else {
-                    showInfo("Ucapkan Kata");
-                }
+    @Override
+    public void onInit(int status) {
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
             }
-        }
+
+            @Override
+            public void onDone(String utteranceId) {
+
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+
+        });
     }
 }
+

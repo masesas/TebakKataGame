@@ -15,6 +15,8 @@ import android.os.Looper;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -44,13 +46,14 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_1;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_2;
 import static com.example.tebakkatagame.Utils.Constanst.WORD_3;
 
-public class MainGameSukuKata_Activity extends BaseApp implements RecognitionListener {
+public class MainGameSukuKata_Activity extends BaseApp implements RecognitionListener, TextToSpeech.OnInitListener {
 
     private static final String TAG = "main";
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
     private GifImageView gifView;
+    TextToSpeech textToSpeech;
 
     private int level;
 
@@ -68,15 +71,21 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         gifView = findViewById(R.id.gif_speak);
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         mSpeechRecognizer.setRecognitionListener(this);
+        textToSpeech = new TextToSpeech(this, this);
+        textToSpeech.setLanguage(localeIndonesia);
         final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
-        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk menganggap input selesai 7 detik.
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000);
-        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk mempertimbangkan kemungkinan input selesai.
-//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
-        //Panjang minimal sebuah ujaran.
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 7000);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
+//        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
+//        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk menganggap input selesai 7 detik.
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 7000);
+//        //Jumlah waktu yang diperlukan setelah kita berhenti mendengar ucapan untuk mempertimbangkan kemungkinan input selesai.
+////        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 7000000);
+//        //Panjang minimal sebuah ujaran.
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 7000);
 
 
         find(R.id.btn_speak).setOnClickListener(v -> {
@@ -909,7 +918,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
-        find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0).toUpperCase());//just dummy
+        //find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0).toUpperCase());//just dummy
 
     }
 
@@ -925,5 +934,26 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     public void Back(){
         super.onBackPressed();
+    }
+
+    @Override
+    public void onInit(int status) {
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+
+        });
     }
 }
