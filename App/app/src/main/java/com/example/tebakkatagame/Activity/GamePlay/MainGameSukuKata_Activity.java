@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.Activity.LevelTahap_Activity;
+import com.example.tebakkatagame.Activity.Tahap_Activity;
 import com.example.tebakkatagame.R;
 
 import java.io.IOException;
@@ -95,12 +96,11 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         });
 
         find(R.id.img_btn_back).setOnClickListener(v -> {
-           /* Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            Intent intent = new Intent(getActivity(), Tahap_Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish();*/
-            super.onBackPressed();
+            finish();
         });
 
         //setOpeningStart();
@@ -194,9 +194,11 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
     }
 
     private void selebrateWin(boolean isBenar) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        find(R.id.ly_next).setVisibility(View.VISIBLE);
         find(R.id.view_blur).setVisibility(View.VISIBLE);
+
         if(isBenar){
-            find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameSukuKata_Activity.class, "LEVEL", (level + 1)));
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
             mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
@@ -209,19 +211,25 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler(Looper.getMainLooper());
+
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "SUKU KATA", true);
             }, 3000);
-
-            handler.postDelayed(() -> {
-                find(R.id.ly_next).setVisibility(View.VISIBLE);
-            }, 6000);
         }else{
             showWinDialog(level + 1, "SUKU KATA", false);
         }
 
-
+        handler.postDelayed(() -> {
+            if (!isBenar) {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_repeat));
+                find(R.id.tv_next, TextView.class).setText("Coba Lagi");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level)));
+            } else {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_next));
+                find(R.id.tv_next, TextView.class).setText("Selanjutnya");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+            }
+        }, 6000);
     }
 
     private boolean setCorrectAnswer(String speech) {

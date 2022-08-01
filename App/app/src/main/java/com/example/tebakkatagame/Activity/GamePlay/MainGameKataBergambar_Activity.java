@@ -1,10 +1,14 @@
 package com.example.tebakkatagame.Activity.GamePlay;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
@@ -30,6 +34,7 @@ import android.widget.Toast;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.Activity.LevelTahap_Activity;
+import com.example.tebakkatagame.Activity.Tahap_Activity;
 import com.example.tebakkatagame.R;
 import com.example.tebakkatagame.Utils.STT;
 
@@ -55,6 +60,7 @@ import static com.example.tebakkatagame.Utils.Constanst.WORD_4;
 
 public class MainGameKataBergambar_Activity extends BaseApp implements RecognitionListener, TextToSpeech.OnInitListener {
 
+    private static final int PERMISSIONS_REQUEST = 999;
     Locale localeIndonesia = new Locale("id", "ID");
     SpeechRecognizer mSpeechRecognizer;
     private KonfettiView konfettiView;
@@ -97,14 +103,17 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         find(R.id.ly_eja_1).setOnClickListener(v -> playWord(1));
         find(R.id.ly_eja_2).setOnClickListener(v -> playWord(2));
         find(R.id.btn_speak).setOnClickListener(v -> {
-            setTimerGif();
-            mSpeechRecognizer.stopListening();
-            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-            //setGoogleSpeechToText();
-            // stt.speak();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                setTimerGif();
+                mSpeechRecognizer.stopListening();
+                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PERMISSIONS_REQUEST);
+            }
         });
+
         find(R.id.img_btn_back).setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            Intent intent = new Intent(getActivity(), Tahap_Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -211,11 +220,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         switch (level) {
             case 0: //bumi
                 if (sukuKata == 1) {
-                    //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
-                    textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
+                    //textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
-                     textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
+                    // textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 break;
             case 1: //padi
@@ -420,6 +429,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     }
 
+
     //by ejakata
     private void setResultSpech(String... eja) {
         countSpeak++;
@@ -436,11 +446,13 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void selebrateWin(boolean isBenar) {
+        Handler handler = new Handler(Looper.getMainLooper());
         find(R.id.view_blur).setVisibility(View.VISIBLE);
-        if (isBenar) {
-            find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+        find(R.id.ly_next).setVisibility(View.VISIBLE);
 
+        if (isBenar) {
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
             mediaPlayerWin.start();
             konfettiView.post(() -> konfettiView.build()
@@ -454,19 +466,26 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
 
-            Handler handler = new Handler(Looper.getMainLooper());
+
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK GAMBAR", true);
                 mediaPlayerWin.stop();
             }, 3000);
-
-            handler.postDelayed(() -> {
-                find(R.id.ly_next).setVisibility(View.VISIBLE);
-            }, 6000);
-
         } else {
             showWinDialog(level + 1, "TEBAK GAMBAR", false);
         }
+
+        handler.postDelayed(() -> {
+            if (!isBenar) {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_repeat));
+                find(R.id.tv_next, TextView.class).setText("Coba Lagi");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level)));
+            } else {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_next));
+                find(R.id.tv_next, TextView.class).setText("Selanjutnya");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+            }
+        }, 6000);
     }
 
     private boolean setCorrectAnswer(String speech) {
@@ -1162,8 +1181,10 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
     }
+
     @Override
     public void onReadyForSpeech(Bundle params) {
+        showInfo("Mulai Ucapkan Kata");
     }
 
     @Override
@@ -1189,7 +1210,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     @Override
     public void onError(int error) {
-//        showInfo(getErrorText(error));
+        showInfo(getErrorText(error));
     }
 
     @Override
@@ -1284,6 +1305,16 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
             }
 
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+        }else{
+            showInfo("Ijinkan Aplikasi Untuk Mengakses Mikropon");
+        }
     }
 }
 

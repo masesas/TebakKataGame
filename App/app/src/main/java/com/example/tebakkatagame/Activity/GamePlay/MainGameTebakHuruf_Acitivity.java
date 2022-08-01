@@ -13,9 +13,11 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.tebakkatagame.Activity.BaseApp;
 import com.example.tebakkatagame.Activity.LevelTahap_Activity;
+import com.example.tebakkatagame.Activity.Tahap_Activity;
 import com.example.tebakkatagame.R;
 
 import nl.dionsegijn.konfetti.KonfettiView;
@@ -71,12 +73,11 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
         konfettiView = findViewById(R.id.viewKonfetti);
 
         find(R.id.img_btn_back).setOnClickListener(v -> {
-            /*Intent intent = new Intent(getActivity(), LevelTahap_Activity.class);
+            Intent intent = new Intent(getActivity(), Tahap_Activity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish();*/
-            super.onBackPressed();
+            finish();
         });
     }
 
@@ -418,7 +419,10 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
     }
 
     private void selebrateWin(boolean isBenar) {
+        Handler handler = new Handler(Looper.getMainLooper());
         find(R.id.view_blur).setVisibility(View.VISIBLE);
+        find(R.id.ly_next).setVisibility(View.VISIBLE);
+
         if (isBenar) {
             find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameTebakHuruf_Acitivity.class, "LEVEL", (level + 1)));
 
@@ -434,16 +438,25 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                     .addSizes(new Size(12, 5f))
                     .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
                     .streamFor(300, 5000L));
-            Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 showWinDialog(level + 1, "TEBAK HURUF", true);
             }, 3000);
-            handler.postDelayed(() -> {
-                find(R.id.ly_next).setVisibility(View.VISIBLE);
-            }, 6000);
+
         } else {
             showWinDialog(level + 1, "TEBAK HURUF", false);
         }
+
+        handler.postDelayed(() -> {
+            if (!isBenar) {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_repeat));
+                find(R.id.tv_next, TextView.class).setText("Coba Lagi");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level)));
+            } else {
+                find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_next));
+                find(R.id.tv_next, TextView.class).setText("Selanjutnya");
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+            }
+        }, 6000);
     }
 
     public void Back(){
