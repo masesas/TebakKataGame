@@ -149,7 +149,8 @@ public class WinDialogFragment extends DialogFragment {
         if (!isBenar) {
             mediaPlayerLose.start();
             mediaPlayerLose.setLooping(true);
-            ((ImageView) view.findViewById(R.id.img_stiker)).setImageResource(R.drawable.ic_stiker_salah);
+            ((ImageView) view.findViewById(R.id.img_stiker)).setImageResource(R.drawable.ic_salah_sd);
+            ((ImageView) view.findViewById(R.id.img_stiker)).setRotation(350);
             ((ImageView) view.findViewById(R.id.img_btn_next)).setImageResource(R.drawable.ic_repeat_resize);
             ((ImageView) view.findViewById(R.id.img_btn_next)).setTag("WRONG");
             view.findViewById(R.id.img_btn_close).setVisibility(View.GONE);

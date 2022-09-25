@@ -78,6 +78,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "in-ID");
+
 //        final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 //        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 //        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeIndonesia);
@@ -223,11 +224,11 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
             if (!isBenar) {
                 find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_repeat));
                 find(R.id.tv_next, TextView.class).setText("Coba Lagi");
-                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level)));
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameSukuKata_Activity.class, "LEVEL", (level)));
             } else {
                 find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_next));
                 find(R.id.tv_next, TextView.class).setText("Selanjutnya");
-                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameSukuKata_Activity.class, "LEVEL", (level + 1)));
             }
         }, 6000);
     }
@@ -881,7 +882,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     @Override
     public void onReadyForSpeech(Bundle params) {
-
+        showInfo("Mulai Ucapkan Kata");
     }
 
     @Override
@@ -906,7 +907,8 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     @Override
     public void onError(int error) {
-        String errorMessage = getErrorText(error);
+       // showInfo(getErrorText(error));
+        /*String errorMessage = getErrorText(error);
         Log.d("LOG_onError" , errorMessage);
         if(errorMessage.contains("RecognitionService busy")){
             mSpeechRecognizer.stopListening();
@@ -917,7 +919,7 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         }else if(errorMessage.contains("No match")){
             mSpeechRecognizer.stopListening();
             showInfo("Coba Lagi");
-        }
+        }*/
     }
 
     @Override
@@ -926,7 +928,8 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
         List<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         String[] result = matches.toArray(new String[]{});
         setResultSpech(result);
-        //find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0).toUpperCase());//just dummy
+
+        find(R.id.tv_result_sukukata, TextView.class).setText(matches.get(0).toUpperCase());//just dummy
 
     }
 
@@ -940,9 +943,6 @@ public class MainGameSukuKata_Activity extends BaseApp implements RecognitionLis
 
     }
 
-    public void Back(){
-        super.onBackPressed();
-    }
 
     @Override
     public void onInit(int status) {

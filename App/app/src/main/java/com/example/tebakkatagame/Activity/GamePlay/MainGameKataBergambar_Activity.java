@@ -1210,7 +1210,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     @Override
     public void onError(int error) {
-        showInfo(getErrorText(error));
+       // showInfo(getErrorText(error));
     }
 
     @Override

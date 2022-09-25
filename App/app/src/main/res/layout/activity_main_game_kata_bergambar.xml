@@ -94,7 +94,7 @@
             android:layout_height="160dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_tittle_kata_bergambar"
+            android:src="@drawable/new_kata_bergambar"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

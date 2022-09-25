@@ -450,11 +450,11 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
             if (!isBenar) {
                 find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_repeat));
                 find(R.id.tv_next, TextView.class).setText("Coba Lagi");
-                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level)));
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameTebakHuruf_Acitivity.class, "LEVEL", (level)));
             } else {
                 find(R.id.img_next_level, ImageView.class).setImageDrawable(getDrawable(R.drawable.ic_next));
                 find(R.id.tv_next, TextView.class).setText("Selanjutnya");
-                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
+                find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameTebakHuruf_Acitivity.class, "LEVEL", (level + 1)));
             }
         }, 6000);
     }
