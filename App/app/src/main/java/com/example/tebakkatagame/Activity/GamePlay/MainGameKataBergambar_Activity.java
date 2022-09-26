@@ -79,8 +79,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game_kata_bergambar);
+        level = getIntent().getIntExtra("LEVEL", 1);
+
         setComponent();
-        setImageLevel();
+        setWordLevelling(level);
+        //setImageLevel();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -91,6 +94,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         //stt = new STT(this);
         textToSpeech = new TextToSpeech(this, this);
 
+        find(R.id.ly_next).setVisibility(View.GONE);
         textToSpeech.setLanguage(localeIndonesia);
         mSpeechRecognizer.setRecognitionListener(this);
         //find(R.id.img_tebak).setVisibility(View.GONE);
@@ -218,200 +222,191 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         MediaPlayer mediaPlayer = null;
         // AudioTrack audioTrack = new AudioTrack(3, 16000, 2, 2, 3);
         switch (level) {
-            case 0: //bumi
+            case 0: //ibu
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.i);
                     //textToSpeech.speak("BU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
                     // textToSpeech.speak("MI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 break;
-            case 1: //padi
+            case 1: //ubi
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pa);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.u);
                     // textToSpeech.speak("PA",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.di);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bi);
                     //textToSpeech.speak("DI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.padi);
                 break;
-            case 2: //gigi
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gi);
+            case 2: //api
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.a);
+                    // textToSpeech.speak("PA",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
+                    //textToSpeech.speak("DI",TextToSpeech.QUEUE_FLUSH,null,null);
+                }
                 // textToSpeech.speak("GI",TextToSpeech.QUEUE_FLUSH,null,null);
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gigi);
                 break;
-            case 3: //dadu
+            case 3: //bumi
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bu);
                     // textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mi);
                     //textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dadu);
                 break;
-            case 4: //biji
+            case 4: //padi
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bi);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pa);
                     //textToSpeech.speak("BI",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ji);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.di);
                     //textToSpeech.speak("JI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.biji);
                 break;
-            case 5: //gula
-                if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gu);
-                    //textToSpeech.speak("GU",TextToSpeech.QUEUE_FLUSH,null,null);
-                } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.la);
-                    // textToSpeech.speak("LA",TextToSpeech.QUEUE_FLUSH,null,null);
-                }
+            case 5: //gigi
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gi);
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gula);
                 break;
-            case 6: //pipi
-                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
-                // textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
+            case 6: //dadu
+                if (sukuKata == 1) {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
+                    //textToSpeech.speak("BI",TextToSpeech.QUEUE_FLUSH,null,null);
+                } else {
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
+                    //textToSpeech.speak("JI",TextToSpeech.QUEUE_FLUSH,null,null);
+                }
+
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pipi);
                 break;
-            case 7: //kopi
+            case 7: //biji
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ko);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bi);
                     //textToSpeech.speak("KO",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ji);
                     //textToSpeech.speak("PI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kopi);
                 break;
-            case 8: //duri
+            case 8: //guru
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gu);
                     // textToSpeech.speak("DU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ri);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
                     //textToSpeech.speak("RI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.duri);
                 break;
-            case 9: //kayu
+            case 9: //biji
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ka);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bi);
                     //textToSpeech.speak("KA",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.yu);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ji);
                     //textToSpeech.speak("YU",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kayu);
                 break;
-            case 10: //rusa
+            case 10: //gula
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.gu);
                     // textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.la);
                     //textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rusa);
                 break;
-            case 11: //tali
-                if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
-                    // textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
-                } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.li);
-                    //textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
-                }
+            case 11: //pipi
+                mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
                 //   mediaPlayer = MediaPlayer.create(getActivity(), R.raw.tali);
                 break;
-            case 12: //peta
+            case 12: //kopi
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pe);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ko);
                     //textToSpeech.speak("PE",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pi);
                     //textToSpeech.speak("TA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.peta);
                 break;
-            case 13: //desa
+            case 13: //duri
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.de);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.du);
                     // textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ri);
                     //textToSpeech.speak("SA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.desa);
                 break;
-            case 14: //roda
+            case 14: //kayu
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ro);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ka);
 //                    textToSpeech.speak("RO",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.yu);
 //                    textToSpeech.speak("DA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.roda);
                 break;
-            case 15: //buaya
+            case 15: //rusa
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bua);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
 //                    textToSpeech.speak("BUA",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ya);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
                     //textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.buaya);
                 break;
-            case 16: //rumah
+            case 16: //tali
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ru);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
                     // textToSpeech.speak("RU",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.mah);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.li);
                     // textToSpeech.speak("MAH",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.rumah);
                 break;
-            case 17: //delima
+            case 17: //peta
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.de);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.pe);
                     // textToSpeech.speak("DE",TextToSpeech.QUEUE_FLUSH,null,null);
-                } else if (sukuKata == 2) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.li);
-                    //  textToSpeech.speak("LI",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ma);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ta);
                     // textToSpeech.speak("MA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 // mediaPlayer = MediaPlayer.create(getActivity(), R.raw.delima);
                 break;
-            case 18: //keledai
+            case 18: //desa
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ke);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.de);
                     //textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
-                } else if (sukuKata == 2) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.le);
-                    //textToSpeech.speak("LE",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.dai);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.sa);
                     //textToSpeech.speak("DAI",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //mediaPlayer = MediaPlayer.create(getActivity(), R.raw.keledai);
                 break;
-            case 19: //kebaya
+            case 19: //roda
                 if (sukuKata == 1) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ke);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ro);
                     //textToSpeech.speak("KE",TextToSpeech.QUEUE_FLUSH,null,null);
-                } else if (sukuKata == 2) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ba);
-                    //textToSpeech.speak("BA",TextToSpeech.QUEUE_FLUSH,null,null);
                 } else {
-                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.ya);
+                    mediaPlayer = MediaPlayer.create(getActivity(), R.raw.da);
                     //textToSpeech.speak("YA",TextToSpeech.QUEUE_FLUSH,null,null);
                 }
                 //  mediaPlayer = MediaPlayer.create(getActivity(), R.raw.kebaya);
@@ -429,12 +424,11 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     }
 
-
     //by ejakata
     private void setResultSpech(String... eja) {
         countSpeak++;
         if (countSpeak == WORD_1) {
-            if (setCorrectAnswer(eja[0])) {
+            if (setCorrectWord(level, eja[0])) {
                 shakesAnimate(find(R.id.img_tebak));
                 find(R.id.img_tebak).setVisibility(View.VISIBLE);
                 selebrateWin(true);
@@ -450,7 +444,6 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
     private void selebrateWin(boolean isBenar) {
         Handler handler = new Handler(Looper.getMainLooper());
         find(R.id.view_blur).setVisibility(View.VISIBLE);
-        find(R.id.ly_next).setVisibility(View.VISIBLE);
 
         if (isBenar) {
             MediaPlayer mediaPlayerWin = MediaPlayer.create(getActivity(), R.raw.sound_applause);
@@ -485,527 +478,54 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.tv_next, TextView.class).setText("Selanjutnya");
                 find(R.id.ly_next).setOnClickListener(v -> setIntentFinish(MainGameKataBergambar_Activity.class, "LEVEL", (level + 1)));
             }
-        }, 6000);
-    }
 
-    private boolean setCorrectAnswer(String speech) {
-        speech = speech.toLowerCase();
-        switch (level) {
-            case 0: //bumi
-                if (speech.length() > 0 && speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'm') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("bumi");
-            case 1: //padi
-                if (speech.length() > 0 && speech.charAt(0) == 'p') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("padi");
-            case 2: //gigi
-                if (speech.length() > 0 && speech.charAt(0) == 'g') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'i') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'g') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("gigi");
-            case 3: //dadu
-                if (speech.length() > 0 && speech.charAt(0) == 'd') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'u') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("dadu");
-            case 4: //biji
-                if (speech.length() > 0 && speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'i') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'j') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("biji");
-            case 5: //gula
-                if (speech.length() > 0 && speech.charAt(0) == 'g') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'l') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("gula");
-            case 6: //pipi
-                if (speech.length() > 0 && speech.charAt(0) == 'p') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'i') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'p') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("pipi");
-            case 7: //kopi
-                if (speech.length() > 0 && speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'o') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'p') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("kopi");
-            case 8: //duri
-                if (speech.length() > 0 && speech.charAt(0) == 'd') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'r') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("duri");
-            case 9: //kayu
-                if (speech.length() > 0 && speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'y') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'u') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("kayu");
-            case 10: //rusa
-                if (speech.length() > 0 && speech.charAt(0) == 'r') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 's') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("rusa");
-            case 11: //tali
-                if (speech.length() > 0 && speech.charAt(0) == 't') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'a') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'l') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("tali");
-            case 12: //peta
-                if (speech.length() > 0 && speech.charAt(0) == 'p') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 't') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("peta");
-            case 13: //desa
-                if (speech.length() > 0 && speech.charAt(0) == 'd') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 's') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("desa");
-            case 14: //roda
-                if (speech.length() > 0 && speech.charAt(0) == 'r') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'o') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'd') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                return speech.toLowerCase().contains("roda");
-            case 15: //buaya
-                if (speech.length() > 0 && speech.charAt(0) == 'b') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'a') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'y') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.length() > 4 && speech.charAt(4) == 'a') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                return speech.toLowerCase().contains("buaya");
-            case 16: //rumah
-                if (speech.length() > 0 && speech.charAt(0) == 'r') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'u') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'm') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.length() > 4 && speech.charAt(4) == 'h') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                return speech.toLowerCase().contains("rumah");
-            case 17: //delima
-                if (speech.length() > 0 && speech.charAt(0) == 'd') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'l') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'i') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.length() > 4 && speech.charAt(4) == 'm') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.length() > 5 && speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                return speech.toLowerCase().contains("delima");
-            case 18: //keledai
-                if (speech.length() > 0 && speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'l') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'e') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.length() > 4 && speech.charAt(4) == 'd') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.length() > 5 && speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.length() > 6 && speech.charAt(6) == 'i') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-                return speech.toLowerCase().contains("keledai");
-            case 19: //kebaya
-                if (speech.length() > 0 && speech.charAt(0) == 'k') {
-                    setCorectMode(find(R.id.img_word_1));
-                } else {
-                    setWrongMode(find(R.id.img_word_1));
-                }
-                if (speech.length() > 1 && speech.charAt(1) == 'e') {
-                    setCorectMode(find(R.id.img_word_2));
-                } else {
-                    setWrongMode(find(R.id.img_word_2));
-                }
-                if (speech.length() > 2 && speech.charAt(2) == 'b') {
-                    setCorectMode(find(R.id.img_word_3));
-                } else {
-                    setWrongMode(find(R.id.img_word_3));
-                }
-                if (speech.length() > 3 && speech.charAt(3) == 'a') {
-                    setCorectMode(find(R.id.img_word_4));
-                } else {
-                    setWrongMode(find(R.id.img_word_4));
-                }
-                if (speech.length() > 4 && speech.charAt(4) == 'y') {
-                    setCorectMode(find(R.id.img_word_5));
-                } else {
-                    setWrongMode(find(R.id.img_word_5));
-                }
-                if (speech.length() > 5 && speech.charAt(5) == 'a') {
-                    setCorectMode(find(R.id.img_word_6));
-                } else {
-                    setWrongMode(find(R.id.img_word_6));
-                }
-
-                return speech.toLowerCase().contains("kebaya");
-            default:
-                return false;
-        }
+            find(R.id.ly_next).setVisibility(View.VISIBLE);
+        }, 4000);
     }
 
     private void setImageLevel() {
-        level = getIntent().getIntExtra("LEVEL", 1);
         switch (level) {
             case 0: //bumi
-                word1 = getResources().getResourceEntryName(R.drawable.letter_b);
-                word2 = getResources().getResourceEntryName(R.drawable.letter_u);
-                word3 = getResources().getResourceEntryName(R.drawable.letter_m);
-                word4 = getResources().getResourceEntryName(R.drawable.letter_i);
+                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_ibu);
 
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 1: //ubi
+                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_ubi);
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 2: //api
+                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_api);
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 3: //bumi
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_earth);
+
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
                 find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_m);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
-
                 break;
-            case 1: //padi
+            case 4: //padi
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_rice);
+
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
                 find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_a);
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 2: //gigi
+            case 5: //gigi
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_tooth);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
@@ -1013,7 +533,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_g);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 3: //dadu
+            case 6: //dadu
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_dice);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
@@ -1021,7 +541,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
                 break;
-            case 4: //biji
+            case 7: //biji
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_seed);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
@@ -1029,7 +549,23 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_j);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 5: //gula
+            case 8: //guru
+                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_guru);
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_r);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 9: //biji
+                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_seed);
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_j);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 10: //gula
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_sugar);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
@@ -1037,7 +573,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
                 break;
-            case 6: //pipi
+            case 11: //pipi
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_cheek);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
@@ -1045,7 +581,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 7: //kopi
+            case 12: //kopi
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_coffee);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
@@ -1053,7 +589,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 8: //duri
+            case 13: //duri
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_thorn);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
@@ -1061,7 +597,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_r);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 9: //kayu
+            case 14: //kayu
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_wood);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
@@ -1069,7 +605,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_y);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
                 break;
-            case 10: //rusa
+            case 15: //rusa
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_deer);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_r);
@@ -1077,7 +613,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_s);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
                 break;
-            case 11: //tali
+            case 16: //tali
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_rope);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_t);
@@ -1085,7 +621,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
                 break;
-            case 12: //peta
+            case 17: //peta
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_map);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
@@ -1093,7 +629,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_t);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
                 break;
-            case 13: //desa
+            case 18: //desa
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_village);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
@@ -1101,7 +637,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_s);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
                 break;
-            case 14: //roda
+            case 19: //roda
                 find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_wheel);
 
                 find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_r);
@@ -1109,76 +645,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
                 find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
                 find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
                 break;
-            case 15: //buaya
-                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_crocodile);
 
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
-                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_a);
-                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_y);
-                find(R.id.img_word_5, ImageView.class).setImageResource(R.drawable.letter_a);
-                break;
-            case 16: //rumah
-                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_house);
-                find(R.id.img_limit_3, ImageView.class).setVisibility(View.VISIBLE);
-                find(R.id.img_word_7, ImageView.class).setVisibility(View.VISIBLE);
-
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_r);
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
-                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_m);
-                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
-                find(R.id.img_word_7, ImageView.class).setImageResource(R.drawable.letter_h);
-
-                break;
-            case 17: //delima
-                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_pomegranate);
-                find(R.id.ly_eja_3).setVisibility(View.VISIBLE);
-                find(R.id.img_limit_2, ImageView.class).setVisibility(View.VISIBLE);
-
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);
-                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
-                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
-                find(R.id.img_word_5, ImageView.class).setImageResource(R.drawable.letter_m);
-                find(R.id.img_word_6, ImageView.class).setImageResource(R.drawable.letter_a);
-                break;
-            case 18: //keledai
-                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_donkey);
-                find(R.id.ly_eja_3).setVisibility(View.VISIBLE);
-                find(R.id.img_limit_2, ImageView.class).setVisibility(View.VISIBLE);
-                find(R.id.img_limit_3, ImageView.class).setVisibility(View.VISIBLE);
-                find(R.id.img_word_7, ImageView.class).setVisibility(View.VISIBLE);
-
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);
-                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
-                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_e);
-                find(R.id.img_word_5, ImageView.class).setImageResource(R.drawable.letter_d);
-                find(R.id.img_word_6, ImageView.class).setImageResource(R.drawable.letter_a);
-                find(R.id.img_word_7, ImageView.class).setImageResource(R.drawable.letter_i);
-                break;
-            case 19: //kebaya
-                find(R.id.img_tebak, ImageView.class).setImageResource(R.drawable.ic_kebaya);
-                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
-                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);
-                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);
-                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
-                find(R.id.img_word_5, ImageView.class).setImageResource(R.drawable.letter_y);
-                find(R.id.img_word_6, ImageView.class).setImageResource(R.drawable.letter_a);
-                break;
-
-        }
-    }
-
-    private void setCorectMode(View view) {
-        if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
-    private void setWrongMode(View view) {
-        if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
     }
 
@@ -1210,7 +677,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
 
     @Override
     public void onError(int error) {
-       // showInfo(getErrorText(error));
+        // showInfo(getErrorText(error));
     }
 
     @Override
@@ -1312,7 +779,7 @@ public class MainGameKataBergambar_Activity extends BaseApp implements Recogniti
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-        }else{
+        } else {
             showInfo("Ijinkan Aplikasi Untuk Mengakses Mikropon");
         }
     }

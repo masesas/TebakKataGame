@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -210,5 +211,625 @@ public class BaseApp extends AppCompatActivity {
         handler.postDelayed(runnable, 1000);
     }
 
+    protected void setCorectMode(View view) {
+        if (view instanceof ImageView) {
+            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+    }
+
+    protected void setWrongMode(View view) {
+        if (view instanceof ImageView) {
+            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+    }
+
+    protected boolean setCorrectWord(int level, String speech) {
+        speech = speech.toLowerCase();
+        switch (level) {
+            case 0: //ibu
+                if (speech.length() > 0 && speech.charAt(0) == 'i') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'b') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'u') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("ibu");
+            case 1: //ubi
+                if (speech.length() > 0 && speech.charAt(0) == 'u') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'b') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("ubi");
+            case 2: //api
+                if (speech.length() > 0 && speech.charAt(0) == 'a') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'p') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+
+                return speech.toLowerCase().contains("api");
+            case 3: //bumi
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'm') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("bumi");
+            case 4: //padi
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("padi");
+            case 5: //gigi
+                if (speech.length() > 0 && speech.charAt(0) == 'g') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'g') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("gigi");
+            case 6: //dadu
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'u') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("dadu");
+            case 7: //biji
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'j') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("biji");
+            case 8: //guru
+                if (speech.length() > 0 && speech.charAt(0) == 'g') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'r') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'u') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("guru");
+            case 9: //biji
+                if (speech.length() > 0 && speech.charAt(0) == 'b') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'j') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("biji");
+            case 10: //gula
+                if (speech.length() > 0 && speech.charAt(0) == 'g') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("gula");
+            case 11: //pipi
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'i') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'p') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("pipi");
+            case 12: //kopi
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'o') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'p') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("kopi");
+            case 13: //duri
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'r') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("duri");
+            case 14: //kayu
+                if (speech.length() > 0 && speech.charAt(0) == 'k') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'y') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'u') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("kayu");
+            case 15: //rusa
+                if (speech.length() > 0 && speech.charAt(0) == 'r') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'u') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 's') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+                return speech.toLowerCase().contains("rusa");
+            case 16: //tali
+                if (speech.length() > 0 && speech.charAt(0) == 't') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'a') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'l') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'i') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+
+                return speech.toLowerCase().contains("tali");
+            case 17: //peta
+                if (speech.length() > 0 && speech.charAt(0) == 'p') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 't') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+
+                return speech.toLowerCase().contains("peta");
+            case 18: //desa
+                if (speech.length() > 0 && speech.charAt(0) == 'd') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'e') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 's') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+
+                return speech.toLowerCase().contains("desa");
+            case 19: //roda
+                if (speech.length() > 0 && speech.charAt(0) == 'r') {
+                    setCorectMode(find(R.id.img_word_1));
+                } else {
+                    setWrongMode(find(R.id.img_word_1));
+                }
+                if (speech.length() > 1 && speech.charAt(1) == 'o') {
+                    setCorectMode(find(R.id.img_word_2));
+                } else {
+                    setWrongMode(find(R.id.img_word_2));
+                }
+                if (speech.length() > 2 && speech.charAt(2) == 'd') {
+                    setCorectMode(find(R.id.img_word_3));
+                } else {
+                    setWrongMode(find(R.id.img_word_3));
+                }
+                if (speech.length() > 3 && speech.charAt(3) == 'a') {
+                    setCorectMode(find(R.id.img_word_4));
+                } else {
+                    setWrongMode(find(R.id.img_word_4));
+                }
+
+                return speech.toLowerCase().contains("roda");
+            default:
+                return false;
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    protected void setWordLevelling(int level){
+        @DrawableRes int drawableId = 0;
+        switch (level) {
+            case 0: //bumi
+                drawableId = R.drawable.ic_ibu;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 1: //ubi
+                drawableId = R.drawable.ic_ubi;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 2: //api
+                drawableId = R.drawable.ic_api;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_2, ImageView.class).setVisibility(View.GONE);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 3: //bumi
+                drawableId = R.drawable.ic_earth;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_m);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 4: //padi
+                drawableId = R.drawable.ic_rice;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 5: //gigi
+                drawableId = R.drawable.ic_tooth;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_g);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 6: //dadu
+                drawableId = R.drawable.ic_dice;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 7: //biji
+                drawableId = R.drawable.ic_seed;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_j);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 8: //guru
+                drawableId = R.drawable.ic_teacher;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_r);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 9: //biji
+                drawableId = R.drawable.ic_seed;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_b);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_j);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 10: //gula
+                drawableId = R.drawable.ic_sugar;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_g);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
+                break;
+            case 11: //pipi
+                drawableId = R.drawable.ic_cheek;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_i);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 12: //kopi
+                drawableId = R.drawable.ic_coffee;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_o);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 13: //duri
+                drawableId = R.drawable.ic_thorn;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_r);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 14: //kayu
+                drawableId = R.drawable.ic_wood;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_k);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_y);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_u);
+                break;
+            case 15: //rusa
+                drawableId = R.drawable.ic_deer;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_r);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_u);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_s);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
+                break;
+            case 16: //tali
+                drawableId = R.drawable.ic_rope;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_t);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_a);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_l);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_i);
+                break;
+            case 17: //peta
+                drawableId = R.drawable.ic_map;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_p);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_t);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
+                break;
+            case 18: //desa
+                drawableId = R.drawable.ic_village;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_e);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_s);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
+                break;
+            case 19: //roda
+                drawableId = R.drawable.ic_wheel;
+
+                find(R.id.img_word_1, ImageView.class).setImageResource(R.drawable.letter_r);
+                find(R.id.img_word_2, ImageView.class).setImageResource(R.drawable.letter_o);
+                find(R.id.img_word_3, ImageView.class).setImageResource(R.drawable.letter_d);
+                find(R.id.img_word_4, ImageView.class).setImageResource(R.drawable.letter_a);
+                break;
+        }
+
+        if (find(R.id.img_tebak, ImageView.class) != null && drawableId > 0) {
+            find(R.id.img_tebak, ImageView.class).setImageResource(drawableId);
+        }
+    }
 }
 

@@ -2085,18 +2085,6 @@ public class MainGameKalimat_Activity extends BaseApp implements RecognitionList
     }
 
 
-    private void setCorectMode(View view) {
-        if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.green_500), android.graphics.PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
-    private void setWrongMode(View view) {
-        if (view instanceof ImageView) {
-            ((ImageView) view).setColorFilter(ContextCompat.getColor(getActivity(), R.color.red_500), android.graphics.PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
     private void setResultSpech(String... eja) {
         if (setCorrectAnswer(eja[0])) {
             selebrateWin(true);

@@ -16,12 +16,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="370dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="210dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="170dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
         android:translationZ="100dp">
 
         <androidx.cardview.widget.CardView
@@ -112,8 +111,8 @@
 
         <ImageView
             android:id="@+id/img_icon_tebak"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_buku"
             tools:ignore="ContentDescription" />
