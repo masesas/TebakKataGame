@@ -93,9 +93,9 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest2.setVisibility(View.GONE);
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
 
                 LinierArray[0].setTag("key");
                 String[] key1 = {"b", "u"};
@@ -135,10 +135,10 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest1.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
                 imgGuest2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
 
-                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_t", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_m", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_m", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_t", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
                 String[] key4 = {"m", "i"};
                 setImage(key4);
@@ -178,9 +178,9 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
                 String[] key7 = {"d", "u"};
                 setImage(key7);
@@ -205,9 +205,9 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_r", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_r", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
                 String[] key9 = {"r", "u"};
                 setImage(key9);
@@ -220,23 +220,23 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_j", "drawable", getApplicationContext())));
                 imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_j", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
                 String[] key10 = {"j", "i"};
                 setImage(key10);
                 break;
-            case 10: //gu-la
-                imgIcon.setImageResource(R.drawable.ic_sugar);
-                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_l", "drawable", getApplicationContext())));
-                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
+            case 10: //sa-pi
+                imgIcon.setImageResource(R.drawable.ic_cow);
+                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
+                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
 
-                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_g", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_g", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_s", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_s", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
-                String[] key11 = {"g", "u"};
+                String[] key11 = {"s", "a"};
                 setImage(key11);
                 break;
             case 11: //PIPI
@@ -246,50 +246,50 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
-                LinierArray[0].setTag("key");
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                LinierArray[1].setTag("key");
                 String[] key12 = {"p", "i"};
                 setImage(key12);
                 break;
             case 12: //KOPI
                 imgIcon.setImageResource(R.drawable.ic_coffee);
-                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
-                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
-
-                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
-                LinierArray[0].setTag("key");
-                String[] key13 = {"p", "i"};
-                setImage(key13);
-                break;
-            case 13: //DURI
-                imgIcon.setImageResource(R.drawable.ic_thorn);
-                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_r", "drawable", getApplicationContext())));
+                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
                 imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
 
-                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
+                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
-                String[] key14 = {"d", "u"};
+                String[] key13 = {"k", "o"};
+                setImage(key13);
+                break;
+            case 13: //BA-YI
+                imgIcon.setImageResource(R.drawable.ic_baby);
+                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_y", "drawable", getApplicationContext())));
+                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+
+                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_b", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
+                LinierArray[0].setTag("key");
+                String[] key14 = {"b", "a"};
                 setImage(key14);
                 break;
             case 14: //KAYU
                 imgIcon.setImageResource(R.drawable.ic_wood);
-                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
-                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
+                imgGuest3.setImageDrawable(getDrawable(getResourceID("letter_y", "drawable", getApplicationContext())));
+                imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
 
-                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_y", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
-                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_y", "drawable", getApplicationContext())));
+                imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_i", "drawable", getApplicationContext())));
+                imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_k", "drawable", getApplicationContext())));
                 imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
-                LinierArray[0].setTag("key");
-                String[] key15 = {"y", "u"};
+                LinierArray[1].setTag("key");
+                String[] key15 = {"k", "a"};
                 setImage(key15);
                 break;
             case 15: //RUSA
@@ -324,10 +324,10 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgGuest4.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
 
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
+                imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_p", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
-                LinierArray[0].setTag("key");
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
+                LinierArray[1].setTag("key");
                 String[] key18 = {"p", "e"};
                 setImage(key18);
                 break;
@@ -339,7 +339,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgChoise1.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
                 imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_e", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_d", "drawable", getApplicationContext())));
-                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_u", "drawable", getApplicationContext())));
+                imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
                 LinierArray[0].setTag("key");
                 String[] key19 = {"d", "e"};
                 setImage(key19);
@@ -353,7 +353,7 @@ public class MainGameTebakHuruf_Acitivity extends BaseApp {
                 imgChoise2.setImageDrawable(getDrawable(getResourceID("letter_a", "drawable", getApplicationContext())));
                 imgChoise3.setImageDrawable(getDrawable(getResourceID("letter_r", "drawable", getApplicationContext())));
                 imgChoise4.setImageDrawable(getDrawable(getResourceID("letter_o", "drawable", getApplicationContext())));
-                LinierArray[0].setTag("key");
+                LinierArray[1].setTag("key");
                 String[] key20 = {"r", "o"};
                 setImage(key20);
                 break;
